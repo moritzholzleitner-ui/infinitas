@@ -166,88 +166,74 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .ms{background:white;border:1px solid rgba(30,44,110,0.09);border-radius:10px;padding:14px 16px}
 .ms-v{font-family:var(--font-oracle);font-weight:500;font-size:20px;color:var(--navy);display:block;margin-bottom:2px}
 .ms-l{font-family:var(--font-oscar);font-weight:400;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(30,44,110,0.35)}
+
+/* Textlogo statt SVG-Logo */
+.custom-wordmark{
+  width:100%;
+  max-width:300px;
+  margin-bottom:44px;
+  filter:none !important;
+  text-align:center;
+  color:#fff;
+  font-family:var(--font-oracle);
+  line-height:1.05;
+  font-kerning:normal;
+  font-variant-ligatures:common-ligatures discretionary-ligatures;
+  font-feature-settings:"liga" 1,"clig" 1,"dlig" 1,"ss02" 1;
+}
+.custom-wordmark .wordmark-title{
+  font-family:var(--font-oracle);
+  font-size:4rem;
+  font-weight:600;
+  letter-spacing:0.01em;
+  font-kerning:normal;
+  font-variant-ligatures:common-ligatures discretionary-ligatures;
+  font-feature-settings:"liga" 1,"clig" 1,"dlig" 1,"ss02" 1;
+}
+.custom-wordmark .wordmark-subtitle{
+  font-family:var(--font-oracle);
+  font-size:1.3rem;
+  font-weight:400;
+  margin-top:0.35rem;
+  opacity:0.92;
+  font-kerning:normal;
+  font-variant-ligatures:common-ligatures discretionary-ligatures;
+  font-feature-settings:"liga" 1,"clig" 1,"dlig" 1,"ss02" 1;
+}
+
 </style>
 </head>
 <body>
 
 <!-- INTRO -->
 <div id="intro">
-  <svg class="intro-eight" id="introEight" viewBox="0 0 200 264" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="ig1" cx="50%" cy="30%" r="50%"><stop offset="0%" stop-color="#7a9fd4" stop-opacity="0.65"/><stop offset="100%" stop-color="#141d4a" stop-opacity="0"/></radialGradient>
-      <radialGradient id="ig2" cx="50%" cy="70%" r="50%"><stop offset="0%" stop-color="#7a9fd4" stop-opacity="0.55"/><stop offset="100%" stop-color="#141d4a" stop-opacity="0"/></radialGradient>
-    </defs>
-    <ellipse cx="100" cy="79" rx="88" ry="78" fill="url(#ig1)"/>
-    <ellipse cx="100" cy="185" rx="88" ry="78" fill="url(#ig2)"/>
-    <path d="M100 132 C72 132 24 107 24 72 C24 37 56 12 100 12 C144 12 176 37 176 72 C176 107 128 132 100 132 C72 132 24 157 24 192 C24 227 56 252 100 252 C144 252 176 227 176 192 C176 157 128 132 100 132Z"
-          fill="rgba(18,25,66,0.96)" stroke="rgba(140,175,220,0.45)" stroke-width="1.5"/>
-  </svg>
+  <svg class="intro-eight" id="introEight" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 341.32 573.1">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 6px;
+      }
+    </style>
+  </defs>
+  <g id="Ebene_1-2" data-name="Ebene 1">
+    <path class="cls-1" d="M242.77,351.04c-17.18-7.41-122.74-70.76,3.22-129.94,56.93-25.69,92.33-57.69,92.33-104.17,0-56.52-60.59-103.45-140.06-112.39-4.24-.48-8.54-.85-12.88-1.1-4.85-.29-9.76-.44-14.72-.44s-9.87.15-14.72.44c-4.34.25-8.64.62-12.88,1.1C63.59,13.48,3,60.41,3,116.93c0,46.48,35.4,78.48,92.33,104.17,125.96,59.18,20.4,122.53,3.22,129.94C41.86,378.84,3,408.84,3,456.14c0,56.55,60.59,103.48,140.06,112.42,4.24.48,8.54.85,12.88,1.1,4.85.29,9.76.44,14.72.44s9.87-.15,14.72-.44c4.34-.25,8.64-.62,12.88-1.1,79.47-8.94,140.06-55.87,140.06-112.42,0-47.3-38.86-77.3-95.55-105.1Z"/>
+  </g>
+</svg>
 </div>
 
 <!-- MAIN -->
 <div id="main">
   <section class="hero">
     <div class="hero-inner">
-      <svg class="hero-logo-img" id="heroLogo" role="img" aria-label="Infinitas" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 273.17 73.64">
-  <defs>
-    <style>
-      .cls-1 {
-        font-family: F37Oracle-Regular, 'F37 Oracle';
-        font-size: 60.52px;
-      }
+      
+<div id="heroLogo" class="hero-logo-img custom-wordmark" aria-label="Infinitas – Alles halb so wild?!">
+        <div class="wordmark-title">Infinitas</div>
+        <div class="wordmark-subtitle">Alles halb so wild?!</div>
+      </div>
 
-      .cls-1, .cls-2 {
-        fill: #2a3165;
-      }
-
-      .cls-3 {
-        letter-spacing: 0em;
-      }
-
-      .cls-4 {
-        letter-spacing: 0em;
-      }
-
-      .cls-2 {
-        font-family: FHOscarPro-SemiBold, 'FH Oscar Pro';
-        font-size: 11.24px;
-        font-weight: 600;
-      }
-
-      .cls-5 {
-        letter-spacing: .06em;
-      }
-
-      .cls-6 {
-        letter-spacing: .05em;
-      }
-
-      .cls-7 {
-        letter-spacing: .05em;
-      }
-
-      .cls-8 {
-        letter-spacing: .05em;
-      }
-
-      .cls-9 {
-        letter-spacing: .05em;
-      }
-
-      .cls-10 {
-        letter-spacing: .05em;
-      }
-
-      .cls-11 {
-        letter-spacing: .05em;
-      }
-    </style>
-  </defs>
-  <g id="Ebene_1-2" data-name="Ebene 1">
-    <text class="cls-1" transform="translate(36.29 49.14)"><tspan x="0" y="0">I</tspan><tspan class="cls-4" x="13.01" y="0">n</tspan><tspan x="44.78" y="0">fini</tspan><tspan class="cls-3" x="117.82" y="0">t</tspan><tspan x="142.87" y="0">as</tspan></text>
-    <text class="cls-2" transform="translate(87.58 70.63)"><tspan class="cls-7" x="0" y="0">A</tspan><tspan class="cls-8" x="8.23" y="0">l</tspan><tspan class="cls-9" x="11.26" y="0">l</tspan><tspan class="cls-5" x="14.31" y="0">e</tspan><tspan class="cls-7" x="20.87" y="0">s h</tspan><tspan class="cls-11" x="36.1" y="0">a</tspan><tspan class="cls-8" x="42.25" y="0">l</tspan><tspan class="cls-7" x="45.28" y="0">b </tspan><tspan class="cls-6" x="54.92" y="0">s</tspan><tspan class="cls-7" x="60.66" y="0">o wi</tspan><tspan class="cls-10" x="82.24" y="0">l</tspan><tspan class="cls-7" x="85.29" y="0">d?!</tspan></text>
-  </g>
-</svg>
       <div class="search-wrap" id="searchWrap">
         <input class="search-input" id="searchInput" type="text" placeholder="Was möchtest du wissen …" autocomplete="off">
         <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="17" height="17"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -4532,9 +4518,9 @@ setTimeout(()=>{
     mainEl.classList.add('visible');
     setTimeout(()=>{
       intro.style.display='none';
-      document.getElementById('heroLogo').classList.add('show');
-      document.getElementById('searchWrap').classList.add('show');
-      document.getElementById('scrollHint').classList.add('show');
+      document.getElementById('heroLogo')?.classList.add('show');
+      document.getElementById('searchWrap')?.classList.add('show');
+      document.getElementById('scrollHint')?.classList.add('show');
     },650);
   },850);
 },1400);
