@@ -54,7 +54,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 /* ── HERO ── */
 .hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;overflow:hidden}
 .hero-verlauf{width:100%;display:block;flex-shrink:0}
-.hero-inner{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;padding:8px 32px 80px}
+.hero-inner{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;padding:8px 32px 120px}
 .hero-logo-img{width:100%;max-width:300px;margin-bottom:44px;filter:brightness(0) invert(1);opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.1s,transform 0.8s ease 0.1s}
 .hero-logo-img.show{opacity:0.9;transform:translateY(0)}
 .search-wrap{width:100%;max-width:320px;position:relative;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s,border-radius 0.25s ease}
@@ -82,12 +82,12 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 
 .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity 0.8s ease 0.5s;z-index:3}
 .scroll-hint.show{opacity:1}
-.scroll-hint-lbl{font-family:var(--font-oscar);font-weight:400;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)}
-.scroll-pill{width:3px;height:22px;border-radius:10px;background:rgba(255,255,255,0.55);transform-origin:top center;animation:pillGrow 1.8s ease-in-out infinite}
-@keyframes pillGrow{0%,100%{transform:scaleY(0.22);border-radius:50%;opacity:0.35}50%{transform:scaleY(1);border-radius:10px;opacity:0.75}}
+.scroll-hint-lbl{font-family:var(--font-oscar);font-weight:400;font-size:9px;color:rgba(255,255,255,0.5)}
+.scroll-pill{width:9px;height:9px;border-right:1.5px solid rgba(255,255,255,0.6);border-bottom:1.5px solid rgba(255,255,255,0.6);transform:rotate(45deg);animation:arrowBounce 1.5s ease-in-out infinite}
+@keyframes arrowBounce{0%,100%{transform:rotate(45deg) translate(-2px,-2px);opacity:0.35}50%{transform:rotate(45deg) translate(3px,3px);opacity:0.85}}
 
 /* ── PAGE ── */
-.page{background:var(--navy-deep);padding:60px 28px 72px;text-align:center}
+.page{background:var(--navy-deep);padding:110px 28px 72px;text-align:center}
 .page-eyebrow{font-family:var(--font-oracle);font-weight:400;font-size:25px;color:white;margin-bottom:4px}
 .page-titel{font-family:var(--font-oracle);font-weight:500;font-size:30px;color:white;line-height:1.1;margin-bottom:20px}
 .page-titel em{font-style:normal;color:white}
@@ -215,6 +215,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 
 /* === SPIEL MECHANIK – PDF-Design === */
 :root{--mech-bg:#E2EAF6}
+html.mech-page-html{background:var(--mech-bg)}
 body.mech-page{background:white!important}
 #chapterView.mech-open .cv-back{display:none}
 
