@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#38396D">
 <title>Infinitas</title>
 <link rel="stylesheet" href="style.css">
@@ -78,6 +78,10 @@
     </div>
   </div>
 </div>
+
+<!-- Safari chrome color guards -->
+<div id="mechChromeGuard" style="display:none;position:fixed;top:0;left:0;right:0;height:2px;background:var(--mech-bg);z-index:999;pointer-events:none"></div>
+<div id="safeBottomGuard" style="display:none;position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:env(safe-area-inset-bottom,0px);background:white;z-index:65;pointer-events:none"></div>
 
 <!-- SCROLL HEADER (shown on scroll-down inside chapter) -->
 <div class="cv-scroll-header" id="cvScrollHeader">

@@ -54,7 +54,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 /* ── HERO ── */
 .hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;overflow:hidden}
 .hero-verlauf{width:100%;display:block;flex-shrink:0}
-.hero-inner{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;padding:8px 32px 120px}
+.hero-inner{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;padding:calc(8px + env(safe-area-inset-top)) 32px max(120px,calc(100px + env(safe-area-inset-bottom)))}
 .hero-logo-img{width:100%;max-width:300px;margin-bottom:44px;filter:brightness(0) invert(1);opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.1s,transform 0.8s ease 0.1s}
 .hero-logo-img.show{opacity:0.9;transform:translateY(0)}
 .search-wrap{width:100%;max-width:320px;position:relative;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s,border-radius 0.25s ease}
@@ -80,7 +80,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .qn-btn:active{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.28)}
 .qn-btn-wide{grid-column:1/-1}
 
-.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity 0.8s ease 0.5s;z-index:3}
+.scroll-hint{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity 0.8s ease 0.5s;z-index:3}
 .scroll-hint.show{opacity:1}
 .scroll-hint-lbl{font-family:var(--font-oscar);font-weight:400;font-size:9px;color:rgba(255,255,255,0.5)}
 .scroll-pill{width:9px;height:9px;border-right:1.5px solid rgba(255,255,255,0.6);border-bottom:1.5px solid rgba(255,255,255,0.6);transform:rotate(45deg);animation:arrowBounce 1.5s ease-in-out infinite}
@@ -122,7 +122,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .imp-copy{font-family:var(--font-oscar);font-weight:400;font-size:11px;line-height:1.85;color:rgba(255,255,255,0.15);margin-top:44px}
 
 /* ── CHAPTER VIEW ── */
-#chapterView{display:none;min-height:100vh;background:white}
+#chapterView{display:none;position:fixed;inset:0;max-width:430px;margin:0 auto;z-index:60;background:var(--mech-bg);padding-top:env(safe-area-inset-top);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 #chapterView.open{display:block;animation:cvOpen 0.52s cubic-bezier(0.16,1,0.3,1) both}
 @keyframes cvOpen{from{opacity:0;transform:translateY(72px)}to{opacity:1;transform:translateY(0)}}
 @keyframes cvClose{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(40px)}}
@@ -215,8 +215,9 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 
 /* === SPIEL MECHANIK – PDF-Design === */
 :root{--mech-bg:#E2EAF6}
+html{background:var(--navy-deep)}
 html.mech-page-html{background:var(--mech-bg)}
-body.mech-page{background:white!important}
+body.mech-page{background:var(--mech-bg)!important}
 #chapterView.mech-open .cv-back{display:none}
 
 .mech-view{background:var(--mech-bg)}
@@ -279,7 +280,7 @@ body.mech-page{background:white!important}
 /* Impressum: dekoratives Wellenbild, darunter der Text auf weißem Grund */
 .mech-imp-wrap{background:white}
 .mech-imp-bg{width:100%;display:block}
-.mech-imp-text{background:white;padding:0 28px 60px;margin-top:-80px;text-align:left}
+.mech-imp-text{background:white;padding:0 28px 220px;margin-top:-80px;text-align:left}
 .mech-imp-text p{font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(30,44,110,0.35);line-height:1.85;margin-bottom:10px}
 .mech-imp-text p:last-child{margin-bottom:0}
 
@@ -287,7 +288,7 @@ body.mech-page{background:white!important}
 @keyframes mechFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── SCROLL HEADER ── */
-.cv-scroll-header{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;align-items:center;gap:10px;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
+.cv-scroll-header{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;align-items:center;gap:10px;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
 .cv-scroll-header.sh-visible{transform:translateX(-50%) translateY(0);pointer-events:auto}
 .cv-scroll-header-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.7);border:1px solid rgba(30,44,110,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;color:var(--navy)}
 .cv-scroll-header-title{font-family:var(--font-oscar);font-weight:500;font-size:13px;color:var(--navy);flex:1;text-align:center;margin-right:32px}
