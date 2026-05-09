@@ -37,14 +37,16 @@
         <div class="wordmark-subtitle">Alles halb so wild?!</div>
       </div>
       <div class="search-wrap" id="searchWrap">
-        <input class="search-input" id="searchInput" type="text" placeholder="Anleitung durchsuchen …" autocomplete="off">
-        <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="17" height="17"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <div class="search-input-row">
+          <input class="search-input" id="searchInput" type="text" placeholder="Anleitung durchsuchen …" autocomplete="off">
+          <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="17" height="17"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
         <div class="search-results" id="searchResults"></div>
       </div>
       <div class="quick-nav" id="quickNav">
-        <button class="qn-btn" onclick="openChapter('einführung')">Spiel Einführung</button>
         <button class="qn-btn" onclick="openChapter('übersicht')">Spiel Übersicht</button>
         <button class="qn-btn" onclick="openChapter('aufbau')">Spiel Aufbau</button>
+        <button class="qn-btn" onclick="openChapter('ablauf')">Spiel Ablauf</button>
         <button class="qn-btn" onclick="openChapter('mechanik')">Spiel Mechanik</button>
       </div>
     </div>
@@ -74,6 +76,14 @@
       <p class="imp-p">Version 1.0 – INF-01-2026</p>
     </div>
   </div>
+</div>
+
+<!-- SCROLL HEADER (shown on scroll-down inside chapter) -->
+<div class="cv-scroll-header" id="cvScrollHeader">
+  <button class="cv-scroll-header-btn" onclick="closeChapter()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <span class="cv-scroll-header-title" id="cvScrollTitle"></span>
 </div>
 
 <!-- CHAPTER VIEW -->

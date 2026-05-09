@@ -43,71 +43,42 @@ function gc(key, caption) {
 
 
 const chapters = {
-  einführung:{
-    eyebrow:'Kapitel 01', titel:'Spiel', sub:'Einführung',
-    sections:[{
-      label:'Einführung',
-      lead:'Der Alltag besteht aus kleinen Momenten. Manche laufen einfach nebenbei, andere bringen uns aus dem Gleichgewicht.',
-      body:['Ein verpasster Bus, ein unerwarteter Anruf oder ein leerer Akku – oft sind es genau diese Kleinigkeiten, die unseren Tag bestimmen. Gleichzeitig gibt es Momente, die uns guttun und uns wieder in Balance bringen.','Dieses Spiel greift genau diese Situationen auf. Es macht sie sichtbar, überspitzt sie und lädt ein, sie mit etwas Abstand zu betrachten.'],
-      extra: gc('Ritual_Grafiken_Natur___Entspannug_Kopie_3', 'Infinitas – Alles halb so wild?!')
-    }]
-  },
   übersicht:{
     eyebrow:'Kapitel 02', titel:'Spiel', sub:'Übersicht',
-    sections:[
-      {label:'Spielinformationen', lead:'Infinitas kombiniert Alltagssituationen, Entscheidungen und kleine Herausforderungen zu einem gemeinsamen Spielerlebnis.',
-       extra:`<div class="mini-stats"><div class="ms"><span class="ms-v">2–6</span><span class="ms-l">Spieler</span></div><div class="ms"><span class="ms-v">12+</span><span class="ms-l">Jahre</span></div><div class="ms"><span class="ms-v">30–60'</span><span class="ms-l">Dauer</span></div><div class="ms"><span class="ms-v">v1.0</span><span class="ms-l">Version</span></div></div>`
-      },
-      {label:'Spielziel', lead:'Ziel des Spiels ist es, möglichst viele Harmoniepunkte (Harmoniejetons) zu sammeln und dabei nicht ins Burnout zu geraten.',
-       body:['Unterschiedliche Karten, Ereignisse und Entscheidungen beeinflussen den Spielverlauf.']},
-      {label:'Spielinhalt',
-       extra:`
-        <div class="dt"><div class="dt-head">① Spielbrett</div>
-          <div class="dt-row"><span>Ablageschienen</span><span class="dt-badge">8×</span></div>
-          <div class="dt-row"><span>Kurventeile groß</span><span class="dt-badge">4×</span></div>
-          <div class="dt-row"><span>Kurventeile klein</span><span class="dt-badge">4×</span></div>
-          <div class="dt-row"><span>Brettteile</span><span class="dt-badge">4×</span></div>
-        </div>
-        <div class="dt"><div class="dt-head">② Spielzubehör</div>
-          <div class="dt-row"><span>Spielfiguren</span><span class="dt-badge">6×</span></div>
-          <div class="dt-row"><span>Sanduhr</span><span class="dt-badge">1×</span></div>
-          <div class="dt-row"><span>Würfel</span><span class="dt-badge">1×</span></div>
-          <div class="dt-row"><span>Harmoniejetons</span><span class="dt-badge">150×</span></div>
-        </div>
-        <div class="dt"><div class="dt-head">③ Spielkarten</div>
-          <div class="dt-row"><span>Personakarten</span><span class="dt-badge">8×</span></div>
-          <div class="dt-row"><span>Ritualkarten</span><span class="dt-badge">52×</span></div>
-          <div class="dt-row"><span>Harmonie- & Ärgerniskarten</span><span class="dt-badge">52×</span></div>
-          <div class="dt-row"><span>Bonuskarten</span><span class="dt-badge">12×</span></div>
-        </div>
-        <div class="tag-row">
-          <span class="tag tag-ice">Hellblau = Harmonie</span>
-          <span class="tag tag-red">Rot-Orange = Ärgernis</span>
-          <span class="tag tag-nvy">Dunkel = Hardcore</span>
-        </div>` +
-        gc('Ritual_Grafiken-09', 'Personakarte') +
-        gc('Ritual_Grafiken-10', 'Ritualkarte')
-      }
-    ]
+    sections:[{
+      label:'Übersicht', ey:'Spiel', ttl:'Übersicht',
+      lead:'Infinitas verbindet Alltag, Entscheidungen und kleine Herausforderungen zu einem gemeinsamen Spielerlebnis.',
+      img:'Grafik_Anleitung_Übersicht.png',
+      extra:`<div class="mini-stats"><div class="ms"><span class="ms-v">2–6</span><span class="ms-l">Spieler</span></div><div class="ms"><span class="ms-v">12+</span><span class="ms-l">Jahre</span></div><div class="ms"><span class="ms-v">30–60'</span><span class="ms-l">Dauer</span></div><div class="ms"><span class="ms-v">v1.0</span><span class="ms-l">Version</span></div></div>`,
+      body:[
+        {head:'Spielinformationen', text:'Das Spiel ist für 2–6 Spieler ausgelegt, empfohlen ab 12 Jahren und dauert etwa 30 bis 60 Minuten pro Runde.'},
+        {head:'Spielziel', text:'Ziel des Spiels ist es, möglichst viele Harmoniepunkte (Harmoniejetons) zu sammeln und dabei nicht ins Burnout zu geraten. Unterschiedliche Karten, Ereignisse und Entscheidungen beeinflussen dabei den Spielverlauf der Spieler.'},
+        {head:'Spielinhalt', text:'Das Spiel enthält verschiedene Kartenarten, Harmoniejetons, Spielfiguren sowie weiteres Spielzubehör wie Würfel und Sanduhr.'},
+        {head:'', text:'Die 52 Harmonie- & Ärgerniskarten sind in positive und negative Ereignisse unterteilt. Positive Karten sind hellblau, negative Karten rot-orange gekennzeichnet. Zusätzlich befinden sich sechs Hardcorekarten mit dunklem Erscheinungsbild im Kartenstapel.'}
+      ]
+    }]
   },
   aufbau:{
     eyebrow:'Kapitel 03', titel:'Spiel', sub:'Aufbau',
     sections:[
-      {label:'Spielfeld aufbauen', lead:'Das Spielfeld besteht aus mehreren Elementen und wird vor dem Spielbeginn zusammengesetzt.',
-       extra:`
-        <div class="step-row"><div class="step-c">①</div><div class="step-t"><strong>Anordnung der Teile</strong> — Lege die vier nummerierten Kartonteile auf die Tischfläche.</div></div>
-        <div class="step-row"><div class="step-c">②</div><div class="step-t"><strong>Verbindung herstellen</strong> — Kunststoffteile mit Stützen verbinden bis der Infinity-Loop steht.</div></div>
-        <div class="step-row"><div class="step-c">③</div><div class="step-t"><strong>Spielfeld einsetzen</strong> — Säulen rasten magnetisch ein.</div></div>` +
-        gc('Ritual_Grafiken-24', 'Magnetische Verbindung') +
-        gc('Ritual_Grafiken-25', 'Spielfeld Übersicht')
+      {label:'Vorbereitung', ey:'Spiel', ttl:'Vorbereitung',
+       lead:'Das Spielfeld besteht aus mehreren Elementen und wird vor dem Spielbeginn zusammengesetzt.',
+       img:'Grafik_Anleitung_Spiel-vorbereitung.png',
+       body:[
+         {head:'Anordnung der Teile', text:'Lege die vier Kartonteile in der richtigen Reihenfolge auf eine Tischfläche. Die Teile sind nummeriert und lassen sich so einfach zusammensetzen.'},
+         {head:'Verbindung herstellen', text:'Verbinde die Kunststoffteile anschließend mit den Stützen, sodass jeweils zwei Elemente miteinander verbunden werden. Wiederhole diesen Schritt, bis sich der vollständige Loop bildet. Achte darauf, dass die Stützen vollständig in den Kunststoffteilen einrasten.'},
+         {head:'Spielfeld einsetzen', text:'Setze die fertige, „schwebende" Spielbahn, den Infinity-Loop anschließend ungefähr mittig auf das vierteilige Spielbrett. Die Säulen rasten magnetisch an der richtigen Position ein und verbinden alle vier Spielbrettteile miteinander.'}
+       ]
       },
-      {label:'Karten platzieren', lead:'Die verschiedenen Kartentypen werden an festgelegten Positionen rund um das Spielfeld platziert.',
-       extra:`
-        <div class="step-row"><div class="step-c">①</div><div class="step-t"><strong>Ritualkarten</strong> — in den blauen Bereich der Acht.</div></div>
-        <div class="step-row"><div class="step-c">②</div><div class="step-t"><strong>Harmonie- & Ärgerniskarten</strong> — gemischter Stapel in den roten Bereich.</div></div>
-        <div class="step-row"><div class="step-c">③</div><div class="step-t"><strong>Personakarte</strong> — jeder Spieler zieht eine, behält sie vor sich.</div></div>
-        <div class="step-row"><div class="step-c">④</div><div class="step-t"><strong>Bonuskarte</strong> — jeder Spieler zieht eine zu Beginn.</div></div>` +
-        gc('Ritual_Grafiken-11', 'Personakarte & Bonuskarte')
+      {label:'Karten', ey:'Positionierung', ttl:'Karten',
+       lead:'Die verschiedenen Kartentypen werden an festgelegten Positionen rund um das Spielfeld platziert.',
+       img:'Grafik_Anleitung_Karten-Positionierung.png',
+       body:[
+         {head:'Ritualkarten', text:'Die Ritualkarten werden in den blauen Bereich der Acht, in die gekennzeichnete Fläche gelegt.'},
+         {head:'Harmonie- & Ärgerniskarten', text:'Der gemischte Kartenstapel aus Harmonie- und Ärgerniskarten wird in den roten Bereich der Acht, in die gekennzeichnete Fläche gelegt.'},
+         {head:'Personakarten', text:'Jeder Spieler zieht zu Beginn eine der acht Personakarten und legt diese für das gesamte Spiel vor sich auf den Tisch.'},
+         {head:'Bonuskarten', text:'Zu Beginn zieht jeder Spieler eine der zwölf Bonuskarten und legt sie neben der Personakarte vor sich ab.'}
+       ]
       }
     ]
   },
@@ -116,77 +87,106 @@ const chapters = {
     sections:[
       {label:'Spielfeld', ey:'Spielfeld', ttl:'Struktur',
        lead:'Das Spielfeld bildet die Grundlage des Spiels und führt dich durch die verschiedenen Bereiche des Alltags.',
-       img:'Grafik_Spielfeld Struktur.png',
+       img:'Grafik_Anleitung_Spielfeld-struktur.png',
        caption:'Spielbahn<br>Infinity-Loop',
        body:[
-         {head:'Aufbau & Bewegung', text:'Das Spielfeld besteht aus 60 Feldern und ist in Form einer Unendlichkeitsschleife aufgebaut. Gestartet wird im Kreuzungspunkt der Schleife. Von dort aus bewegst du deine Spielfigur entlang der gekennzeichneten Richtung.'},
-         {head:'Zonen & Felder', text:'Im Zentrum befindet sich der Ruhepol — vier neutrale Felder ohne Karten oder Ereignisse. Außerhalb befinden sich unterschiedliche Feldtypen, die den Spielverlauf bestimmen.'}
+         {head:'Aufbau & Bewegung', text:'Das Spielfeld besteht aus 40 Feldern und ist in Form einer Unendlichkeitsschleife aufgebaut. Gestartet wird im Kreuzungspunkt der Schleife. Von dort aus bewegst du deine Spielfigur entlang der gekennzeichneten Richtung über die erhöhte Spielbahn.'},
+         {head:'Zonen & Felder', text:'Im Zentrum befindet sich der sogenannte Ruhepol. Die vier inneren Felder bilden eine neutrale Zone. Hier werden keine Karten gezogen, es gelten keine Rituale und es treten auch keine Ereignisse auf.'},
+         {head:'', text:'Außerhalb des Ruhepols befinden sich unterschiedliche Feldtypen, die den Spielverlauf bestimmen. Je nachdem, auf welchem Spielfeld du landest, ergeben sich unterschiedliche Aktionen und Effekte.'}
        ]
       },
       {label:'Harmonie & Ärgernis', ey:'Kartenfeld', ttl:'Harmonie & Ärgernis',
-       lead:'Harmonie- und Ärgerniskarten bilden den Kern des Spiels. Sie spiegeln alltägliche Situationen wider und beeinflussen deine Harmoniepunkte.',
-       img:'Grafik_Kartenfeld Harmonie.png',
-       steps:[
-         {n:'①',t:'Feld betreten'},
-         {n:'②',t:'Karte ziehen — Punkte sofort verrechnen. Betrifft sie deine Persona nicht, wird sie weitergegeben.'},
-         {n:'③',t:'Hardcore-Karten werden nach dem Ziehen aus dem Spiel entfernt.'}
-       ],
+       lead:'Harmonie- und Ärgerniskarten bilden den Kern des Spiels. Sie spiegeln alltägliche Situationen wieder und beeinflussen deine Harmoniepunkte.',
+       img:'Grafik_Anleitung_Harmonie.png',
        body:[
-         {head:'Ziehen & Wirkung', text:'Landest du auf einem dieser Felder, ziehst du eine Karte vom gemischten Stapel. Je nach Karte erhältst oder verlierst du Harmoniepunkte, die sofort verrechnet werden.'},
-         {head:'Besonderheiten', text:'Betrifft die Karte deine Persona nicht, wird sie im Uhrzeigersinn weitergegeben. Hardcore-Karten werden nach dem Ziehen aus dem Spiel entfernt.'}
+         {head:'Ziehen & Wirkung', text:'Landest du auf einem dieser Felder, ziehst du eine Karte vom gemischten Stapel. Je nach Karte erhältst oder verlierst du Harmoniepunkte (Harmoniejetons), die sofort verrechnet werden.'},
+         {head:'', text:'Betrifft die gezogene Karte deine Persona nicht, wird sie im Uhrzeigersinn an den nächsten passenden Spieler weitergegeben (z.B. wenn deine Persona kein Auto fährt)'},
+         {head:'', text:'Im Kartenstapel befinden sich auch Hardcore-Ärgerniskarten mit besonders starken Auswirkungen. Diese werden nach dem Ziehen aus dem Spiel entfernt.'},
+         {head:'Besonderheiten', text:'Nachdem die Karte angewendet wurde, wird sie abgelegt. Sind keine Karten mehr im Stapel, wird dieser neu gemischt.'}
        ]
       },
       {label:'Ritual', ey:'Kartenfeld', ttl:'Ritual',
-       lead:'Ritualkarten bringen Bewegung ins Spiel — Aufgaben alleine, zu zweit oder in der Gruppe.',
-       img:'Grafik_Kartenfeld Ritual.png',
-       steps:[
-         {n:'①',t:'Feld betreten'},
-         {n:'②',t:'Ritualkarte ziehen — Aufgabe alleine, zu zweit oder in der Gruppe ausführen.'},
-         {n:'③',t:'Bei zeitlich begrenzten Aufgaben läuft die <strong>Sanduhr</strong>. Alle erfolgreichen Spieler erhalten Punkte.'}
-       ],
+       lead:'Ritualkarten bringen Bewegung ins Spiel und fordern dich und die Mitspieler auf unterschiedliche Weise heraus.',
+       img:'Grafik_Anleitung_Ritualfeld.png',
+       caption:'Achte auf die Zeit!',
        body:[
-         {head:'Ablauf', text:'Bei zeitlich begrenzten Aufgaben läuft die Sanduhr. Alle Spieler, die die Aufgabe erfolgreich abschließen, erhalten Harmoniepunkte.'}
+         {head:'Ziehen & Ausführen', text:'Landest du auf einem Ritualkartenfeld, ziehst du eine Ritualkarte und führst die darauf beschriebene Aufgabe aus. Die Aufgaben müssen je nach Karte alleine, zu zweit oder in der Gruppe durchgeführt werden.'},
+         {head:'', text:'Einige Aufgaben sind zeitlich begrenzt. In diesem Fall läuft die Sanduhr. Schaffst du die Aufgabe innerhalb der Zeit, erhältst du die entsprechenden Harmoniepunkte, andernfalls gehst du leer aus.'},
+         {head:'Besonderheiten', text:'Bei Gruppenaufgaben erhalten alle Spieler Punkte, vorausgesetzt die Aufgabe wurde erfolgreich erfüllt – unabhängig davon, wer die Karte gezogen hat. Achte dabei auf die Hinweise auf den Karten.'}
        ]
       },
       {label:'Bonus', ey:'Kartenfeld', ttl:'Bonus',
-       lead:'Bonuskarten erweitern deine Möglichkeiten — optional für 5 Harmoniepunkte zu erwerben.',
-       img:'Grafiken_Kartenfeld Bonus.png',
-       steps:[
-         {n:'①',t:'Feld betreten'},
-         {n:'②',t:'Bonuskarte für <strong>5 Harmoniepunkte</strong> kaufen (optional).'},
-         {n:'③',t:'Vorteil nutzen. Im <strong>Risikomodus inaktiv</strong>.'}
-       ],
+       lead:'Bonuskarten erweitern deine Möglichkeiten im Spiel und geben deiner gezogenen Persona Vorteile in bestimmten Situationen.',
+       img:'Grafik_Anleitung_Bonusfeld.png',
        body:[
-         {head:'Hinweis', text:'Im Risikomodus sind Bonuskarten inaktiv. Sind keine Karten mehr im Stapel, wird dieser neu gemischt.'}
+         {head:'Erwerb & Nutzung', text:'Landest du auf einem Bonusfeld, kannst du eine zusätzliche Bonuskarte erwerben. Dafür gibst du fünf Harmoniepunkte ab. Du entscheidest selbst, ob du die Karte kaufen möchtest oder ohne Kauf weiterspielst.'},
+         {head:'', text:'Ziehst du eine Bonuskarte, behältst du sie vor dir. Sie gibt deiner Persona Vorteile in bestimmten Kategorien, erkennbar an den Symbolen auf den Karten. Ziehst du später eine passende Harmonie- oder Ärgerniskarte, wird der Punktewert deiner Bonuskarte entsprechend dazu gezählt oder abgezogen.'},
+         {head:'Besitz & Notfall', text:'Du kannst während des Spielverlaufs mehrere Bonuskarten besitzen. Während des Risikomodus sind Bonuskarten inaktiv.'},
+         {head:'', text:'Gerätst du ins Burnout, kannst du eine Bonuskarte an einen Mitspieler verkaufen und erhältst fünf Punkte zum Ausgleich. Findet sich kein Käufer, kannst du die Karte ablegen und erhältst als Gegenleistung ebenfalls fünf Harmoniejetons.'}
        ]
       },
       {label:'Ereignis', ey:'Spielfeld', ttl:'Ereignis',
-       lead:'Ereignisfelder verändern deine Bewegung, nicht deine Harmoniepunkte.',
-       img:'Grafiken_Spielfeld Ereignis.png',
+       lead:'Ereignisfelder bringen Abwechslung ins Spiel und beeinflussen deine Bewegung auf dem Spielfeld. Sie zeigen typische Alltagssituationen, die je nach Persona unterschiedlich wirken.',
+       img:'Grafik_Anleitung_Ereignisfeld.png',
        body:[
-         {head:'Wirkung', text:'Ereignisfelder lösen besondere Situationen aus, die deine nächsten Züge beeinflussen — ohne direkte Auswirkung auf deine Harmoniepunkte.'}
+         {head:'Auslösen & Wirkung', text:'Landest du auf einem Ereignisfeld, wird das Ereignis direkt auf dem Spielfeld ausgelöst. Es wird keine Karte gezogen.'},
+         {head:'', text:'Ereignisse verändern keine Harmoniepunkte, sondern beeinflussen deine Bewegung auf dem Spielfeld. Ob du vorwärts gehst, zurück musst oder am Feld stehen bleibst, hängt von den Eigenschaften deiner Persona ab.'},
+         {head:'Beispiel', text:'Plötzlich beginnt es stark zu regnen. Nutzt deine Persona ein Fahrrad oder ist zu Fuß unterwegs, musst du Felder zurückgehen. Befindest du dich im Auto, hat das Ereignis keine Auswirkung.'}
        ]
       },
-      {label:'Risikomodus', ey:'Spielfeld', ttl:'Risikomodus',
-       lead:'Der Risikomodus verdoppelt alle Karteneffekte — positiv wie negativ.',
-       steps:[
-         {n:'①',t:'Risikolinie überqueren und Modus wählen.'},
-         {n:'②',t:'Alle Karten werden <strong>doppelt gewertet</strong> bis zur Endlinie.'}
-       ],
-       warn:'Bonuskarten sind im Risikomodus inaktiv!',
+      {label:'Risikomodus', ey:'Modus', ttl:'Risiko',
+       lead:'Der Risikomodus verändert den Spielverlauf und stellt dich vor eine bewusste Entscheidung zwischen Sicherheit und Risiko.',
+       img:'Grafik_Anleitung_Risikozone.png',
+       warn:'Während des Risikomodus sind deine Bonuskarten inaktiv!',
        body:[
-         {head:'Einsatz & Risiko', text:'Wer den Risikomodus wählt, kann mehr gewinnen — aber auch mehr verlieren. Bonuskarten sind in dieser Zone deaktiviert.'}
+         {head:'Aktivierung & Wirkung', text:'Überquerst du die Risikolinie, entscheidest du dich, ob du den risikoreichen Modus aktivierst oder im normalen Spielmodus bleibst. Diese Entscheidung gilt bis zur markierten Endlinie.'},
+         {head:'', text:'Im Risikomodus werden alle gezogenen Karten doppelt gewertet, sowohl positive als auch negative Effekte.'},
+         {head:'Besonderheiten', text:'Der Risikomodus gilt auch für Aufgaben, die durch Ritualkarten ausgelöst werden. Dies gilt ebenfalls für Gruppenaufgaben, die von Mitspielern ausgelöst werden.'}
        ]
       },
-      {label:'Burnout', ey:'Spielfeld', ttl:'Burnout',
-       lead:'Burnout unterbricht deinen Spielfluss — eine Auszeit, bevor du neu startest.',
-       steps:[
-         {n:'①',t:'Harmoniejetons aufgebraucht → Burnout ausgelöst.'},
-         {n:'②',t:'Zur <strong>Burnout-Zone</strong> im Zentrum — eine Runde aussetzen.'},
-         {n:'③',t:'Neustart beim Startfeld mit <strong>2 Harmoniejetons</strong>.'}
-       ],
+      {label:'Burnout', ey:'Modus', ttl:'Burnout',
+       lead:'Burnout unterbricht deinen Spielfluss und bringt dich kurz aus der Balance, bevor du erneut ins Spiel zurückkehrst.',
+       img:'Grafik_Anleitung_Burnout.png',
        body:[
-         {head:'Neustart', text:'Nach dem Burnout startest du mit 2 Harmoniejetons neu. Die Burnout-Zone liegt im Zentrum des Spielfelds — dem Ruhepol.'}
+         {head:'Auslösen & Wirkung', text:'Sind deine Harmoniejetons während des Spiels aufgebraucht, gerätst du ins Burnout. Bevor es dazu kommt, kannst du Bonuskarten zum Ausgleich einsetzen oder verkaufen.'},
+         {head:'', text:'Im Burnout kehrst du sofort zum Burnoutfeld im Zentrum des Spielfelds zurück und setzt eine Runde aus.'},
+         {head:'', text:'Anschließend kehrst du zum Startfeld zurück und erhältst zwei Harmoniejetons, um wieder ins Spiel einzusteigen.'},
+         {head:'Besonderheiten', text:'Auch im Burnout kannst du weiterhin an Gruppenaufgaben teilnehmen, wenn diese durch Ritualkarten ausgelöst werden. So bleibst du trotz Pause in das Spielgeschehen eingebunden.'}
+       ]
+      },
+    ]
+  },
+  ablauf:{
+    eyebrow:'Kapitel 05', titel:'Spiel', sub:'Ablauf',
+    sections:[
+      {label:'Spielbeginn', ey:'Spiel', ttl:'Beginn',
+       lead:'Nachdem alle Spieler vorbereitet wurden, beginnt das Spiel mit der ersten gemeinsamen Runde.',
+       img:'Grafik_Anleitung_Spiel-beginn.png',
+       body:[
+         {head:'Runden festlegen', text:'Legt vor dem Spielbeginn gemeinsam fest, wie viele Runden gespielt werden. Eine Runde entspricht einer vollständigen Umrundung der Unendlichkeitsschleife.'},
+         {head:'Harmoniepunkte vorbereiten', text:'Anschließend nimmt sich jeder Spieler entsprechend seiner Personakarte die vorgegebene Anzahl an Harmoniejetons. Die Jetons werden in der persönlichen Ablageschiene vor dem Spieler abgelegt.'},
+         {head:'Startposition', text:'Zu Beginn befinden sich alle Spielfiguren im Kreuzungspunkt in der Mitte des Spielfelds. Dieser Bereich wird im weiteren Verlauf zur Burnout-Zone umgewandelt.'},
+         {head:'', text:'Das Feld mit der Kennzeichnung „Start" gilt als erstes Feld und gibt die Laufrichtung vor.'}
+       ]
+      },
+      {label:'Erster Zug', ey:'Erster', ttl:'Spielzug',
+       lead:'Jeder Spielzug folgt einem Ablauf der sich immer wiederholt und bestimmt, wie du dich durch das Spielfeld bewegst.',
+       img:'Grafik_Anleitung_Erster-Zug.png',
+       body:[
+         {head:'Bewegen', text:'Das Spiel verläuft reihum im Uhrzeigersinn. Jeder Spielzug folgt dabei dem gleichen Ablauf. Zuerst würfelst du und bewegst danach deine Spielfigur entsprechend der Zahl auf dem Würfel entlang der vorgegebenen Laufrichtung auf dem Spielfeld.'},
+         {head:'Feldaktion ausführen', text:'Anschließend führst du die Aktion des Feldes aus, auf dem du gelandet bist. Je nach Feld ziehst du eine Karte, führst ein Ritual aus oder löst ein Ereignis aus.'},
+         {head:'Ruhepol erreichen', text:'Das Spiel läuft so lange weiter, bis die zuvor festgelegte Rundenzahl beendet wurde und der erste Spieler den Ruhepol erreicht hat. Um den Ruhepol zu erreichen, ist keine exakte Würfelzahl erforderlich. Sobald du das letzte Feld vor dem Startfeld erreichst oder überschreitest, gilt diese Spielrunde für dich als abgeschlossen.'},
+         {head:'', text:'Anschließend stellst du deine Spielfigur zurück in den Kreuzungspunkt in der Mitte des Spielfelds und wartest dort auf die übrigen Mitspieler.'}
+       ]
+      },
+      {label:'Spiel Ende', ey:'Spiel', ttl:'Ende',
+       lead:'Das Spiel endet, sobald die festgelegte Rundenzahl abgeschlossen wurde und die ersten Spieler den Ruhepol erreicht haben.',
+       img:'Grafik_Anleitung_Spiel-Ende.png',
+       body:[
+         {head:'Ruhepol erreichen', text:'Sobald der erste Spieler den Ruhepol erreicht, bleibt seine Spielfigur im Zentrum des Spielfelds stehen und er erhält als Bonus zwei zusätzliche Harmoniepunkte.'},
+         {head:'', text:'Die Runde läuft weiter, bis auch der zweite Spieler den Ruhepol erreicht hat. Erst danach endet das Spiel.'},
+         {head:'Punkte zählen', text:'Nach dem Spielende zählen alle Spieler ihre verbleibenden Harmoniejetons. Zusätzlich dürfen Bonuskarten mitgezählt werden. Jede Bonuskarte entspricht dabei fünf zusätzlichen Harmoniepunkten.'},
+         {head:'', text:'Gewonnen hat der Spieler mit den meisten Harmoniepunkten. Bei Gleichstand endet das Spiel mit einem gemeinsamen Sieg.'}
        ]
       }
     ]
@@ -233,50 +233,38 @@ function _snippet(full,q){
 const sinput=document.getElementById('searchInput');
 const sresults=document.getElementById('searchResults');
 const squickNav=document.getElementById('quickNav');
+const swrap=document.getElementById('searchWrap');
+function _clearSearch(){
+  sresults.classList.remove('visible');
+  swrap&&swrap.classList.remove('has-results');
+  squickNav&&squickNav.classList.remove('search-hidden');
+}
 sinput.addEventListener('input',function(){
   const q=this.value.trim().toLowerCase();
   sresults.innerHTML='';
-  if(q.length<2){
-    sresults.classList.remove('visible');
-    squickNav&&squickNav.classList.remove('search-hidden');
-    return;
-  }
+  if(q.length<2){_clearSearch();return;}
   const hits=searchIndex.filter(x=>x.full.includes(q)).slice(0,6);
-  if(!hits.length){
-    sresults.classList.remove('visible');
-    squickNav&&squickNav.classList.remove('search-hidden');
-    return;
-  }
+  if(!hits.length){_clearSearch();return;}
   hits.forEach(h=>{
-    const snip=_snippet(h.full,q);
     const d=document.createElement('div');d.className='sri';
-    d.innerHTML=`<div class="sri-inner"><span class="sri-ch">${h.chLabel}</span><span class="sri-t">${h.sectionTitle}</span>${snip?`<span class="sri-snip">${snip}</span>`:''}</div>`;
-    d.onclick=()=>{sresults.classList.remove('visible');sinput.value='';squickNav&&squickNav.classList.remove('search-hidden');openChapter(h.chapter,h.idx);};
+    d.innerHTML=`<span class="sri-ch">${h.chLabel}</span><span class="sri-t">${h.sectionTitle}</span>`;
+    d.onclick=()=>{sinput.value='';_clearSearch();openChapter(h.chapter,h.idx);};
     sresults.appendChild(d);
   });
   sresults.classList.add('visible');
+  swrap&&swrap.classList.add('has-results');
   squickNav&&squickNav.classList.add('search-hidden');
 });
 document.addEventListener('click',e=>{
-  if(!e.target.closest('.search-wrap')){
-    sresults.classList.remove('visible');
-    squickNav&&squickNav.classList.remove('search-hidden');
-  }
+  if(!e.target.closest('.search-wrap')){_clearSearch();}
 });
 
-function renderSection(s,i){
-  let html=`<div class="cv-section" id="cvs-${i}"><div class="cv-sec-label">${s.label}</div>`;
-  if(s.lead) html+=`<p class="cv-lead">${s.lead}</p>`;
-  if(s.body) s.body.forEach(b=>html+=`<p class="cv-body-t">${b}</p>`);
-  if(s.extra) html+=s.extra;
-  html+='</div>';
-  return html;
-}
-
+let _chId='';
 let _mechIdx=0;
 let _scrollPos=0;
+let _chapterOpen=false;
 
-function buildMechCard(s){
+function buildChapterCard(s){
   let html='';
   if(s.steps) s.steps.forEach(st=>html+=`<div class="step-row"><div class="step-c">${st.n}</div><div class="step-t">${st.t}</div></div>`);
   if(s.warn) html+=`<div class="warn">${s.warn}</div>`;
@@ -285,36 +273,80 @@ function buildMechCard(s){
   return html;
 }
 
-function buildMechBody(s){
+function buildChapterBody(s){
   if(!s.body||!s.body.length)return'';
-  return s.body.map(b=>`<p class="mech-body-head">${b.head}</p><p class="cv-body-t">${b.text}</p>`).join('');
+  if(typeof s.body[0]==='string'){
+    return s.body.map(b=>`<p class="cv-body-t">${b}</p>`).join('');
+  }
+  return s.body.map(b=>`${b.head?`<p class="mech-body-head">${b.head}</p>`:''}<p class="cv-body-t">${b.text}</p>`).join('');
 }
 
-function openMechanik(startIdx){
-  const ch=chapters['mechanik'];
+function chSelect(id,idx){
+  const ch=chapters[id];
+  const sections=ch.sections;
+  if(idx<0||idx>=sections.length)return;
+  _chId=id;_mechIdx=idx;
+  const s=sections[idx];
+  const ey=document.getElementById('mechEy');
+  const ttl=document.getElementById('mechTtl');
+  const lead=document.getElementById('mechLead');
+  if(ey)ey.textContent=s.ey||ch.eyebrow;
+  if(ttl)ttl.textContent=s.ttl||s.label;
+  if(lead){lead.textContent=s.lead||'';lead.style.display=s.lead?'':'none';}
+  document.querySelectorAll('.mech-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  const extraEl=document.getElementById('mechExtra');
+  if(extraEl){
+    if(s.extra){extraEl.style.display='';extraEl.classList.remove('mech-fade');void extraEl.offsetWidth;extraEl.innerHTML=s.extra;extraEl.classList.add('mech-fade');}
+    else extraEl.style.display='none';
+  }
+  const cardHtml=buildChapterCard(s);
+  const card=document.getElementById('mechCard');
+  if(card){
+    if(cardHtml){card.style.display='';card.classList.remove('mech-fade');void card.offsetWidth;card.innerHTML=cardHtml;card.classList.add('mech-fade');}
+    else card.style.display='none';
+  }
+  const bodyHtml=buildChapterBody(s);
+  const body=document.getElementById('mechBody');
+  if(body){
+    if(bodyHtml){body.style.display='';body.classList.remove('mech-fade');void body.offsetWidth;body.innerHTML=bodyHtml;body.classList.add('mech-fade');}
+    else body.style.display='none';
+  }
+  const wz=document.querySelector('.mech-white-zone');
+  if(wz)wz.classList.toggle('no-card',!cardHtml);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function openChapter(id,startIdx){
+  const ch=chapters[id];
   const n=ch.sections.length;
-  const s0=ch.sections[0];
-  const dots=Array.from({length:n},(_,i)=>`<span class="mech-dot${i===0?' active':''}" onclick="mechSelect(${i})"></span>`).join('');
+  const si=startIdx||0;
+  const s0=ch.sections[si];
+  const cardHtml=buildChapterCard(s0);
+  const bodyHtml=buildChapterBody(s0);
+  const dots=n>1?Array.from({length:n},(_,i)=>
+    `<span class="mech-dot${i===si?' active':''}" onclick="chSelect('${id}',${i})"></span>`
+  ).join(''):'';
   const html=`<div class="mech-view">
     <div class="mech-header">
       <img class="mech-header-img" src="media/Verlauf%20Unterseiten.png" alt="">
       <button class="mech-back-btn" onclick="closeChapter()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M15 18l-6-6 6-6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <span class="mech-cat-vert"><span class="cat-regular">Spiel </span><span class="cat-bold">Mechanik</span></span>
+      <span class="mech-cat-vert"><span class="cat-regular">${ch.titel} </span><span class="cat-bold">${ch.sub}</span></span>
     </div>
     <div class="mech-title-area">
-      <p class="mech-ey" id="mechEy">${s0.ey}</p>
-      <h1 class="mech-ttl" id="mechTtl">${s0.ttl}</h1>
-      <p class="mech-lead-txt" id="mechLead">${s0.lead}</p>
+      <p class="mech-ey" id="mechEy">${s0.ey||ch.eyebrow}</p>
+      <h1 class="mech-ttl" id="mechTtl">${s0.ttl||s0.label}</h1>
+      <p class="mech-lead-txt" id="mechLead"${!s0.lead?' style="display:none"':''}>${s0.lead||''}</p>
     </div>
-    <div class="mech-nav">
+    ${n>1?`<div class="mech-nav">
       <div class="mech-dots" id="mechDots">${dots}</div>
       <span class="mech-nav-hint">Auf die Punkte tippen um die Seite zu wechseln</span>
-    </div>
-    <div class="mech-white-zone">
-      <div class="mech-img-wrap mech-fade" id="mechCard">${buildMechCard(s0)}</div>
-      <div class="mech-body mech-fade" id="mechBody">${buildMechBody(s0)}</div>
+    </div>`:''}
+    <div class="mech-white-zone${!cardHtml?' no-card':''}">
+      <div class="ch-extra mech-fade" id="mechExtra"${!s0.extra?' style="display:none"':''}>${s0.extra||''}</div>
+      <div class="mech-img-wrap mech-fade" id="mechCard"${!cardHtml?' style="display:none"':''}>${cardHtml}</div>
+      <div class="mech-body mech-fade" id="mechBody"${!bodyHtml?' style="display:none"':''}>${bodyHtml}</div>
       <div class="mech-imp-wrap">
         <img class="mech-imp-bg" src="media/Verlauf%20Impressum.png" alt="">
       </div>
@@ -329,88 +361,71 @@ function openMechanik(startIdx){
     </div>
   </div>`;
   _scrollPos=window.scrollY;
+  _chId=id;
+  _mechIdx=si;
+  history.pushState({chapter:id},'');
   document.getElementById('cvContent').innerHTML=html;
   document.getElementById('chapterView').classList.add('open','mech-open');
   document.getElementById('main').style.display='none';
   document.body.classList.add('mech-page');
+  if(_shTitle)_shTitle.textContent=ch.titel+' '+ch.sub;
+  _chapterOpen=true;
+  _hideScrollHeader();
+  _shLastY=0;
   window.scrollTo(0,0);
-  _mechIdx=startIdx||0;
-  if(_mechIdx>0)mechSelect(_mechIdx);
-  // Swipe-Geste
-  let _swipeX=0;
+  let _swipeX=0,_swipeY=0;
   const _view=document.querySelector('.mech-view');
   if(_view){
-    _view.addEventListener('touchstart',e=>{_swipeX=e.touches[0].clientX;},{passive:true});
+    _view.addEventListener('touchstart',e=>{
+      _swipeX=e.touches[0].clientX;
+      _swipeY=e.touches[0].clientY;
+    },{passive:true});
     _view.addEventListener('touchend',e=>{
       const dx=e.changedTouches[0].clientX-_swipeX;
-      if(Math.abs(dx)>44)mechSelect(_mechIdx+(dx<0?1:-1));
+      const dy=e.changedTouches[0].clientY-_swipeY;
+      if(Math.abs(dx)<Math.abs(dy))return; // vertikales scrollen ignorieren
+      if(dx>60&&_swipeX<60){closeChapter();return;} // edge-swipe → zurück
+      if(Math.abs(dx)>44)chSelect(_chId,_mechIdx+(dx<0?1:-1));
     },{passive:true});
   }
 }
 
-function mechSelect(idx){
-  const sections=chapters['mechanik'].sections;
-  if(idx<0||idx>=sections.length)return;
-  _mechIdx=idx;
-  const s=sections[idx];
-  const ey=document.getElementById('mechEy');
-  const ttl=document.getElementById('mechTtl');
-  const lead=document.getElementById('mechLead');
-  if(ey)ey.textContent=s.ey||s.label;
-  if(ttl)ttl.textContent=s.ttl||s.label;
-  if(lead)lead.textContent=s.lead;
-  document.querySelectorAll('.mech-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-  const btn=document.getElementById('mechNext');
-  if(btn)btn.disabled=idx===sections.length-1;
-  const card=document.getElementById('mechCard');
-  if(card){card.classList.remove('mech-fade');void card.offsetWidth;card.innerHTML=buildMechCard(s);card.classList.add('mech-fade');}
-  const body=document.getElementById('mechBody');
-  if(body){body.classList.remove('mech-fade');void body.offsetWidth;body.innerHTML=buildMechBody(s);if(s.body&&s.body.length)body.classList.add('mech-fade');}
+let _skipPopstate=false;
+function closeChapter(fromPopstate=false){
+  if(!_chapterOpen)return;
+  _chapterOpen=false;
+  _hideScrollHeader();
+  if(!fromPopstate){_skipPopstate=true;history.back();}
+  const cv=document.getElementById('chapterView');
+  cv.style.animation='cvClose 0.3s ease-in forwards';
+  cv.style.pointerEvents='none';
+  setTimeout(()=>{
+    cv.style.animation='';
+    cv.style.pointerEvents='';
+    cv.classList.remove('open','mech-open');
+    document.getElementById('main').style.display='';
+    document.body.classList.remove('mech-page');
+    window.scrollTo(0,_scrollPos);
+  },300);
 }
+window.addEventListener('popstate',()=>{
+  if(_skipPopstate){_skipPopstate=false;return;}
+  if(_chapterOpen)closeChapter(true);
+});
 
-function mechNav(dir){mechSelect(_mechIdx+dir);}
-
-function openChapter(id,scrollTo){
-  if(id==='mechanik'){openMechanik(scrollTo);return;}
-  const ch=chapters[id];
-  document.getElementById('cvBackLbl').textContent=ch.titel+' '+ch.sub;
-  let html=`<div class="cv-banner">
-    <svg class="cv-banner-bg" viewBox="0 0 430 220" preserveAspectRatio="xMidYMid slice" fill="none">
-      <defs>
-        <radialGradient id="b1" cx="72%" cy="28%" r="52%"><stop offset="0%" stop-color="#5a80c0" stop-opacity="0.4"/><stop offset="100%" stop-color="#141d4a" stop-opacity="0"/></radialGradient>
-        <radialGradient id="b2" cx="18%" cy="78%" r="46%"><stop offset="0%" stop-color="#8aaad8" stop-opacity="0.28"/><stop offset="100%" stop-color="#141d4a" stop-opacity="0"/></radialGradient>
-      </defs>
-      <ellipse cx="310" cy="62" rx="175" ry="125" fill="url(#b1)"/>
-      <ellipse cx="78" cy="172" rx="155" ry="115" fill="url(#b2)"/>
-      <path d="M360 0 C360 0 430 55 295 135 C160 215 55 185 55 250" stroke="rgba(160,195,235,0.1)" stroke-width="60" fill="none" stroke-linecap="round"/>
-    </svg>
-    <div class="cv-banner-inner">
-      <div class="cv-brace"></div>
-      <div>
-        <p class="cv-eyebrow">${ch.eyebrow}</p>
-        <p class="cv-h1-titel">${ch.titel}</p>
-        <p class="cv-h1-sub">${ch.sub}</p>
-      </div>
-    </div>
-  </div><div class="cv-body">`;
-  ch.sections.forEach((s,i)=>html+=renderSection(s,i));
-  html+='</div>';
-  _scrollPos=window.scrollY;
-  document.getElementById('cvContent').innerHTML=html;
-  document.getElementById('chapterView').classList.add('open');
-  document.getElementById('main').style.display='none';
-  window.scrollTo(0,0);
-  if(scrollTo!==undefined){
-    setTimeout(()=>{const el=document.getElementById('cvs-'+scrollTo);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},80);
-  }
+// ── SCROLL HEADER ──
+const _sh=document.getElementById('cvScrollHeader');
+const _shTitle=document.getElementById('cvScrollTitle');
+let _shLastY=0;
+function _hideScrollHeader(){if(_sh)_sh.classList.remove('sh-visible');}
+function _onChapterScroll(){
+  if(!_chapterOpen)return;
+  const y=window.scrollY;
+  if(y>80&&y>_shLastY){_sh&&_sh.classList.add('sh-visible');}
+  else if(y<_shLastY){_sh&&_sh.classList.remove('sh-visible');}
+  _shLastY=y;
 }
-
-function closeChapter(){
-  document.getElementById('chapterView').classList.remove('open','mech-open');
-  document.getElementById('main').style.display='';
-  document.body.classList.remove('mech-page');
-  window.scrollTo(0,_scrollPos);
-}
+window.addEventListener('scroll',_onChapterScroll,{passive:true});
 
 // INTRO
 const intro=document.getElementById('intro');
