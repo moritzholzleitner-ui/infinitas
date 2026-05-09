@@ -52,7 +52,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 /* ── HERO ── */
 .hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;overflow:hidden}
 .hero-verlauf{width:100%;display:block;flex-shrink:0}
-.hero-inner{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;padding:28px 32px 80px}
+.hero-inner{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;padding:8px 32px 80px}
 .hero-logo-img{width:100%;max-width:300px;margin-bottom:44px;filter:brightness(0) invert(1);opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.1s,transform 0.8s ease 0.1s}
 .hero-logo-img.show{opacity:0.9;transform:translateY(0)}
 .search-wrap{width:100%;max-width:320px;position:relative;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s}
@@ -69,8 +69,9 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .sri-ch{font-family:var(--font-oracle);font-weight:400;font-size:11px;color:rgba(255,255,255,0.3);min-width:60px}
 .sri-t{font-family:var(--font-oscar);font-weight:400;font-size:13px;color:rgba(255,255,255,0.75)}
 /* Kategorie-Buttons im Hero */
-.quick-nav{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px 0 0;max-width:270px;width:100%;opacity:0;transform:translateY(10px);transition:opacity 0.8s ease 0.4s,transform 0.8s ease 0.4s}
+.quick-nav{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:28px 0 0;max-width:270px;width:100%;opacity:0;transform:translateY(10px);transition:opacity 0.8s ease 0.4s,transform 0.8s ease 0.4s}
 .quick-nav.show{opacity:1;transform:translateY(0)}
+.quick-nav.search-hidden{opacity:0;pointer-events:none}
 .qn-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:7px 10px;font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(255,255,255,0.75);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background 0.2s,border-color 0.2s;white-space:nowrap;text-align:center}
 .qn-btn:active{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.28)}
 
@@ -232,10 +233,11 @@ body.mech-page{background:var(--mech-bg)!important}
 .mech-lead-txt{font-family:var(--font-oscar);font-weight:500;font-size:15px;color:rgba(30,44,110,0.65);line-height:1.8;max-width:300px;margin:0 auto}
 
 /* Dot-Navigation: Pill für aktiv, Punkt für inaktiv */
-.mech-nav{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 28px 18px;background:var(--mech-bg)}
-.mech-dots{display:flex;gap:8px;align-items:center}
-.mech-dot{height:7px;width:7px;border-radius:50px;border:none;background:rgba(30,44,110,0.22);transition:width 0.3s ease,background 0.3s ease;cursor:pointer;-webkit-tap-highlight-color:transparent;flex-shrink:0}
-.mech-dot.active{background:rgba(30,44,110,0.55);width:28px}
+.mech-nav{display:flex;flex-direction:column;align-items:center;gap:12px;padding:26px 28px 22px;background:var(--mech-bg)}
+.mech-dots{display:flex;gap:0;align-items:center}
+.mech-dot{height:11px;width:11px;border-radius:50px;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;flex-shrink:0;min-width:28px;min-height:44px;display:flex;align-items:center;justify-content:center;background:transparent;position:relative}
+.mech-dot::after{content:'';display:block;width:11px;height:11px;border-radius:50px;background:rgba(30,44,110,0.22);transition:width 0.3s ease,background 0.3s ease}
+.mech-dot.active::after{background:rgba(30,44,110,0.55);width:32px}
 .mech-next{background:none;border:none;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(30,44,110,0.55);margin-left:2px;-webkit-tap-highlight-color:transparent;transition:opacity 0.2s}
 .mech-nav-hint{font-family:var(--font-oscar);font-size:10px;font-weight:400;color:rgba(30,44,110,0.28);letter-spacing:0.04em;text-align:center}
 
