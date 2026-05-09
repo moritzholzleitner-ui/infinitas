@@ -228,14 +228,14 @@ body.mech-page{background:var(--mech-bg)!important}
 .mech-header-img{width:100%;display:block}
 
 /* "Spiel Mechanik" über der geschwungenen Linie, normal geschrieben */
-.mech-cat-vert{position:absolute;left:50%;top:36%;transform:translateX(-50%) translateY(-50%) rotate(-90deg);white-space:nowrap;font-size:11px;letter-spacing:0.08em;color:var(--navy);opacity:0.6;pointer-events:none;line-height:1}
+.mech-cat-vert{position:absolute;left:50%;top:36%;transform:translateX(-50%) translateY(-50%) rotate(-90deg);white-space:nowrap;font-size:11px;letter-spacing:0.08em;color:var(--navy);pointer-events:none;line-height:1}
 .mech-cat-vert .cat-regular{font-family:var(--font-oscar);font-weight:400}
 .mech-cat-vert .cat-bold{font-family:var(--font-oscar);font-weight:700}
 
 /* Titel-Bereich unterhalb des Header-Bildes mit Überlappung */
 .mech-title-area{position:relative;margin-top:-160px;padding:80px 28px 20px;text-align:center;background:linear-gradient(to bottom,transparent 0%,var(--mech-bg) 55%);pointer-events:none}
 .mech-title-area *{pointer-events:auto}
-.mech-ey{font-family:var(--font-oracle);font-weight:400;font-size:25px;color:rgba(30,44,110,0.5);line-height:1.15;margin-bottom:2px}
+.mech-ey{font-family:var(--font-oracle);font-weight:400;font-size:25px;color:var(--navy);line-height:1.15;margin-bottom:2px}
 .mech-ttl{font-family:var(--font-oracle);font-weight:500;font-size:30px;color:var(--navy);line-height:1.1;margin-bottom:18px}
 .mech-lead-txt{font-family:var(--font-oscar);font-weight:500;font-size:17px;color:rgba(30,44,110,0.65);line-height:1.41;max-width:300px;margin:0 auto}
 
@@ -260,7 +260,7 @@ body.mech-page{background:var(--mech-bg)!important}
 .mech-img-wrap .warn{background:#faeae3;border-left:2px solid #e8603a;border-radius:0 8px 8px 0;padding:11px 14px;font-family:var(--font-oscar);font-weight:500;font-size:14px;line-height:1.6;color:#e8603a;margin:8px 16px}
 
 /* Gradient beginnt oben blau, wird erst bei ~280px weiß (Mitte des Bildes) */
-.mech-white-zone{background:linear-gradient(to bottom,var(--mech-bg) 0%,white 280px);padding-top:36px}
+.mech-white-zone{background:linear-gradient(to bottom,var(--mech-bg) 0%,white 800px);padding-top:36px}
 /* Kein Karten-Bild: kurzer Übergang und kein Padding oben */
 .mech-white-zone.no-card{background:var(--mech-bg);padding-top:0}
 /* Extra-Inhalte: transparent damit Gradient sichtbar bleibt */
@@ -286,7 +286,7 @@ body.mech-page{background:var(--mech-bg)!important}
 @keyframes mechFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── SCROLL HEADER ── */
-.cv-scroll-header{position:fixed;top:0;left:50%;transform:translateX(-50%) translateY(-100%);width:100%;max-width:430px;z-index:80;background:rgba(226,234,246,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(30,44,110,0.1);display:flex;align-items:center;gap:10px;padding:12px 20px;transition:transform 0.28s ease;pointer-events:none}
+.cv-scroll-header{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;align-items:center;gap:10px;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
 .cv-scroll-header.sh-visible{transform:translateX(-50%) translateY(0);pointer-events:auto}
 .cv-scroll-header-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.7);border:1px solid rgba(30,44,110,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;color:var(--navy)}
 .cv-scroll-header-title{font-family:var(--font-oscar);font-weight:500;font-size:13px;color:var(--navy);flex:1;text-align:center;margin-right:32px}

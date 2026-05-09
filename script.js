@@ -137,7 +137,6 @@ const chapters = {
       {label:'Risikomodus', ey:'Modus', ttl:'Risiko',
        lead:'Der Risikomodus verändert den Spielverlauf und stellt dich vor eine bewusste Entscheidung zwischen Sicherheit und Risiko.',
        img:'Grafik_Anleitung_Risikozone.png',
-       warn:'Während des Risikomodus sind deine Bonuskarten inaktiv!',
        body:[
          {head:'Aktivierung & Wirkung', text:'Überquerst du die Risikolinie, entscheidest du dich, ob du den risikoreichen Modus aktivierst oder im normalen Spielmodus bleibst. Diese Entscheidung gilt bis zur markierten Endlinie.'},
          {head:'', text:'Im Risikomodus werden alle gezogenen Karten doppelt gewertet, sowohl positive als auch negative Effekte.'},
@@ -421,8 +420,8 @@ function _hideScrollHeader(){if(_sh)_sh.classList.remove('sh-visible');}
 function _onChapterScroll(){
   if(!_chapterOpen)return;
   const y=window.scrollY;
-  if(y>80&&y>_shLastY){_sh&&_sh.classList.add('sh-visible');}
-  else if(y<_shLastY){_sh&&_sh.classList.remove('sh-visible');}
+  if(y>80)_sh&&_sh.classList.add('sh-visible');
+  else if(y<60)_sh&&_sh.classList.remove('sh-visible');
   _shLastY=y;
 }
 window.addEventListener('scroll',_onChapterScroll,{passive:true});
