@@ -48,7 +48,7 @@ const chapters = {
     sections:[{
       label:'Übersicht', ey:'Spiel', ttl:'Übersicht',
       lead:'Infinitas verbindet Alltag, Entscheidungen und kleine Herausforderungen zu einem gemeinsamen Spielerlebnis.',
-      img:'Grafik_Anleitung_Übersicht.png',
+      img:'Grafik_Anleitung_Uebersicht.png',
       extra:`<div class="mini-stats"><div class="ms"><span class="ms-v">2–6</span><span class="ms-l">Spieler</span></div><div class="ms"><span class="ms-v">12+</span><span class="ms-l">Jahre</span></div><div class="ms"><span class="ms-v">30–60'</span><span class="ms-l">Dauer</span></div><div class="ms"><span class="ms-v">v1.0</span><span class="ms-l">Version</span></div></div>`,
       body:[
         {head:'Spielinformationen', text:'Das Spiel ist für 2–6 Spieler ausgelegt, empfohlen ab 12 Jahren und dauert etwa 30 bis 60 Minuten pro Runde.'},
@@ -367,6 +367,7 @@ function openChapter(id,startIdx){
   document.getElementById('chapterView').classList.add('open','mech-open');
   document.getElementById('main').style.display='none';
   document.body.classList.add('mech-page');
+  document.querySelector('meta[name="theme-color"]').content='#E2EAF6';
   if(_shTitle)_shTitle.textContent=ch.titel+' '+ch.sub;
   _chapterOpen=true;
   _hideScrollHeader();
@@ -404,6 +405,7 @@ function closeChapter(fromPopstate=false){
     cv.classList.remove('open','mech-open');
     document.getElementById('main').style.display='';
     document.body.classList.remove('mech-page');
+    document.querySelector('meta[name="theme-color"]').content='#38396D';
     window.scrollTo(0,_scrollPos);
   },300);
 }
