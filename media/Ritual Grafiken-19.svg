@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147.4 90.71">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: FHOscarPro-Regular, 'FH Oscar Pro';
+        font-size: 2.12px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #38386a;
+      }
+
+      .cls-3, .cls-4 {
+        opacity: .5;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        stroke: #38386a;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-width: .5px;
+      }
+
+      .cls-3, .cls-5, .cls-6 {
+        stroke-linejoin: round;
+      }
+
+      .cls-4 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        font-family: F37Oracle-SemiBold, 'F37 Oracle';
+        font-size: 3px;
+        font-weight: 600;
+      }
+
+      .cls-7 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-8 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-9 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-10 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+
+      .cls-12 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-6 {
+        stroke: #39396a;
+      }
+
+      .cls-13 {
+        letter-spacing: .01em;
+      }
+
+      .cls-14 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <line class="cls-6" x1="72.36" y1="75.28" x2="72.39" y2="82.31"/>
+  <line class="cls-6" x1="75.89" y1="78.78" x2="68.86" y2="78.81"/>
+  <line class="cls-6" x1="72.36" y1="32.75" x2="72.39" y2="39.78"/>
+  <polyline class="cls-6" points="73.83 37.36 72.4 39.87 70.91 37.4"/>
+  <path class="cls-5" d="M91.38,66.53c-12.8,2.33-25.52,2.37-37.96.14l4.02-22.53c9.77,1.76,19.77,1.73,29.88-.07l4.06,22.46Z"/>
+  <path class="cls-4" d="M10.5,49.28c8.38,5.82,18.15,10.5,29.24,14.04,4.52,1.44,6.16,1.94,10.77,2.74M94.01,66.05c1.92-.32,1.23-.23,3.15-.69,6.66-1.55,16.09-5.41,27.96-10.96,4.5-2.12,9.36-4.47,14.56-7.03"/>
+  <path class="cls-4" d="M89.72,43.61c1.57-.27.77-.15,2.35-.52,8.81-2.05,29.31-12.01,47.61-21.2"/>
+  <path class="cls-4" d="M10.5,18.12c2.03,2.65,4.29,5.09,6.78,7.33,7.53,6.82,17.46,12.23,29.49,16.07,3.51,1.12,4.49,1.48,8.1,2.09"/>
+  <line class="cls-3" x1="115.84" y1="37.19" x2="122.46" y2="52.25"/>
+  <line class="cls-3" x1="29.56" y1="36.84" x2="20.13" y2="52.09"/>
+  <text class="cls-1" transform="translate(67.06 51.3) rotate(-.03)"><tspan class="cls-12" x="0" y="0">E</tspan><tspan x="1.16" y="0">rwirb eine </tspan><tspan class="cls-14" x="-3.58" y="2.54">B</tspan><tspan class="cls-10" x="-2.27" y="2.54">o</tspan><tspan class="cls-11" x="-1.14" y="2.54">n</tspan><tspan class="cls-13" x="-.01" y="2.54">u</tspan><tspan x="1.15" y="2.54">skar</tspan><tspan class="cls-9" x="4.88" y="2.54">t</tspan><tspan x="5.53" y="2.54">e für fünf </tspan><tspan x="-2.69" y="5.08">Harm</tspan><tspan class="cls-7" x="2.3" y="5.08">o</tspan><tspan x="3.42" y="5.08">ni</tspan><tspan class="cls-7" x="5" y="5.08">e</tspan><tspan x="6.06" y="5.08">punk</tspan><tspan class="cls-9" x="10.54" y="5.08">t</tspan><tspan class="cls-8" x="11.19" y="5.08">e</tspan><tspan x="12.25" y="5.08">.</tspan></text>
+  <text class="cls-2" transform="translate(64.74 65.37) rotate(2.91)"><tspan x="0" y="0">B</tspan></text>
+  <text class="cls-2" transform="translate(66.63 65.46) rotate(2.18)"><tspan x="0" y="0">o</tspan></text>
+  <text class="cls-2" transform="translate(68.25 65.52) rotate(1.54)"><tspan x="0" y="0">n</tspan></text>
+  <text class="cls-2" transform="translate(69.86 65.57) rotate(.93)"><tspan x="0" y="0">u</tspan></text>
+  <text class="cls-2" transform="translate(71.43 65.59) rotate(.4)"><tspan x="0" y="0">s</tspan></text>
+  <text class="cls-2" transform="translate(72.74 65.6) rotate(-.13)"><tspan x="0" y="0">k</tspan></text>
+  <text class="cls-2" transform="translate(74.34 65.6) rotate(-.68)"><tspan x="0" y="0">a</tspan></text>
+  <text class="cls-2" transform="translate(75.86 65.58) rotate(-1.13)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-2" transform="translate(76.94 65.56) rotate(-1.53)"><tspan x="0" y="0">t</tspan></text>
+  <text class="cls-2" transform="translate(78.21 65.52) rotate(-2.01)"><tspan x="0" y="0">e</tspan></text>
+</svg>

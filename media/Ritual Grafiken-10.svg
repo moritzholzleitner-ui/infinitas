@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.8 43.76">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #39396a;
+      }
+
+      .cls-2 {
+        stroke-dasharray: .48 .95;
+        stroke-width: .25px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: none;
+        stroke: #39396a;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-5, .cls-4 {
+        opacity: .5;
+      }
+
+      .cls-3, .cls-4 {
+        stroke-width: .5px;
+      }
+    </style>
+  </defs>
+  <line class="cls-3" x1="36.16" y1="1.86" x2="36.18" y2="8.89"/>
+  <polyline class="cls-3" points="37.63 6.48 36.19 8.98 34.7 6.51"/>
+  <g class="cls-5">
+    <circle class="cls-2" cx="33.15" cy="30.98" r="2.51"/>
+  </g>
+  <g class="cls-5">
+    <circle class="cls-2" cx="39.09" cy="30.98" r="2.51"/>
+  </g>
+  <g class="cls-5">
+    <circle class="cls-2" cx="33.12" cy="13.14" r="2.51"/>
+  </g>
+  <g class="cls-5">
+    <circle class="cls-2" cx="39.06" cy="13.14" r="2.51"/>
+  </g>
+  <g class="cls-5">
+    <path class="cls-2" d="M36.01,22.95c1.39,0,2.51,1.12,2.51,2.51s-1.12,2.51-2.51,2.51-2.51-1.12-2.51-2.51,1.12-2.51,2.51-2.51Z"/>
+  </g>
+  <g class="cls-5">
+    <circle class="cls-2" cx="36.16" cy="18.69" r="2.51"/>
+  </g>
+  <path class="cls-4" d="M24.79,38.9c3.99-4.28,6.28-10.39,6.28-16.75s-2.29-12.5-6.3-16.78"/>
+  <path class="cls-4" d="M47.41,5.37c-4,4.28-6.3,10.4-6.3,16.78s2.29,12.48,6.28,16.76"/>
+  <circle class="cls-1" cx="33.12" cy="13.14" r="1.98"/>
+  <circle class="cls-1" cx="39.06" cy="13.14" r="1.98"/>
+  <circle class="cls-1" cx="36.16" cy="18.69" r="1.98"/>
+  <circle class="cls-1" cx="36.01" cy="25.46" r="1.98"/>
+  <circle class="cls-1" cx="33.12" cy="30.98" r="1.98"/>
+  <circle class="cls-1" cx="39.09" cy="30.98" r="1.98"/>
+</svg>
