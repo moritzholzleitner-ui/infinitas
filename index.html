@@ -31,12 +31,14 @@
 <!-- MAIN -->
 <div id="main">
   <section class="hero">
-    <img class="hero-verlauf" src="media/Verlauf%20Startseite.png" alt="">
-    <div class="hero-inner">
+    <div class="hero-logo-area">
       <div id="heroLogo" class="hero-logo-img custom-wordmark" aria-label="Infinitas – Alles halb so wild?!">
         <div class="wordmark-title">Infinitas</div>
         <div class="wordmark-subtitle">Alles halb so wild?!</div>
       </div>
+    </div>
+    <img class="hero-verlauf" src="media/Verlauf%20Startseite.png" alt="">
+    <div class="hero-controls">
       <div class="search-wrap" id="searchWrap">
         <div class="search-input-row">
           <input class="search-input" id="searchInput" type="text" placeholder="Anleitung durchsuchen …" autocomplete="off">
@@ -71,9 +73,8 @@
     <div class="imp-inner">
       <p class="imp-p">© 2026 Infinitas</p>
       <p class="imp-p">Spielkonzept, Gestaltung und Spielsystem: Holzleitner Moritz</p>
-      <p class="imp-p">Infinitas ist ein fiktives Spielkonzept im Rahmen eines Designprojekts. Die Ereignisse auf den Karten basieren auf einer Umfrage während des Entstehungsprozesses und wurden teilweise überarbeitet oder fiktiv erweitert.<br>Texte mit Unterstützung von ChatGPT überarbeitet.</p>
+      <p class="imp-p">Infinitas ist ein fiktives Spielkonzept im Rahmen eines Designprojekts. Die Ereignisse auf den Karten basieren auf einer Umfrage während des Entstehungsprozesses und wurden teilweise überarbeitet oder fiktiv erweitert. Texte mit Unterstützung von ChatGPT überarbeitet.</p>
       <p class="imp-p">Alle Rechte vorbehalten. Nachdruck, Vervielfältigung oder Veröffentlichung – auch auszugsweise – nur mit schriftlicher Genehmigung.</p>
-      <p class="imp-p">Bitte bewahren Sie diese Informationen zum späteren Nachschlagen auf. Farb- und Inhaltsänderungen vorbehalten.</p>
       <p class="imp-p">Version 1.0 – INF-01-2026</p>
     </div>
   </div>
@@ -83,12 +84,24 @@
 <div id="mechChromeGuard" style="display:none;position:fixed;top:0;left:0;right:0;height:2px;background:var(--mech-bg);z-index:999;pointer-events:none"></div>
 <div id="safeBottomGuard" style="display:none;position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:env(safe-area-inset-bottom,0px);background:white;z-index:65;pointer-events:none"></div>
 
+<!-- Fixed main-page burger (hidden behind chapter view via z-index) -->
+<button id="mainBurger" class="main-burger-btn" onclick="toggleShMenu()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="19" x2="21" y2="19"/></svg>
+</button>
+
 <!-- SCROLL HEADER (shown on scroll-down inside chapter) -->
 <div class="cv-scroll-header" id="cvScrollHeader">
-  <button class="cv-scroll-header-btn" onclick="closeChapter()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
-  </button>
-  <span class="cv-scroll-header-title" id="cvScrollTitle"></span>
+  <div class="cv-sh-bar">
+    <button class="cv-scroll-header-btn" onclick="handleBackBtn()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <span class="cv-scroll-header-title" id="cvScrollTitle"></span>
+    <button class="cv-sh-menu-btn" onclick="toggleShMenu()">
+      <svg class="sh-icon-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="19" x2="21" y2="19"/></svg>
+      <svg class="sh-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cv-sh-menu" id="cvShMenu"></div>
 </div>
 
 <!-- CHAPTER VIEW -->

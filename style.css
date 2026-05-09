@@ -54,7 +54,9 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 /* ── HERO ── */
 .hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;overflow:hidden}
 .hero-verlauf{width:100%;display:block;flex-shrink:0}
-.hero-inner{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;padding:calc(8px + env(safe-area-inset-top)) 32px max(120px,calc(100px + env(safe-area-inset-bottom)))}
+.hero-logo-area{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:calc(28px + env(safe-area-inset-top)) 32px 0;position:relative;z-index:2}
+.hero-logo-area .hero-logo-img{margin-bottom:-90px;position:relative;z-index:3}
+.hero-controls{width:100%;display:flex;flex-direction:column;align-items:center;padding:12px 32px 110px;position:relative;z-index:2}
 .hero-logo-img{width:100%;max-width:300px;margin-bottom:44px;filter:brightness(0) invert(1);opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.1s,transform 0.8s ease 0.1s}
 .hero-logo-img.show{opacity:0.9;transform:translateY(0)}
 .search-wrap{width:100%;max-width:320px;position:relative;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s,border-radius 0.25s ease}
@@ -80,7 +82,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .qn-btn:active{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.28)}
 .qn-btn-wide{grid-column:1/-1}
 
-.scroll-hint{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity 0.8s ease 0.5s;z-index:3}
+.scroll-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity 0.8s ease 0.5s;z-index:3}
 .scroll-hint.show{opacity:1}
 .scroll-hint-lbl{font-family:var(--font-oscar);font-weight:400;font-size:9px;color:rgba(255,255,255,0.5)}
 .scroll-pill{width:9px;height:9px;border-right:1.5px solid rgba(255,255,255,0.6);border-bottom:1.5px solid rgba(255,255,255,0.6);transform:rotate(45deg);animation:arrowBounce 1.5s ease-in-out infinite}
@@ -224,6 +226,9 @@ body.mech-page{background:var(--mech-bg)!important}
 
 /* Runder Zurück-Button, zentriert oben */
 .mech-back-btn{position:absolute;top:12px;left:16px;transform:none;z-index:20;width:32px;height:32px;border-radius:50%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(30,44,110,0.45);padding:0;-webkit-tap-highlight-color:transparent}
+.mech-burger-btn{position:absolute;top:12px;right:16px;z-index:20;width:32px;height:32px;border-radius:50%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(30,44,110,0.45);padding:0;-webkit-tap-highlight-color:transparent}
+/* Fixed burger on main/hero page — sits below chapterView (z-index:60) so auto-hidden in chapters */
+.main-burger-btn{position:fixed;top:calc(12px + env(safe-area-inset-top));right:max(16px,calc(50% - 199px));z-index:55;width:32px;height:32px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.55);padding:0;-webkit-tap-highlight-color:transparent}
 
 /* Header: PNG füllt den Bereich, Text liegt darüber */
 .mech-header{position:relative;width:100%;background:var(--mech-bg)}
@@ -239,7 +244,7 @@ body.mech-page{background:var(--mech-bg)!important}
 .mech-title-area *{pointer-events:auto}
 .mech-ey{font-family:var(--font-oracle);font-weight:400;font-size:25px;color:var(--navy);line-height:1.15;margin-bottom:2px}
 .mech-ttl{font-family:var(--font-oracle);font-weight:500;font-size:30px;color:var(--navy);line-height:1.1;margin-bottom:18px}
-.mech-lead-txt{font-family:var(--font-oscar);font-weight:500;font-size:17px;color:rgba(30,44,110,0.65);line-height:1.41;max-width:300px;margin:0 auto}
+.mech-lead-txt{font-family:var(--font-oscar);font-weight:500;font-size:17px;color:var(--navy);line-height:1.41;max-width:300px;margin:0 auto;min-height:calc(17px * 1.41 * 4)}
 
 /* Dot-Navigation: Pill für aktiv, Punkt für inaktiv */
 .mech-nav{display:flex;flex-direction:column;align-items:center;gap:12px;padding:26px 28px 22px;background:var(--mech-bg)}
@@ -257,7 +262,7 @@ body.mech-page{background:var(--mech-bg)!important}
 .mech-img-wrap .step-row{padding:11px 16px;border-bottom:1px solid rgba(30,44,110,0.06);display:flex;gap:14px}
 .mech-img-wrap .step-row:last-of-type{border-bottom:none}
 .mech-img-wrap .step-c{width:22px;height:22px;border-radius:50%;border:1px solid rgba(30,44,110,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--font-oracle);font-size:10px;font-weight:400;color:rgba(30,44,110,0.5);flex-shrink:0;margin-top:1px}
-.mech-img-wrap .step-t{font-family:var(--font-oscar);font-weight:400;font-size:14px;line-height:1.6;color:rgba(30,44,110,0.65)}
+.mech-img-wrap .step-t{font-family:var(--font-oscar);font-weight:400;font-size:14px;line-height:1.6;color:var(--navy)}
 .mech-img-wrap .step-t strong{font-weight:500;color:rgba(30,44,110,0.85)}
 .mech-img-wrap .warn{background:#faeae3;border-left:2px solid #e8603a;border-radius:0 8px 8px 0;padding:11px 14px;font-family:var(--font-oscar);font-weight:500;font-size:14px;line-height:1.6;color:#e8603a;margin:8px 16px}
 
@@ -273,7 +278,7 @@ body.mech-page{background:var(--mech-bg)!important}
 /* Fließtext: zentriert, auf weißem Hintergrund */
 .mech-body{padding:28px 28px 40px;background:white;text-align:center}
 .mech-body-head{font-family:var(--font-oscar);font-weight:600;font-size:15px;letter-spacing:0.02em;color:var(--navy);margin:18px 0 15px}
-.mech-body .cv-body-t{font-family:var(--font-oscar);font-weight:400;font-size:15px;color:rgba(30,44,110,0.6);line-height:1.34;margin-bottom:10px}
+.mech-body .cv-body-t{font-family:var(--font-oscar);font-weight:400;font-size:15px;color:var(--navy);line-height:1.34;margin-bottom:10px}
 
 /* (fade-white entfernt – Verlauf jetzt in .mech-body) */
 
@@ -286,10 +291,180 @@ body.mech-page{background:var(--mech-bg)!important}
 
 .mech-fade{animation:mechFadeIn 0.22s ease forwards}
 @keyframes mechFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+#cvContent{transition:opacity 0.18s ease}
+#cvContent.cv-switching{opacity:0}
 
 /* ── SCROLL HEADER ── */
-.cv-scroll-header{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;align-items:center;gap:10px;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
+.cv-scroll-header{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;flex-direction:column;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none;overflow:hidden}
 .cv-scroll-header.sh-visible{transform:translateX(-50%) translateY(0);pointer-events:auto}
-.cv-scroll-header-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.7);border:1px solid rgba(30,44,110,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;color:var(--navy)}
-.cv-scroll-header-title{font-family:var(--font-oscar);font-weight:500;font-size:13px;color:var(--navy);flex:1;text-align:center;margin-right:32px}
+.cv-sh-bar{display:flex;align-items:center;gap:10px;width:100%}
+.cv-scroll-header-btn,.cv-sh-menu-btn{width:32px;height:32px;border-radius:50%;background:none;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;color:var(--navy)}
+.cv-scroll-header-title{font-family:var(--font-oscar);font-weight:500;font-size:13px;color:var(--navy);flex:1;text-align:center}
+.sh-icon-close{display:none}
+.cv-scroll-header.sh-no-back .cv-scroll-header-btn{display:none}
+.cv-scroll-header.sh-menu-open .sh-icon-burger{display:none}
+.cv-scroll-header.sh-menu-open .sh-icon-close{display:block}
+/* Expandable chapter menu */
+.cv-sh-menu{max-height:0;overflow:hidden;transition:max-height 0.44s cubic-bezier(0.16,1,0.3,1)}
+.cv-scroll-header.sh-menu-open .cv-sh-menu{max-height:62svh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+/* Chapter-level items */
+.cv-sh-item{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px 4px;border:none;border-top:1px solid rgba(30,44,110,0.07);background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:center;position:relative}
+.cv-sh-item:first-child{margin-top:8px;border-top:1px solid rgba(30,44,110,0.12)}
+.cv-sh-item-cap{font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(30,44,110,0.5);flex-shrink:0}
+.cv-sh-item-lbl{font-family:var(--font-oracle);font-weight:400;font-size:16px;color:var(--navy)}
+.cv-sh-ch-arr{color:rgba(30,44,110,0.55);position:static;margin-left:5px;flex-shrink:0;transition:transform 0.25s ease}
+.cv-sh-item:has(.cv-sh-ch-arr)::before{content:'';width:18px;flex-shrink:0}
+.cv-sh-ch-arr.expanded{transform:rotate(90deg)}
+/* Section-level items */
+.cv-sh-sec-item{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:8px 4px;border:none;border-top:1px solid rgba(30,44,110,0.05);background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:center}
+.cv-sh-sec-dot{width:5px;height:5px;border-radius:50%;background:rgba(30,44,110,0.25);flex-shrink:0}
+.cv-sh-sec-lbl{font-family:var(--font-oscar);font-weight:400;font-size:13px;color:var(--navy);line-height:1.2}
+/* Home item */
+.cv-sh-home-lbl{font-family:var(--font-oracle);font-weight:400;font-size:16px;color:var(--navy)}
+/* Search field inside menu — rounded rectangle like hero search */
+.cv-sh-search-wrap{display:flex;align-items:center;gap:8px;margin:6px 0 8px;padding:9px 14px;background:rgba(30,44,110,0.05);border:1px solid rgba(30,44,110,0.14);border-radius:50px;color:rgba(30,44,110,0.35)}
+.cv-sh-search-input{flex:1;background:none;border:none;outline:none;font-family:var(--font-oscar);font-size:13px;color:var(--navy);padding:0}
+.cv-sh-search-input::placeholder{color:rgba(30,44,110,0.3)}
+.cv-sh-sec-ch{display:block;font-family:var(--font-oscar);font-size:10px;color:rgba(30,44,110,0.4);margin-top:2px}
+.cv-sh-no-results{font-family:var(--font-oscar);font-size:12px;color:rgba(30,44,110,0.4);padding:14px 4px;text-align:center}
 
+/* ── TABLET (iPad) ── */
+@media (min-width: 600px) {
+  /* Sub-pages: break white-zone out to full viewport width */
+  .mech-white-zone {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+  .mech-white-zone .mech-img-wrap,
+  .mech-white-zone .ch-extra,
+  .mech-white-zone .mech-body,
+  .mech-white-zone .mech-imp-wrap,
+  .mech-white-zone .mech-imp-text {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Scale up type */
+  :root {
+    --t-titel-size: 29px;
+    --t-sub-size: 35px;
+    --t-lead-size: 19px;
+    --t-body-size: 17px;
+  }
+  body { font-size: 17px; }
+
+  /* Hero wordmark & controls */
+  .custom-wordmark .wordmark-title { font-size: 80px; }
+  .custom-wordmark .wordmark-subtitle { font-size: 21px; }
+  .search-wrap { max-width: 420px; }
+  .search-input { font-size: 15px; padding: 13px 52px 13px 22px; }
+  .scroll-hint { bottom: 48px; }
+  .scroll-hint-lbl { font-size: 12px; }
+  .scroll-pill { width: 12px; height: 12px; }
+
+  /* Dots nav hint */
+  .mech-nav-hint { font-size: 13px; }
+  .quick-nav { max-width: 460px; }
+  .qn-btn { font-size: 13px; padding: 9px 14px; }
+
+  /* Hero: push content up on desktop (flex:1 on logo-area causes bottom-heavy layout) */
+  .hero-logo-area { flex: 0.3; padding-top: max(40px, 6vh); justify-content: flex-end; }
+  .hero-controls { padding-top: 16px; padding-bottom: 80px; }
+
+  /* Main burger: more contrast on dark hero background */
+  .main-burger-btn { color: rgba(255,255,255,0.88); }
+
+  /* Main page text */
+  .page-eyebrow { font-size: 29px; }
+  .page-titel { font-size: 35px; }
+  .page-lead { font-size: 19px; max-width: 420px; }
+  .page-body { font-size: 17px; }
+
+  /* Chapter banner */
+  .cv-eyebrow { font-size: 12px; }
+  .cv-h1-titel { font-size: 29px; }
+  .cv-h1-sub { font-size: 35px; }
+  .cv-lead { font-size: 19px; }
+  .cv-body-t { font-size: 17px; }
+
+  /* Mechanik chapter */
+  .mech-ey { font-size: 34px !important; }
+  .mech-ttl { font-size: 42px !important; }
+  .mech-lead-txt { font-size: 22px !important; max-width: 440px; min-height: calc(22px * 1.41 * 4); }
+  .mech-body .cv-body-t { font-size: 18px !important; }
+  .mech-body-head { font-size: 18px !important; }
+  .mech-img-wrap .step-t { font-size: 17px !important; }
+  .mech-img-wrap .warn { font-size: 17px !important; }
+
+  /* Wider container */
+  body { max-width: 680px; }
+  #intro { max-width: 680px; }
+  /* Full-width so scroll works from anywhere on screen; content centered inside */
+  #chapterView { max-width: 100%; }
+  #cvContent { max-width: 680px; margin: 0 auto; }
+  .cv-back { max-width: 680px; margin: 0 auto; }
+  #safeBottomGuard { max-width: 680px !important; }
+
+  /* Scroll header */
+  .cv-scroll-header { max-width: calc(100vw - 48px); }
+
+  /* Burger buttons repositioned + scaled for wider container */
+  .main-burger-btn { right: 24px; width: 44px; height: 44px; }
+  .main-burger-btn svg { width: 22px; height: 22px; }
+  .mech-burger-btn { position: fixed; right: 24px; top: calc(12px + env(safe-area-inset-top)); width: 44px; height: 44px; z-index: 61; }
+  .mech-burger-btn svg { width: 22px; height: 22px; }
+  .mech-back-btn { position: fixed; left: 24px; top: calc(12px + env(safe-area-inset-top)); width: 44px; height: 44px; z-index: 61; }
+  .mech-back-btn svg { width: 21px; height: 21px; }
+
+  /* Rotated category label on chapter header */
+  .mech-cat-vert { font-size: 15px; top: 40%; }
+
+  /* Scroll header buttons + title */
+  .cv-scroll-header-btn, .cv-sh-menu-btn { width: 44px; height: 44px; }
+  .cv-scroll-header-btn svg, .cv-sh-menu-btn svg { width: 21px; height: 21px; }
+  .cv-scroll-header-title { font-size: 18px; }
+  .cv-back-lbl { font-size: 16px; }
+  /* Center title when back button is hidden (no matching left spacer) */
+  .cv-scroll-header.sh-no-back .cv-scroll-header-title { padding-left: 44px; }
+
+  /* Burger menu font sizes scaled for desktop */
+  .cv-sh-home-lbl { font-size: 20px; }
+  .cv-sh-item-lbl { font-size: 20px; }
+  .cv-sh-sec-lbl { font-size: 16px; }
+  .cv-sh-search-input { font-size: 15px; }
+  .cv-sh-no-results { font-size: 15px; }
+  .cv-sh-sec-ch { font-size: 13px; }
+
+  /* Hero: all 4 quick-nav buttons in one row */
+  .quick-nav { max-width: 430px; grid-template-columns: repeat(4, 1fr); }
+
+  /* Allow hero image to bleed wider */
+  .hero { overflow: visible; }
+  .hero-verlauf {
+    width: 120%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
+  }
+
+  /* Chapter images: stay 100% wide (inside overflow-y:auto scroll container) — mask provides fade */
+  .mech-header-img {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+  .mech-imp-bg {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  /* Impressum: push wave image down, text stays above it */
+  .mech-imp-wrap { padding-top: 30px; }
+  .mech-imp-text { margin-top: -120px; position: relative; z-index: 1; }
+
+  /* Main page impressum: outside scroll container, can bleed wider */
+  .imp-verlauf {
+    width: 120%; margin-left: -10%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
+  }
+}

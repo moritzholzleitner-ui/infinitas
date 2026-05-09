@@ -95,7 +95,7 @@ const chapters = {
          {head:'', text:'Außerhalb des Ruhepols befinden sich unterschiedliche Feldtypen, die den Spielverlauf bestimmen. Je nachdem, auf welchem Spielfeld du landest, ergeben sich unterschiedliche Aktionen und Effekte.'}
        ]
       },
-      {label:'Harmonie & Ärgernis', ey:'Kartenfeld', ttl:'Harmonie & Ärgernis',
+      {label:'Harmonie & Ärgernis Karte', ey:'Kartenfeld', ttl:'Harmonie & Ärgernis',
        lead:'Harmonie- und Ärgerniskarten bilden den Kern des Spiels. Sie spiegeln alltägliche Situationen wieder und beeinflussen deine Harmoniepunkte.',
        img:'Grafik_Anleitung_Harmonie.png',
        body:[
@@ -105,7 +105,7 @@ const chapters = {
          {head:'Besonderheiten', text:'Nachdem die Karte angewendet wurde, wird sie abgelegt. Sind keine Karten mehr im Stapel, wird dieser neu gemischt.'}
        ]
       },
-      {label:'Ritual', ey:'Kartenfeld', ttl:'Ritual',
+      {label:'Ritual Karte', ey:'Kartenfeld', ttl:'Ritual',
        lead:'Ritualkarten bringen Bewegung ins Spiel und fordern dich und die Mitspieler auf unterschiedliche Weise heraus.',
        img:'Grafik_Anleitung_Ritualfeld.png',
        caption:'Achte auf die Zeit!',
@@ -115,7 +115,7 @@ const chapters = {
          {head:'Besonderheiten', text:'Bei Gruppenaufgaben erhalten alle Spieler Punkte, vorausgesetzt die Aufgabe wurde erfolgreich erfüllt – unabhängig davon, wer die Karte gezogen hat. Achte dabei auf die Hinweise auf den Karten.'}
        ]
       },
-      {label:'Bonus', ey:'Kartenfeld', ttl:'Bonus',
+      {label:'Bonus Karte', ey:'Kartenfeld', ttl:'Bonus',
        lead:'Bonuskarten erweitern deine Möglichkeiten im Spiel und geben deiner gezogenen Persona Vorteile in bestimmten Situationen.',
        img:'Grafik_Anleitung_Bonusfeld.png',
        body:[
@@ -315,6 +315,9 @@ function chSelect(id,idx){
 }
 
 function openChapter(id,startIdx){
+  const _wasOpen=_chapterOpen;
+  const cvContent=document.getElementById('cvContent');
+  if(_wasOpen)cvContent.classList.add('cv-switching');
   const ch=chapters[id];
   const n=ch.sections.length;
   const si=startIdx||0;
@@ -329,6 +332,9 @@ function openChapter(id,startIdx){
       <img class="mech-header-img" src="media/Verlauf%20Unterseiten.png" alt="">
       <button class="mech-back-btn" onclick="closeChapter()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="mech-burger-btn" onclick="toggleShMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="19" x2="21" y2="19"/></svg>
       </button>
       <span class="mech-cat-vert"><span class="cat-regular">${ch.titel} </span><span class="cat-bold">${ch.sub}</span></span>
     </div>
@@ -351,9 +357,9 @@ function openChapter(id,startIdx){
       <div class="mech-imp-text">
         <p>© 2026 Infinitas</p>
         <p>Spielkonzept, Gestaltung und Spielsystem: Holzleitner Moritz</p>
-        <p>Infinitas ist ein fiktives Spielkonzept im Rahmen eines Designprojekts. Die Ereignisse auf den Karten basieren auf einer Umfrage während des Entstehungsprozesses und wurden teilweise überarbeitet oder fiktiv erweitert.<br>Texte mit Unterstützung von ChatGPT überarbeitet.</p>
+        <p>Infinitas ist ein fiktives Spielkonzept im Rahmen eines Designprojekts. Die Ereignisse auf den Karten basieren auf einer Umfrage während des Entstehungsprozesses und wurden teilweise überarbeitet oder fiktiv erweitert. Texte mit Unterstützung von ChatGPT überarbeitet.</p>
         <p>Alle Rechte vorbehalten. Nachdruck, Vervielfältigung oder Veröffentlichung – auch auszugsweise – nur mit schriftlicher Genehmigung.</p>
-        <p>Bitte bewahren Sie diese Informationen zum späteren Nachschlagen auf. Farb- und Inhaltsänderungen vorbehalten.</p>
+
         <p>Version 1.0 – INF-01-2026</p>
       </div>
     </div>
@@ -362,7 +368,8 @@ function openChapter(id,startIdx){
   _chId=id;
   _mechIdx=si;
   history.pushState({chapter:id},'','#'+id);
-  document.getElementById('cvContent').innerHTML=html;
+  cvContent.innerHTML=html;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>cvContent.classList.remove('cv-switching')));
   document.getElementById('chapterView').classList.add('open','mech-open');
   document.getElementById('main').style.display='none';
   document.body.classList.add('mech-page');
@@ -425,30 +432,157 @@ const _sh=document.getElementById('cvScrollHeader');
 const _shTitle=document.getElementById('cvScrollTitle');
 const _cvEl=document.getElementById('chapterView');
 let _shLastY=0;
-function _hideScrollHeader(){if(_sh)_sh.classList.remove('sh-visible');}
+let _menuExpandedCh=null,_menuSearchQuery='';
+
+function _hideScrollHeader(){
+  if(_sh){_sh.classList.remove('sh-visible','sh-menu-open');}
+  
+  _menuSearchQuery='';
+}
+
+function _buildChapterNav(){
+  const isHome=!_chapterOpen;
+  let html=`<button class="cv-sh-item" onclick="${isHome?'closeShMenu()':'shGoHome()'}"><span class="cv-sh-home-lbl">Startseite</span></button>`;
+  const order=['übersicht','aufbau','ablauf','mechanik'];
+  order.forEach(key=>{
+    const ch=chapters[key];
+    const isActiveCh=key===_chId;
+    const isExpanded=key===_menuExpandedCh;
+    const hasSub=ch.sections.length>1;
+    const arr=hasSub?`<svg class="cv-sh-ch-arr${isExpanded?' expanded':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M9 18l6-6-6-6"/></svg>`:'';
+    html+=`<button class="cv-sh-item" onclick="shMenuChClick('${key}')"><span class="cv-sh-item-lbl">${ch.sub}</span>${arr}</button>`;
+    if(hasSub&&isExpanded){
+      ch.sections.forEach((s,i)=>{
+        const cur=isActiveCh&&i===_mechIdx;
+        html+=`<button class="cv-sh-sec-item${cur?' sh-item-active':''}" onclick="shSecSelect('${key}',${i})"><span class="cv-sh-sec-dot"></span><span class="cv-sh-sec-lbl">${s.label}</span></button>`;
+      });
+    }
+  });
+  return html;
+}
+
+function _buildSearchResults(q){
+  const ql=q.toLowerCase();
+  let html='';
+  ['übersicht','aufbau','ablauf','mechanik'].forEach(key=>{
+    const ch=chapters[key];
+    ch.sections.forEach((s,i)=>{
+      if([(s.label||''),(s.ttl||''),(s.lead||'')].some(t=>t.toLowerCase().includes(ql))){
+        const cur=key===_chId&&i===_mechIdx;
+        html+=`<button class="cv-sh-sec-item${cur?' sh-item-active':''}" onclick="shSecSelect('${key}',${i})"><span class="cv-sh-sec-dot"></span><div><span class="cv-sh-sec-lbl">${s.label||s.ttl}</span><span class="cv-sh-sec-ch">Spiel ${ch.sub}</span></div></button>`;
+      }
+    });
+  });
+  return html||`<p class="cv-sh-no-results">Keine Ergebnisse</p>`;
+}
+
+function _renderShMenu(){
+  const menu=document.getElementById('cvShMenu');
+  if(!menu)return;
+  const q=_menuSearchQuery;
+  menu.innerHTML=`<div class="cv-sh-search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><input class="cv-sh-search-input" id="cvShSearchInput" type="text" placeholder="Suchen …" autocomplete="off" oninput="onShSearch(this.value)" value="${q.replace(/"/g,'&quot;')}"></div><div id="cvShNavContent">${q?_buildSearchResults(q):_buildChapterNav()}</div>`;
+}
+
+function onShSearch(q){
+  _menuSearchQuery=q;
+  const nav=document.getElementById('cvShNavContent');
+  if(nav)nav.innerHTML=q?_buildSearchResults(q):_buildChapterNav();
+}
+
+function toggleShMenu(){
+  const open=_sh.classList.toggle('sh-menu-open');
+  if(!open){
+    _menuSearchQuery='';
+    _menuExpandedCh=null;
+    
+    if(_cvEl.scrollTop<60)_sh.classList.remove('sh-visible');
+    return;
+  }
+  _sh.classList.add('sh-visible');
+  if(!_chapterOpen){if(_shTitle)_shTitle.textContent='Spiel Einführung';_sh.classList.add('sh-no-back');}else{_sh.classList.remove('sh-no-back');}
+  
+  _menuExpandedCh=null;
+  _menuSearchQuery='';
+  _renderShMenu();
+}
+
+function closeShMenu(){
+  _sh.classList.remove('sh-menu-open');
+  _menuSearchQuery='';
+  _menuExpandedCh=null;
+  
+  if(_cvEl.scrollTop<60)_sh.classList.remove('sh-visible');
+}
+
+function handleBackBtn(){
+  if(_chapterOpen){closeChapter();}else{closeShMenu();}
+}
+
+function shMenuChClick(id){
+  if(chapters[id].sections.length<=1){shMenuSelect(id);return;}
+  _menuExpandedCh=(_menuExpandedCh===id)?null:id;
+  const nav=document.getElementById('cvShNavContent');
+  if(nav)nav.innerHTML=_buildChapterNav();
+}
+
+function shMenuSelect(id){
+  closeShMenu();
+  openChapter(id);
+}
+
+function shGoHome(){
+  closeShMenu();
+  closeChapter();
+}
+
+function shSecSelect(chId,idx){
+  closeShMenu();
+  if(chId===_chId){chSelect(chId,idx);}else{openChapter(chId,idx);}
+}
 function _onChapterScroll(){
   if(!_chapterOpen)return;
   const y=_cvEl.scrollTop;
+  if(_sh&&_sh.classList.contains('sh-menu-open')&&y>_shLastY){
+    _sh.classList.remove('sh-menu-open');
+    _menuExpandedCh=null;_menuSearchQuery='';
+    
+  }
   if(y>80)_sh&&_sh.classList.add('sh-visible');
   else if(y<60)_sh&&_sh.classList.remove('sh-visible');
   _shLastY=y;
 }
 _cvEl.addEventListener('scroll',_onChapterScroll,{passive:true});
 
+// Close menu when tapping outside the scroll header
+function _isOutsideMenu(t){if(!t.isConnected)return false;return _sh&&!_sh.contains(t)&&!t.closest('#mainBurger,.mech-burger-btn');}
+document.addEventListener('touchstart',e=>{if(_sh&&_sh.classList.contains('sh-menu-open')&&_isOutsideMenu(e.target))closeShMenu();},{passive:true});
+document.addEventListener('click',e=>{if(_sh&&_sh.classList.contains('sh-menu-open')&&_isOutsideMenu(e.target))closeShMenu();});
+
 // INTRO
 const intro=document.getElementById('intro');
 const eight=document.getElementById('introEight');
 const mainEl=document.getElementById('main');
 const _initHash=decodeURIComponent(location.hash.slice(1));
-if(_initHash&&chapters[_initHash]){
+
+function _showMainInstant(){
   intro.style.display='none';
   mainEl.classList.add('visible');
-  document.getElementById('heroLogo')?.classList.add('show');
-  document.getElementById('searchWrap')?.classList.add('show');
-  document.getElementById('quickNav')?.classList.add('show');
+  ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
+}
+
+// BFCache restore (Safari back-swipe that hits the cache)
+window.addEventListener('pageshow',e=>{if(e.persisted)_showMainInstant();});
+
+const _introSeen=sessionStorage.getItem('introSeen');
+if(_initHash&&chapters[_initHash]){
+  _showMainInstant();
   history.replaceState(null,'',location.pathname);
   openChapter(_initHash);
+}else if(_introSeen){
+  // already played once this session — skip straight to main
+  _showMainInstant();
 }else{
+  sessionStorage.setItem('introSeen','1');
   setTimeout(()=>{
     eight.classList.add('zoom');
     setTimeout(()=>{
@@ -456,10 +590,7 @@ if(_initHash&&chapters[_initHash]){
       mainEl.classList.add('visible');
       setTimeout(()=>{
         intro.style.display='none';
-        document.getElementById('heroLogo')?.classList.add('show');
-        document.getElementById('searchWrap')?.classList.add('show');
-        document.getElementById('quickNav')?.classList.add('show');
-        document.getElementById('scrollHint')?.classList.add('show');
+        ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
       },650);
     },850);
   },1400);
