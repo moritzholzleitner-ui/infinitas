@@ -16,7 +16,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#1e2c6e;
-  --navy-deep:#141d4a;
+  --navy-deep:#38396D;
   --sky:#5a80c0;
   --ice:#dce8f5;
   --ice-light:#eef4fb;
@@ -50,14 +50,14 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 #main.visible{opacity:1}
 
 /* ── HERO ── */
-.hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 32px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(ellipse,rgba(90,128,192,0.15) 0%,transparent 68%);pointer-events:none}
-.hero-inner{width:100%;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2}
+.hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;overflow:hidden}
+.hero-verlauf{width:100%;display:block;flex-shrink:0}
+.hero-inner{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;padding:28px 32px 80px}
 .hero-logo-img{width:100%;max-width:300px;margin-bottom:44px;filter:brightness(0) invert(1);opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.1s,transform 0.8s ease 0.1s}
 .hero-logo-img.show{opacity:0.9;transform:translateY(0)}
 .search-wrap{width:100%;max-width:320px;position:relative;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s}
 .search-wrap.show{opacity:1;transform:translateY(0)}
-.search-input{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.11);border-radius:10px;padding:14px 46px 14px 18px;font-family:var(--font-oscar);font-size:14px;font-weight:400;color:white;outline:none;-webkit-appearance:none;transition:background 0.2s,border 0.2s}
+.search-input{width:100%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:10px 46px 10px 20px;font-family:var(--font-oscar);font-size:13px;font-weight:400;color:white;outline:none;-webkit-appearance:none;transition:background 0.2s,border 0.2s}
 .search-input::placeholder{color:rgba(255,255,255,0.28)}
 .search-input:focus{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.22)}
 .s-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.28);pointer-events:none}
@@ -68,22 +68,28 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .sri:hover{background:rgba(255,255,255,0.05)}
 .sri-ch{font-family:var(--font-oracle);font-weight:400;font-size:11px;color:rgba(255,255,255,0.3);min-width:60px}
 .sri-t{font-family:var(--font-oscar);font-weight:400;font-size:13px;color:rgba(255,255,255,0.75)}
-.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity 0.8s ease 0.5s}
+/* Kategorie-Buttons im Hero */
+.quick-nav{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px 0 0;max-width:270px;width:100%;opacity:0;transform:translateY(10px);transition:opacity 0.8s ease 0.4s,transform 0.8s ease 0.4s}
+.quick-nav.show{opacity:1;transform:translateY(0)}
+.qn-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:7px 10px;font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(255,255,255,0.75);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background 0.2s,border-color 0.2s;white-space:nowrap;text-align:center}
+.qn-btn:active{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.28)}
+
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity 0.8s ease 0.5s;z-index:3}
 .scroll-hint.show{opacity:1}
-.scroll-hint span{font-family:var(--font-oscar);font-weight:400;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.18)}
-.scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,rgba(255,255,255,0.2),transparent);animation:pulse 2.2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:0.8}}
+.scroll-hint-lbl{font-family:var(--font-oscar);font-weight:400;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)}
+.scroll-pill{width:3px;height:22px;border-radius:10px;background:rgba(255,255,255,0.55);transform-origin:top center;animation:pillGrow 1.8s ease-in-out infinite}
+@keyframes pillGrow{0%,100%{transform:scaleY(0.22);border-radius:50%;opacity:0.35}50%{transform:scaleY(1);border-radius:10px;opacity:0.75}}
 
 /* ── PAGE ── */
-.page{background:var(--navy-deep);padding:72px 28px 0}
-.page-eyebrow{font-family:var(--font-oscar);font-weight:400;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:20px}
-.page-titel{font-family:var(--font-oracle);font-weight:400;font-size:clamp(28px,9vw,38px);color:white;line-height:1.05;letter-spacing:-0.01em;margin-bottom:10px}
-.page-titel em{font-style:normal;color:rgba(255,255,255,0.4)}
-.page-lead{font-family:var(--font-oscar);font-weight:500;font-size:var(--t-lead-size);color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:16px}
-.page-body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px}
-.page-body strong{font-weight:500;color:rgba(255,255,255,0.75)}
-.divider{width:28px;height:1px;background:rgba(255,255,255,0.1);margin:40px 0}
-.stat-row{display:flex;gap:36px;margin:36px 0}
+.page{background:var(--navy-deep);padding:60px 28px 72px;text-align:center}
+.page-eyebrow{font-family:var(--font-oracle);font-weight:400;font-size:24px;color:white;margin-bottom:4px}
+.page-titel{font-family:var(--font-oracle);font-weight:500;font-size:26px;color:white;line-height:1.1;margin-bottom:20px}
+.page-titel em{font-style:normal;color:white}
+.page-lead{font-family:var(--font-oscar);font-weight:500;font-size:15px;color:white;line-height:1.4;margin-bottom:18px;max-width:320px;margin-left:auto;margin-right:auto}
+.page-body{font-family:var(--font-oscar);font-weight:400;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.45;margin-bottom:12px}
+.page-body strong{font-weight:500;color:white}
+.divider{width:28px;height:1px;background:rgba(255,255,255,0.1);margin:40px auto}
+.stat-row{display:flex;gap:36px;margin:36px 0;justify-content:center}
 .stat{display:flex;flex-direction:column;gap:3px}
 .stat-v{font-family:var(--font-oracle);font-weight:700;font-size:30px;color:white;letter-spacing:-0.02em}
 .stat-l{font-family:var(--font-oscar);font-weight:400;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.22)}
@@ -98,7 +104,11 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .cli-arr{color:rgba(255,255,255,0.18)}
 
 /* ── IMPRESSUM ── */
-.impressum{padding:72px 28px 64px;background:var(--navy-deep)}
+.impressum{padding:0;background:var(--navy-deep)}
+.imp-verlauf{width:100%;display:block}
+.imp-inner{padding:0 28px 64px;margin-top:-60px;position:relative}
+.imp-p{font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(255,255,255,0.28);line-height:1.85;margin-bottom:10px}
+.imp-p:last-child{margin-bottom:0}
 .imp-lbl{font-family:var(--font-oscar);font-weight:400;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.18);margin-bottom:32px}
 .imp-block{margin-bottom:26px}
 .imp-title{font-family:var(--font-oracle);font-weight:400;font-size:12px;color:rgba(255,255,255,0.25);letter-spacing:0.06em;margin-bottom:5px}
@@ -176,19 +186,20 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 }
 .custom-wordmark .wordmark-title{
   font-family:var(--font-oracle);
-  font-size:4rem;
-  font-weight:600;
+  font-size:48px;
+  font-weight:500;
   letter-spacing:0.01em;
+  color:white;
   font-kerning:normal;
   font-variant-ligatures:common-ligatures discretionary-ligatures;
   font-feature-settings:"liga" 1,"clig" 1,"dlig" 1,"ss02" 1;
 }
 .custom-wordmark .wordmark-subtitle{
   font-family:var(--font-oracle);
-  font-size:1.3rem;
+  font-size:15px;
   font-weight:400;
-  margin-top:0.35rem;
-  opacity:0.92;
+  margin-top:5px;
+  color:white;
   font-kerning:normal;
   font-variant-ligatures:common-ligatures discretionary-ligatures;
   font-feature-settings:"liga" 1,"clig" 1,"dlig" 1,"ss02" 1;
@@ -214,26 +225,23 @@ body.mech-page{background:var(--mech-bg)!important}
 .mech-cat-vert .cat-bold{font-family:var(--font-oscar);font-weight:700}
 
 /* Titel-Bereich unterhalb des Header-Bildes mit Überlappung */
-.mech-title-area{position:relative;margin-top:-130px;padding:60px 28px 20px;text-align:center;background:linear-gradient(to bottom,transparent 0%,var(--mech-bg) 55%);pointer-events:none}
+.mech-title-area{position:relative;margin-top:-160px;padding:80px 28px 20px;text-align:center;background:linear-gradient(to bottom,transparent 0%,var(--mech-bg) 55%);pointer-events:none}
 .mech-title-area *{pointer-events:auto}
 .mech-ey{font-family:var(--font-oracle);font-weight:400;font-size:17px;color:rgba(30,44,110,0.5);line-height:1.15;margin-bottom:2px}
 .mech-ttl{font-family:var(--font-oracle);font-weight:500;font-size:26px;color:var(--navy);line-height:1.1;margin-bottom:18px}
 .mech-lead-txt{font-family:var(--font-oscar);font-weight:500;font-size:15px;color:rgba(30,44,110,0.65);line-height:1.8;max-width:300px;margin:0 auto}
 
-/* Apple-style Galerie-Navigation */
-.mech-gallery-outer{overflow-x:scroll;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;background:var(--mech-bg)}
-.mech-gallery-outer::-webkit-scrollbar{display:none}
-.mech-gallery{display:flex;gap:10px;padding:4px 28px 24px}
-.mech-gal-card{scroll-snap-align:start;flex-shrink:0;width:calc(100vw - 76px);background:rgba(255,255,255,0.45);border-radius:16px;padding:18px 20px;cursor:pointer;transition:opacity 0.25s,background 0.25s,box-shadow 0.25s;opacity:0.55;-webkit-tap-highlight-color:transparent}
-.mech-gal-card.active{background:white;box-shadow:0 4px 24px rgba(30,44,110,0.10);opacity:1}
-.mech-gal-num{font-family:var(--font-oracle);font-size:11px;font-weight:400;color:rgba(30,44,110,0.35);margin-bottom:6px}
-.mech-gal-ey{font-family:var(--font-oracle);font-size:11px;font-weight:400;color:rgba(30,44,110,0.5);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px}
-.mech-gal-ttl{font-family:var(--font-oracle);font-size:18px;font-weight:500;color:var(--navy);line-height:1.15;margin-bottom:8px}
-.mech-gal-lead{font-family:var(--font-oscar);font-size:12px;font-weight:400;color:rgba(30,44,110,0.55);line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* Dot-Navigation: Pill für aktiv, Punkt für inaktiv */
+.mech-nav{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 28px 18px;background:var(--mech-bg)}
+.mech-dots{display:flex;gap:8px;align-items:center}
+.mech-dot{height:7px;width:7px;border-radius:50px;border:none;background:rgba(30,44,110,0.22);transition:width 0.3s ease,background 0.3s ease;cursor:pointer;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.mech-dot.active{background:rgba(30,44,110,0.55);width:28px}
+.mech-next{background:none;border:none;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(30,44,110,0.55);margin-left:2px;-webkit-tap-highlight-color:transparent;transition:opacity 0.2s}
+.mech-nav-hint{font-family:var(--font-oscar);font-size:10px;font-weight:400;color:rgba(30,44,110,0.28);letter-spacing:0.04em;text-align:center}
 
 /* Bild-Container: hellblauer Rahmen, oben-rechts eckig */
-.mech-img-wrap{margin:0 20px;border:1px solid rgba(100,130,200,0.32);border-radius:14px 0 14px 14px;overflow:hidden;background:var(--mech-bg)}
-.mech-img-wrap img{width:100%;display:block;-webkit-mask-image:linear-gradient(to bottom,black 50%,transparent 92%);mask-image:linear-gradient(to bottom,black 50%,transparent 92%)}
+.mech-img-wrap{margin:0 20px;border:1px solid rgba(100,130,200,0.32);border-radius:14px 0 14px 14px;overflow:hidden;background:white}
+.mech-img-wrap img{width:100%;display:block}
 .mech-img-caption{padding:10px 16px 14px;text-align:center;font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(30,44,110,0.38);line-height:1.6;letter-spacing:0.02em}
 .mech-img-wrap .step-row{padding:11px 16px;border-bottom:1px solid rgba(30,44,110,0.06);display:flex;gap:14px}
 .mech-img-wrap .step-row:last-of-type{border-bottom:none}
@@ -242,17 +250,20 @@ body.mech-page{background:var(--mech-bg)!important}
 .mech-img-wrap .step-t strong{font-weight:500;color:rgba(30,44,110,0.85)}
 .mech-img-wrap .warn{background:#faeae3;border-left:2px solid #e8603a;border-radius:0 8px 8px 0;padding:11px 14px;font-family:var(--font-oscar);font-weight:500;font-size:13px;line-height:1.6;color:#e8603a;margin:8px 16px}
 
-/* Fließtext: zentriert, Verlauf von mech-bg → weiß */
-.mech-body{padding:28px 28px 40px;background:linear-gradient(to bottom,var(--mech-bg) 0%,white 80%);text-align:center}
+/* Gradient beginnt oben blau, wird erst bei ~280px weiß (Mitte des Bildes) */
+.mech-white-zone{background:linear-gradient(to bottom,var(--mech-bg) 0%,white 280px);padding-top:36px}
+
+/* Fließtext: zentriert, auf weißem Hintergrund */
+.mech-body{padding:28px 28px 40px;background:white;text-align:center}
 .mech-body-head{font-family:var(--font-oracle);font-weight:500;font-size:15px;color:var(--navy);margin:24px 0 8px}
 .mech-body .cv-body-t{font-family:var(--font-oscar);font-weight:400;font-size:13px;color:rgba(30,44,110,0.6);line-height:1.8;margin-bottom:10px}
 
 /* (fade-white entfernt – Verlauf jetzt in .mech-body) */
 
-/* Impressum über Verlauf-Bild */
-.mech-imp-wrap{position:relative;background:white}
+/* Impressum: dekoratives Wellenbild, darunter der Text auf weißem Grund */
+.mech-imp-wrap{background:white}
 .mech-imp-bg{width:100%;display:block}
-.mech-imp-text{position:absolute;top:42%;left:0;right:0;padding:0 28px 48px;text-align:left}
+.mech-imp-text{background:white;padding:0 28px 60px;margin-top:-80px;text-align:left}
 .mech-imp-text p{font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(30,44,110,0.35);line-height:1.85;margin-bottom:10px}
 .mech-imp-text p:last-child{margin-bottom:0}
 

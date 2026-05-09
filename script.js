@@ -226,6 +226,7 @@ function renderSection(s,i){
 }
 
 let _mechIdx=0;
+let _scrollPos=0;
 
 function buildMechCard(s){
   let html='';
@@ -243,16 +244,9 @@ function buildMechBody(s){
 
 function openMechanik(startIdx){
   const ch=chapters['mechanik'];
+  const n=ch.sections.length;
   const s0=ch.sections[0];
-  const galleryCards=ch.sections.map((sec,i)=>{
-    const num=String(i+1).padStart(2,'0');
-    return `<div class="mech-gal-card${i===0?' active':''}" onclick="mechSelect(${i})">
-      <div class="mech-gal-num">${num}</div>
-      <div class="mech-gal-ey">${sec.ey||sec.label}</div>
-      <div class="mech-gal-ttl">${sec.ttl||sec.label}</div>
-      <div class="mech-gal-lead">${sec.lead||''}</div>
-    </div>`;
-  }).join('');
+  const dots=Array.from({length:n},(_,i)=>`<span class="mech-dot${i===0?' active':''}" onclick="mechSelect(${i})"></span>`).join('');
   const html=`<div class="mech-view">
     <div class="mech-header">
       <img class="mech-header-img" src="media/Verlauf%20Unterseiten.png" alt="">
@@ -266,13 +260,16 @@ function openMechanik(startIdx){
       <h1 class="mech-ttl" id="mechTtl">${s0.ttl}</h1>
       <p class="mech-lead-txt" id="mechLead">${s0.lead}</p>
     </div>
-    <div class="mech-gallery-outer" id="mechGalleryOuter">
-      <div class="mech-gallery" id="mechGallery">${galleryCards}</div>
+    <div class="mech-nav">
+      <div class="mech-dots" id="mechDots">${dots}</div>
+      <span class="mech-nav-hint">Auf die Punkte tippen um die Seite zu wechseln</span>
     </div>
-    <div class="mech-img-wrap mech-fade" id="mechCard">${buildMechCard(s0)}</div>
-    <div class="mech-body mech-fade" id="mechBody">${buildMechBody(s0)}</div>
-    <div class="mech-imp-wrap">
-      <img class="mech-imp-bg" src="media/Verlauf%20Impressum.png" alt="">
+    <div class="mech-white-zone">
+      <div class="mech-img-wrap mech-fade" id="mechCard">${buildMechCard(s0)}</div>
+      <div class="mech-body mech-fade" id="mechBody">${buildMechBody(s0)}</div>
+      <div class="mech-imp-wrap">
+        <img class="mech-imp-bg" src="media/Verlauf%20Impressum.png" alt="">
+      </div>
       <div class="mech-imp-text">
         <p>© 2026 Infinitas</p>
         <p>Spielkonzept, Gestaltung und Spielsystem: Holzleitner Moritz</p>
@@ -283,6 +280,7 @@ function openMechanik(startIdx){
       </div>
     </div>
   </div>`;
+  _scrollPos=window.scrollY;
   document.getElementById('cvContent').innerHTML=html;
   document.getElementById('chapterView').classList.add('open','mech-open');
   document.getElementById('main').style.display='none';
@@ -303,17 +301,9 @@ function mechSelect(idx){
   if(ey)ey.textContent=s.ey||s.label;
   if(ttl)ttl.textContent=s.ttl||s.label;
   if(lead)lead.textContent=s.lead;
-  // Update gallery active state and scroll
-  const gallery=document.getElementById('mechGallery');
-  if(gallery){
-    const cards=gallery.querySelectorAll('.mech-gal-card');
-    cards.forEach((c,i)=>c.classList.toggle('active',i===idx));
-    const outer=document.getElementById('mechGalleryOuter');
-    if(outer&&cards[idx]){
-      const cardLeft=cards[idx].offsetLeft;
-      outer.scrollTo({left:cardLeft-28,behavior:'smooth'});
-    }
-  }
+  document.querySelectorAll('.mech-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  const btn=document.getElementById('mechNext');
+  if(btn)btn.disabled=idx===sections.length-1;
   const card=document.getElementById('mechCard');
   if(card){card.classList.remove('mech-fade');void card.offsetWidth;card.innerHTML=buildMechCard(s);card.classList.add('mech-fade');}
   const body=document.getElementById('mechBody');
@@ -347,6 +337,7 @@ function openChapter(id,scrollTo){
   </div><div class="cv-body">`;
   ch.sections.forEach((s,i)=>html+=renderSection(s,i));
   html+='</div>';
+  _scrollPos=window.scrollY;
   document.getElementById('cvContent').innerHTML=html;
   document.getElementById('chapterView').classList.add('open');
   document.getElementById('main').style.display='none';
@@ -360,7 +351,7 @@ function closeChapter(){
   document.getElementById('chapterView').classList.remove('open','mech-open');
   document.getElementById('main').style.display='';
   document.body.classList.remove('mech-page');
-  window.scrollTo(0,0);
+  window.scrollTo(0,_scrollPos);
 }
 
 // INTRO
@@ -376,6 +367,7 @@ setTimeout(()=>{
       intro.style.display='none';
       document.getElementById('heroLogo')?.classList.add('show');
       document.getElementById('searchWrap')?.classList.add('show');
+      document.getElementById('quickNav')?.classList.add('show');
       document.getElementById('scrollHint')?.classList.add('show');
     },650);
   },850);

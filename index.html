@@ -30,55 +30,49 @@
 <!-- MAIN -->
 <div id="main">
   <section class="hero">
+    <img class="hero-verlauf" src="media/Verlauf%20Startseite.png" alt="">
     <div class="hero-inner">
-      
-<div id="heroLogo" class="hero-logo-img custom-wordmark" aria-label="Infinitas – Alles halb so wild?!">
+      <div id="heroLogo" class="hero-logo-img custom-wordmark" aria-label="Infinitas – Alles halb so wild?!">
         <div class="wordmark-title">Infinitas</div>
         <div class="wordmark-subtitle">Alles halb so wild?!</div>
       </div>
-
       <div class="search-wrap" id="searchWrap">
-        <input class="search-input" id="searchInput" type="text" placeholder="Was möchtest du wissen …" autocomplete="off">
+        <input class="search-input" id="searchInput" type="text" placeholder="Anleitung durchsuchen …" autocomplete="off">
         <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="17" height="17"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
         <div class="search-results" id="searchResults"></div>
       </div>
+      <div class="quick-nav" id="quickNav">
+        <button class="qn-btn" onclick="openChapter('einführung')">Spiel Einführung</button>
+        <button class="qn-btn" onclick="openChapter('übersicht')">Spiel Übersicht</button>
+        <button class="qn-btn" onclick="openChapter('aufbau')">Spiel Aufbau</button>
+        <button class="qn-btn" onclick="openChapter('mechanik')">Spiel Mechanik</button>
+      </div>
     </div>
     <div class="scroll-hint" id="scrollHint">
-      <div class="scroll-line"></div><span>Mehr</span>
+      <div class="scroll-pill"></div>
+      <span class="scroll-hint-lbl">Scrollen für mehr</span>
     </div>
   </section>
 
   <div class="page">
-    <p class="page-eyebrow">Das Spiel</p>
-    <h2 class="page-titel">Alles halb so <em>wild?!</em></h2>
+    <p class="page-eyebrow">Infinitas</p>
+    <h2 class="page-titel">Alles halb so <em>wild!</em></h2>
     <p class="page-lead">Der Alltag besteht aus kleinen Momenten. Manche laufen einfach nebenbei, andere bringen uns aus dem Gleichgewicht.</p>
-    <p class="page-body">Ein verpasster Bus, ein unerwarteter Anruf, ein leerer Akku — oft sind es genau diese Kleinigkeiten, die unseren Tag bestimmen. Infinitas macht sie sichtbar, überspitzt sie humorvoll und lädt ein, sie gemeinsam mit etwas Abstand zu betrachten.</p>
-    <p class="page-body">Denn nicht alles, was im Alltag passiert, muss ernst genommen werden. Manchmal hilft es, darüber zu lachen oder gemeinsam damit umzugehen.</p>
-    <div class="divider"></div>
-    <div class="stat-row">
-      <div class="stat"><span class="stat-v">2–6</span><span class="stat-l">Spieler</span></div>
-      <div class="stat"><span class="stat-v">30–60'</span><span class="stat-l">Dauer</span></div>
-      <div class="stat"><span class="stat-v">12+</span><span class="stat-l">Jahre</span></div>
-    </div>
-    <div class="divider"></div>
-    <p class="page-lead">Ziel des Spiels ist es, möglichst viele Harmoniepunkte zu sammeln und dabei nicht ins Burnout zu geraten.</p>
-    <p class="page-body">Das Spielfeld ist ein Infinity-Loop mit 60 Feldern. Je nachdem, auf welchem Feld du landest, warten Harmonie- oder Ärgerniskarten, Ritualkarten, Ereignisse oder Bonusmöglichkeiten auf dich.</p>
-    <div class="ch-list">
-      <p class="ch-list-lbl">Anleitung</p>
-      <div class="cli" onclick="openChapter('einführung')"><div class="cli-l"><span class="cli-n">01</span><span class="cli-name">Spiel Einführung</span></div><svg class="cli-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="15" height="15"><path d="M9 18l6-6-6-6"/></svg></div>
-      <div class="cli" onclick="openChapter('übersicht')"><div class="cli-l"><span class="cli-n">02</span><span class="cli-name">Spiel Übersicht</span></div><svg class="cli-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="15" height="15"><path d="M9 18l6-6-6-6"/></svg></div>
-      <div class="cli" onclick="openChapter('aufbau')"><div class="cli-l"><span class="cli-n">03</span><span class="cli-name">Spiel Aufbau</span></div><svg class="cli-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="15" height="15"><path d="M9 18l6-6-6-6"/></svg></div>
-      <div class="cli" onclick="openChapter('mechanik')"><div class="cli-l"><span class="cli-n">04</span><span class="cli-name">Spiel Mechanik</span></div><svg class="cli-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="15" height="15"><path d="M9 18l6-6-6-6"/></svg></div>
-    </div>
+    <p class="page-body">Ein verpasster Bus, ein unerwarteter Anruf oder ein leerer Akku – oft sind es genau diese Kleinigkeiten, die unseren Tag bestimmen. Gleichzeitig gibt es aber auch Momente, die uns gut tun und uns wieder in Balance bringen können.</p>
+    <p class="page-body">Das Spiel greift genau diese Ereignisse auf. Es macht sie sichtbar, überspitzt sie und lädt dazu ein, alltägliche Situationen mit etwas Abstand zu betrachten und gemeinsam neu einzuordnen.</p>
+    <p class="page-body">Denn nicht alles, was im Alltag passiert, muss ernst genommen werden. Manchmal hilft es, darüber zu lachen, gemeinsam darüber zu sprechen oder zusammen einen anderen Umgang damit zu finden.</p>
   </div>
 
   <div class="impressum">
-    <p class="imp-lbl">Impressum</p>
-    <div class="imp-block"><p class="imp-title">Hergestellt von</p><p class="imp-text">Holzleitner Moritz<br>Weiding 13, 4845 Rutzenmoos</p></div>
-    <div class="imp-block"><p class="imp-title">Konzeptionelle Begleitung</p><p class="imp-text">Hannah Gissing</p></div>
-    <div class="imp-block"><p class="imp-title">Druck</p><p class="imp-text">Robitschek & Co. Ges.m.b.H<br>Schlossgasse 10–12, 1050 Wien</p></div>
-    <div class="imp-block"><p class="imp-title">3D-Druck</p><p class="imp-text">Felix Holzleitner, Weiding 13, 4845 Rutzenmoos</p></div>
-    <p class="imp-copy">© 2026 Infinitas · Spielkonzept, Gestaltung und Spielsystem: Holzleitner Moritz<br>Alle Rechte vorbehalten. Version 1.0 – INF-01-2026</p>
+    <img class="imp-verlauf" src="media/Verlauf%20Startseite%20Impressum.png" alt="">
+    <div class="imp-inner">
+      <p class="imp-p">© 2026 Infinitas</p>
+      <p class="imp-p">Spielkonzept, Gestaltung und Spielsystem: Holzleitner Moritz</p>
+      <p class="imp-p">Infinitas ist ein fiktives Spielkonzept im Rahmen eines Designprojekts. Die Ereignisse auf den Karten basieren auf einer Umfrage während des Entstehungsprozesses und wurden teilweise überarbeitet oder fiktiv erweitert.<br>Texte mit Unterstützung von ChatGPT überarbeitet.</p>
+      <p class="imp-p">Alle Rechte vorbehalten. Nachdruck, Vervielfältigung oder Veröffentlichung – auch auszugsweise – nur mit schriftlicher Genehmigung.</p>
+      <p class="imp-p">Bitte bewahren Sie diese Informationen zum späteren Nachschlagen auf. Farb- und Inhaltsänderungen vorbehalten.</p>
+      <p class="imp-p">Version 1.0 – INF-01-2026</p>
+    </div>
   </div>
 </div>
 
