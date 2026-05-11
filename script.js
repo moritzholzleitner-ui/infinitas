@@ -367,21 +367,27 @@ function openChapter(id,startIdx){
   _scrollPos=window.scrollY;
   _chId=id;
   _mechIdx=si;
+  // Erst alle DOM-/Color-Änderungen, dann pushState:
+  // So sieht iOS beim pushState-Snapshot bereits den hellen Hintergrund
+  _hideScrollHeader(true);
+  document.body.classList.add('mech-page');
+  document.querySelector('meta[name="theme-color"]').content='#E2EAF6';
+  document.querySelector('meta[name="color-scheme"]').content='light';
+  document.documentElement.classList.add('mech-page-html');
+  const _guard=document.getElementById('mechChromeGuard');
+  _guard.style.background='var(--mech-bg)';
+  _guard.style.display='block';
+  if(window.innerWidth<600){const _tb=document.getElementById('chapterTopBar');if(_tb)_tb.style.display='block';}
   history.pushState({chapter:id},'','#'+id);
   cvContent.innerHTML=html;
   requestAnimationFrame(()=>requestAnimationFrame(()=>cvContent.classList.remove('cv-switching')));
   document.getElementById('chapterView').classList.add('open','mech-open');
   document.getElementById('main').style.display='none';
-  document.body.classList.add('mech-page');
-  document.querySelector('meta[name="theme-color"]').content='#E2EAF6';
-  document.documentElement.classList.add('mech-page-html');
-  document.getElementById('mechChromeGuard').style.display='block';
-  document.getElementById('safeBottomGuard').style.display='block';
   if(_shTitle)_shTitle.textContent=ch.titel+' '+ch.sub;
   _chapterOpen=true;
-  _hideScrollHeader();
   _shLastY=0;
   _cvEl.scrollTop=0;
+  window.scrollTo(0,0);
   let _swipeX=0,_swipeY=0;
   const _view=document.querySelector('.mech-view');
   if(_view){
@@ -403,24 +409,49 @@ let _skipPopstate=false;
 function closeChapter(fromPopstate=false){
   if(!_chapterOpen)return;
   _chapterOpen=false;
-  _hideScrollHeader();
+  _hideScrollHeader(true); // sofort, kein 0.32s-Slide der hellblauen Leiste
   document.querySelector('meta[name="theme-color"]').content='#38396D';
+  document.querySelector('meta[name="color-scheme"]').content='dark';
   document.documentElement.classList.remove('mech-page-html');
-  document.getElementById('mechChromeGuard').style.display='none';
-  document.getElementById('safeBottomGuard').style.display='none';
-  if(!fromPopstate){_skipPopstate=true;history.back();}
-  else{history.replaceState(null,'',location.pathname);}
+  document.body.classList.remove('mech-page');
+  const _g=document.getElementById('mechChromeGuard');
+  const _tb=document.getElementById('chapterTopBar');
+  if(_tb)_tb.style.display='none';
+  if(window.innerWidth<600){_g.style.background='var(--navy-deep)';}
+  else{_g.style.display='none';}
+  // rAF: Browser soll erst den dunklen State compositen, bevor history.back() den Snapshot nimmt
+  if(!fromPopstate){
+    requestAnimationFrame(()=>{_skipPopstate=true;history.back();});
+  }else{history.replaceState(null,'',location.pathname);}
   const cv=document.getElementById('chapterView');
-  cv.style.animation='cvClose 0.3s ease-in forwards';
-  cv.style.pointerEvents='none';
-  setTimeout(()=>{
-    cv.style.animation='';
-    cv.style.pointerEvents='';
+  if(window.innerWidth<600){
+    // Mobile: sofort schließen, damit iOS den dunklen Hintergrund sofort liest
     cv.classList.remove('open','mech-open');
-    document.getElementById('main').style.display='';
-    document.body.classList.remove('mech-page');
-    window.scrollTo(0,_scrollPos);
-  },300);
+    // Frame 1: Kapitel weg, main noch hidden → nur body/guard (dunkel) sichtbar → iOS liest dunkel
+    requestAnimationFrame(()=>{
+      document.getElementById('main').style.display='';
+      document.documentElement.style.scrollBehavior='auto';
+      window.scrollTo(0,_scrollPos);
+      // Frame 2+: Scroll-Event als weiterer Trigger
+      requestAnimationFrame(()=>{
+        window.scrollBy(0,1);
+        requestAnimationFrame(()=>{
+          window.scrollBy(0,-1);
+          requestAnimationFrame(()=>{ document.documentElement.style.scrollBehavior=''; });
+        });
+      });
+    });
+  }else{
+    cv.style.animation='cvClose 0.3s ease-in forwards';
+    cv.style.pointerEvents='none';
+    setTimeout(()=>{
+      cv.style.animation='';
+      cv.style.pointerEvents='';
+      cv.classList.remove('open','mech-open');
+      document.getElementById('main').style.display='';
+      window.scrollTo(0,_scrollPos);
+    },300);
+  }
 }
 window.addEventListener('popstate',()=>{
   if(_skipPopstate){_skipPopstate=false;return;}
@@ -434,10 +465,25 @@ const _cvEl=document.getElementById('chapterView');
 let _shLastY=0;
 let _menuExpandedCh=null,_menuSearchQuery='';
 
-function _hideScrollHeader(){
-  if(_sh){_sh.classList.remove('sh-visible','sh-menu-open');}
-  
+function _hideScrollHeader(instant=false){
+  if(_sh){
+    if(instant){
+      // display:none zerstört den GPU-Compositing-Layer dauerhaft
+      // (keine sofortige Wiederherstellung – wird erst beim nächsten Einblenden restored)
+      _sh.style.display='none';
+      _sh.style.transition='';
+      _sh.style.transform='';
+      _sh.classList.remove('sh-visible','sh-menu-open','sh-no-back');
+    }else{
+      _sh.classList.remove('sh-visible','sh-menu-open','sh-no-back');
+    }
+  }
   _menuSearchQuery='';
+}
+function _showScrollHeader(){
+  if(_sh){
+    _sh.style.display='';
+  }
 }
 
 function _buildChapterNav(){
@@ -494,11 +540,11 @@ function toggleShMenu(){
   if(!open){
     _menuSearchQuery='';
     _menuExpandedCh=null;
-    
-    if(_cvEl.scrollTop<60)_sh.classList.remove('sh-visible');
+    // Auf Startseite oder wenn nicht gescrollt: komplett aus dem Compositing-Tree
+    if(!_chapterOpen||(window.scrollY||_cvEl.scrollTop)<60)_hideScrollHeader(true);
     return;
   }
-  _sh.classList.add('sh-visible');
+  _showScrollHeader();_sh.classList.add('sh-visible');
   if(!_chapterOpen){if(_shTitle)_shTitle.textContent='Spiel Einführung';_sh.classList.add('sh-no-back');}else{_sh.classList.remove('sh-no-back');}
   
   _menuExpandedCh=null;
@@ -510,8 +556,8 @@ function closeShMenu(){
   _sh.classList.remove('sh-menu-open');
   _menuSearchQuery='';
   _menuExpandedCh=null;
-  
-  if(_cvEl.scrollTop<60)_sh.classList.remove('sh-visible');
+
+  if(!_chapterOpen||(window.scrollY||_cvEl.scrollTop)<60)_hideScrollHeader(true);
 }
 
 function handleBackBtn(){
@@ -541,17 +587,18 @@ function shSecSelect(chId,idx){
 }
 function _onChapterScroll(){
   if(!_chapterOpen)return;
-  const y=_cvEl.scrollTop;
+  const y=window.scrollY||_cvEl.scrollTop;
   if(_sh&&_sh.classList.contains('sh-menu-open')&&y>_shLastY){
     _sh.classList.remove('sh-menu-open');
     _menuExpandedCh=null;_menuSearchQuery='';
-    
+
   }
-  if(y>80)_sh&&_sh.classList.add('sh-visible');
-  else if(y<60)_sh&&_sh.classList.remove('sh-visible');
+  if(y>80){if(_sh){_showScrollHeader();_sh.classList.add('sh-visible');}}
+  else if(y<60)_hideScrollHeader(true);
   _shLastY=y;
 }
 _cvEl.addEventListener('scroll',_onChapterScroll,{passive:true});
+window.addEventListener('scroll',_onChapterScroll,{passive:true});
 
 // Close menu when tapping outside the scroll header
 function _isOutsideMenu(t){if(!t.isConnected)return false;return _sh&&!_sh.contains(t)&&!t.closest('#mainBurger,.mech-burger-btn');}
@@ -568,6 +615,13 @@ function _showMainInstant(){
   intro.style.display='none';
   mainEl.classList.add('visible');
   ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
+}
+
+// Auf Mobile: Guard immer sichtbar (dunkelblau) damit iOS 26 Glass-Farbe korrekt liest
+if(window.innerWidth<600){
+  const _mg=document.getElementById('mechChromeGuard');
+  _mg.style.background='var(--navy-deep)';
+  _mg.style.display='block';
 }
 
 // BFCache restore (Safari back-swipe that hits the cache)

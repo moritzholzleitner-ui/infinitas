@@ -217,9 +217,9 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 
 /* === SPIEL MECHANIK – PDF-Design === */
 :root{--mech-bg:#E2EAF6}
-html{background:var(--navy-deep)}
-html.mech-page-html{background:var(--mech-bg)}
-body.mech-page{background:var(--mech-bg)!important}
+html{background:var(--navy-deep);color-scheme:dark}
+html.mech-page-html{background:var(--mech-bg);overflow-y:auto;color-scheme:light}
+body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 #chapterView.mech-open .cv-back{display:none}
 
 .mech-view{background:var(--mech-bg)}
@@ -295,8 +295,9 @@ body.mech-page{background:var(--mech-bg)!important}
 #cvContent.cv-switching{opacity:0}
 
 /* ── SCROLL HEADER ── */
-.cv-scroll-header{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;flex-direction:column;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none;overflow:hidden}
-.cv-scroll-header.sh-visible{transform:translateX(-50%) translateY(0);pointer-events:auto}
+.cv-scroll-header{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.55);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;flex-direction:column;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none;overflow:hidden}
+/* backdrop-filter nur wenn sichtbar – zerstört GPU-Compositing-Layer wenn versteckt */
+.cv-scroll-header.sh-visible{transform:translateX(-50%) translateY(0);pointer-events:auto;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .cv-sh-bar{display:flex;align-items:center;gap:10px;width:100%}
 .cv-scroll-header-btn,.cv-sh-menu-btn{width:32px;height:32px;border-radius:50%;background:none;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;color:var(--navy)}
 .cv-scroll-header-title{font-family:var(--font-oscar);font-weight:500;font-size:13px;color:var(--navy);flex:1;text-align:center}
@@ -468,3 +469,22 @@ body.mech-page{background:var(--mech-bg)!important}
     mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
   }
 }
+
+/* ── MOBILE: Body-scroll so iOS Safari minimises its chrome on sub-pages ── */
+/* On mobile the chapterView leaves position:fixed and becomes a normal block,
+   so the window/body scrolls (same as the home page) and the address bar hides. */
+@media (max-width:599px){
+  #chapterView.open{
+    position:static;
+    height:auto;
+    min-height:100svh;
+    overflow-y:visible;
+    overscroll-behavior:auto;
+    padding-top:0;
+  }
+  /* Compensate safe area in elements that relied on chapterView padding-top */
+  .mech-back-btn  { top:calc(12px + env(safe-area-inset-top)); }
+  .mech-burger-btn{ top:calc(12px + env(safe-area-inset-top)); }
+  .cv-back{ padding-top:calc(13px + env(safe-area-inset-top)); }
+}
+
