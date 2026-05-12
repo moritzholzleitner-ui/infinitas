@@ -53,10 +53,12 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 
 /* ── HERO ── */
 .hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;overflow:hidden}
-.hero-verlauf{width:100%;display:block;flex-shrink:0}
-.hero-logo-area{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:calc(28px + env(safe-area-inset-top)) 32px 0;position:relative;z-index:2}
-.hero-logo-area .hero-logo-img{margin-bottom:-90px;position:relative;z-index:3}
-.hero-controls{width:100%;display:flex;flex-direction:column;align-items:center;padding:12px 32px 110px;position:relative;z-index:2}
+.hero-verlauf{position:absolute;top:-34%;left:50%;transform:translateX(-50%) scale(1.5);transform-origin:center top;width:100%;height:auto;z-index:1;display:block;pointer-events:none}
+.hero-logo-area{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(28px + env(safe-area-inset-top)) 32px 0;position:relative;z-index:3}
+.hero-logo-area .hero-logo-img{margin-bottom:0;position:relative;z-index:3}
+.hero-controls{width:100%;display:flex;flex-direction:column;align-items:center;padding:24px 32px 110px;position:relative;z-index:3}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(to bottom,var(--navy-deep),transparent);z-index:2;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:20%;background:linear-gradient(to bottom,transparent,var(--navy-deep));z-index:2;pointer-events:none}
 .hero-logo-img{width:100%;max-width:300px;margin-bottom:44px;filter:brightness(0) invert(1);opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.1s,transform 0.8s ease 0.1s}
 .hero-logo-img.show{opacity:0.9;transform:translateY(0)}
 .search-wrap{width:100%;max-width:320px;position:relative;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s,border-radius 0.25s ease}
