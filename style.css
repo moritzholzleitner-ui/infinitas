@@ -31,6 +31,9 @@
   --t-body-size:15px;
 }
 html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+#rotateOverlay{display:none;position:fixed;inset:0;z-index:9999;background:var(--navy-deep);flex-direction:column;align-items:center;justify-content:center;gap:20px;color:rgba(255,255,255,0.7)}
+#rotateOverlay p{font-family:var(--font-oscar);font-size:16px;font-weight:400}
+@media (orientation:landscape) and (max-height:600px){#rotateOverlay{display:flex}}
 body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);background:var(--navy-deep);color:rgba(255,255,255,0.88);max-width:430px;margin:0 auto;overflow-x:hidden}
 
 /* ── TYPE ── */
