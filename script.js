@@ -632,6 +632,8 @@ document.addEventListener('click',e=>{if(_sh&&_sh.classList.contains('sh-menu-op
 const intro=document.getElementById('intro');
 const eight=document.getElementById('introEight');
 const mainEl=document.getElementById('main');
+// Force GIF restart on every load (Safari caches last frame)
+if(eight&&eight.tagName==='IMG'){const s=eight.src;eight.src='';eight.src=s+'?t='+Date.now();}
 const _initHash=decodeURIComponent(location.hash.slice(1));
 
 function _showMainInstant(){
@@ -656,14 +658,11 @@ if(_initHash&&chapters[_initHash]){
 }else{
   sessionStorage.setItem('introSeen','1');
   setTimeout(()=>{
-    eight.classList.add('zoom');
+    intro.classList.add('fade-out');
+    mainEl.classList.add('visible');
     setTimeout(()=>{
-      intro.classList.add('fade-out');
-      mainEl.classList.add('visible');
-      setTimeout(()=>{
-        intro.style.display='none';
-        ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
-      },650);
-    },850);
-  },1400);
+      intro.style.display='none';
+      ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
+    },300);
+  },600);
 }
