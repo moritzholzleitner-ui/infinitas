@@ -63,14 +63,14 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .hero-logo-img.show{opacity:0.9;transform:translateY(0)}
 .search-wrap{width:100%;max-width:320px;position:relative;background:none;border:none;border-radius:0;overflow:visible;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s}
 .search-wrap.show{opacity:1;transform:translateY(0)}
-.search-input-row{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px}
-.search-wrap.has-results .search-input-row{border-radius:22px 22px 0 0;border-bottom-color:transparent;background:rgba(30,40,80,0.82);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4)}
+.search-input-row{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:16px 0 16px 16px}
+.search-wrap.has-results .search-input-row{border-radius:16px 0 0 0;border-bottom-color:transparent;background:rgba(30,40,80,0.82);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4)}
 .search-input-row{position:relative}
 .search-wrap.has-results .search-input-row{border-bottom:1px solid rgba(255,255,255,0.1)}
 .search-input{width:100%;background:transparent;border:none;border-radius:0;padding:10px 46px 10px 20px;font-family:var(--font-oscar);font-size:13px;font-weight:400;color:white;outline:none;-webkit-appearance:none}
 .search-input::placeholder{color:rgba(255,255,255,0.28)}
 .s-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.28);pointer-events:none}
-.search-results{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(30,40,80,0.82);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border:1px solid rgba(255,255,255,0.12);border-top:none;border-radius:0 0 22px 22px;overflow-y:auto;overflow-x:hidden;max-height:35svh;z-index:20;-webkit-overflow-scrolling:touch}
+.search-results{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(30,40,80,0.82);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border:1px solid rgba(255,255,255,0.12);border-top:none;border-radius:0 0 16px 16px;overflow-y:auto;overflow-x:hidden;max-height:35svh;z-index:20;-webkit-overflow-scrolling:touch}
 .search-results.visible{display:block}
 .sri{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;display:flex;flex-direction:column;gap:3px;transition:background 0.12s}
 .sri:last-child{border-bottom:none}
