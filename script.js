@@ -205,7 +205,7 @@ Object.entries(chapters).forEach(([k,ch])=>{
   ch.sections.forEach((s,i)=>{
     const stepsText=(s.steps||[]).map(st=>_strip(st.t||'')).join(' ');
     const bodyText=_txt(s.body);
-    const fullText=[s.label,s.ttl,s.ey,s.lead,bodyText,stepsText,s.warn||'',_strip(s.extra||'')].join(' ');
+    const fullText=[ch.titel,ch.sub,ch.eyebrow||'',s.label,s.ttl,s.ey,s.lead,bodyText,stepsText,s.warn||'',_strip(s.extra||'')].join(' ');
     searchIndex.push({
       chapter:k,
       chLabel:ch.titel+' '+ch.sub,
@@ -233,26 +233,36 @@ const sinput=document.getElementById('searchInput');
 const sresults=document.getElementById('searchResults');
 const squickNav=document.getElementById('quickNav');
 const swrap=document.getElementById('searchWrap');
+const _scrollHintEl=document.getElementById('scrollHint');
 function _clearSearch(){
   sresults.classList.remove('visible');
   swrap&&swrap.classList.remove('has-results');
   squickNav&&squickNav.classList.remove('search-hidden');
+  if(_scrollHintEl)_scrollHintEl.style.opacity='';
 }
 sinput.addEventListener('input',function(){
   const q=this.value.trim().toLowerCase();
   sresults.innerHTML='';
   if(q.length<2){_clearSearch();return;}
   const hits=searchIndex.filter(x=>x.full.includes(q)).slice(0,6);
-  if(!hits.length){_clearSearch();return;}
+  if(!hits.length){
+    sresults.innerHTML='<div class="sri sri-empty">Keine Ergebnisse gefunden</div>';
+    sresults.classList.add('visible');
+    swrap&&swrap.classList.add('has-results');
+    squickNav&&squickNav.classList.add('search-hidden');
+    return;
+  }
   hits.forEach(h=>{
     const d=document.createElement('div');d.className='sri';
-    d.innerHTML=`<span class="sri-ch">${h.chLabel}</span><span class="sri-t">${h.sectionTitle}</span>`;
-    d.onclick=()=>{sinput.value='';_clearSearch();openChapter(h.chapter,h.idx);};
+    const snip=_snippet(h.full,q);
+    d.innerHTML=`<span class="sri-ch">${h.chLabel}</span><span class="sri-t">${h.sectionTitle}</span>${snip?`<span class="sri-snip">${snip}</span>`:''}`;
+    d.onclick=()=>{_pendingHighlight=q;sinput.value='';_clearSearch();openChapter(h.chapter,h.idx);};
     sresults.appendChild(d);
   });
   sresults.classList.add('visible');
   swrap&&swrap.classList.add('has-results');
   squickNav&&squickNav.classList.add('search-hidden');
+  if(_scrollHintEl)_scrollHintEl.style.opacity='0';
 });
 document.addEventListener('click',e=>{
   if(!e.target.closest('.search-wrap')){_clearSearch();}
@@ -262,6 +272,7 @@ let _chId='';
 let _mechIdx=0;
 let _scrollPos=0;
 let _chapterOpen=false;
+let _pendingHighlight='';
 
 function buildChapterCard(s){
   let html='';
@@ -388,6 +399,20 @@ function openChapter(id,startIdx){
   _shLastY=0;
   _cvEl.scrollTop=0;
   window.scrollTo(0,0);
+  if(_pendingHighlight){
+    const _hl=_pendingHighlight;_pendingHighlight='';
+    requestAnimationFrame(()=>{
+      const walker=document.createTreeWalker(cvContent,NodeFilter.SHOW_TEXT);
+      let node;
+      while((node=walker.nextNode())){
+        if(node.textContent.toLowerCase().includes(_hl.toLowerCase())){
+          const el=node.parentElement;
+          setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center'}),120);
+          break;
+        }
+      }
+    });
+  }
   let _swipeX=0,_swipeY=0;
   const _view=document.querySelector('.mech-view');
   if(_view){
@@ -410,15 +435,14 @@ function closeChapter(fromPopstate=false){
   if(!_chapterOpen)return;
   _chapterOpen=false;
   _hideScrollHeader(true); // sofort, kein 0.32s-Slide der hellblauen Leiste
-  document.querySelector('meta[name="theme-color"]').content='#38396D';
-  document.querySelector('meta[name="color-scheme"]').content='dark';
+  document.querySelector('meta[name="theme-color"]').content='#4a8abf';
+  document.querySelector('meta[name="color-scheme"]').content='light';
   document.documentElement.classList.remove('mech-page-html');
   document.body.classList.remove('mech-page');
   const _g=document.getElementById('mechChromeGuard');
   const _tb=document.getElementById('chapterTopBar');
   if(_tb)_tb.style.display='none';
-  if(window.innerWidth<600){_g.style.background='var(--navy-deep)';}
-  else{_g.style.display='none';}
+  _g.style.display='none';
   // rAF: Browser soll erst den dunklen State compositen, bevor history.back() den Snapshot nimmt
   if(!fromPopstate){
     requestAnimationFrame(()=>{_skipPopstate=true;history.back();});
@@ -513,9 +537,12 @@ function _buildSearchResults(q){
   ['übersicht','aufbau','ablauf','mechanik'].forEach(key=>{
     const ch=chapters[key];
     ch.sections.forEach((s,i)=>{
-      if([(s.label||''),(s.ttl||''),(s.lead||'')].some(t=>t.toLowerCase().includes(ql))){
+      const stepsText=(s.steps||[]).map(st=>_strip(st.t||'')).join(' ');
+      const full=[ch.titel,ch.sub,s.label,s.ttl,s.ey,s.lead,_txt(s.body),stepsText,s.warn||'',_strip(s.extra||'')].join(' ').toLowerCase();
+      if(full.includes(ql)){
         const cur=key===_chId&&i===_mechIdx;
-        html+=`<button class="cv-sh-sec-item${cur?' sh-item-active':''}" onclick="shSecSelect('${key}',${i})"><span class="cv-sh-sec-dot"></span><div><span class="cv-sh-sec-lbl">${s.label||s.ttl}</span><span class="cv-sh-sec-ch">Spiel ${ch.sub}</span></div></button>`;
+        const snip=_snippet(full,ql);
+        html+=`<button class="cv-sh-sri${cur?' sh-item-active':''}" onclick="shSecSelect('${key}',${i})"><span class="cv-sh-sri-ch">Spiel ${ch.sub}</span><span class="cv-sh-sri-lbl">${s.label||s.ttl}</span>${snip?`<span class="cv-sh-sri-snip">${snip}</span>`:''}</button>`;
       }
     });
   });
@@ -582,19 +609,15 @@ function shGoHome(){
 }
 
 function shSecSelect(chId,idx){
+  if(_menuSearchQuery)_pendingHighlight=_menuSearchQuery;
   closeShMenu();
   if(chId===_chId){chSelect(chId,idx);}else{openChapter(chId,idx);}
 }
 function _onChapterScroll(){
   if(!_chapterOpen)return;
   const y=window.scrollY||_cvEl.scrollTop;
-  if(_sh&&_sh.classList.contains('sh-menu-open')&&y>_shLastY){
-    _sh.classList.remove('sh-menu-open');
-    _menuExpandedCh=null;_menuSearchQuery='';
-
-  }
   if(y>80){if(_sh){_showScrollHeader();_sh.classList.add('sh-visible');}}
-  else if(y<60)_hideScrollHeader(true);
+  else if(y<60&&!(_sh&&_sh.classList.contains('sh-menu-open')))_hideScrollHeader(true);
   _shLastY=y;
 }
 _cvEl.addEventListener('scroll',_onChapterScroll,{passive:true});
@@ -617,12 +640,7 @@ function _showMainInstant(){
   ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
 }
 
-// Auf Mobile: Guard immer sichtbar (dunkelblau) damit iOS 26 Glass-Farbe korrekt liest
-if(window.innerWidth<600){
-  const _mg=document.getElementById('mechChromeGuard');
-  _mg.style.background='var(--navy-deep)';
-  _mg.style.display='block';
-}
+// Auf Mobile: Guard auf Startseite ausblenden – Verlauf-Bild läuft bis ganz oben durch
 
 // BFCache restore (Safari back-swipe that hits the cache)
 window.addEventListener('pageshow',e=>{if(e.persisted)_showMainInstant();});

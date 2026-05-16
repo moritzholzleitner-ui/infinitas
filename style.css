@@ -52,34 +52,38 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 #main.visible{opacity:1}
 
 /* ── HERO ── */
-.hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;overflow:hidden}
-.hero-verlauf{position:absolute;top:-34%;left:50%;transform:translateX(-50%) scale(1.5);transform-origin:center top;width:100%;height:auto;z-index:1;display:block;pointer-events:none}
+.hero{min-height:100svh;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;overflow:visible}
+.hero-verlauf-wrap{position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;overflow:hidden;pointer-events:none}
+.hero-verlauf{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:20%;background:linear-gradient(to bottom,transparent,var(--navy-deep));z-index:2;pointer-events:none}
 .hero-logo-area{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(28px + env(safe-area-inset-top)) 32px 0;position:relative;z-index:3}
 .hero-logo-area .hero-logo-img{margin-bottom:0;position:relative;z-index:3}
 .hero-controls{width:100%;display:flex;flex-direction:column;align-items:center;padding:24px 32px 110px;position:relative;z-index:3}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(to bottom,var(--navy-deep),transparent);z-index:2;pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:20%;background:linear-gradient(to bottom,transparent,var(--navy-deep));z-index:2;pointer-events:none}
 .hero-logo-img{width:100%;max-width:300px;margin-bottom:44px;filter:brightness(0) invert(1);opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.1s,transform 0.8s ease 0.1s}
 .hero-logo-img.show{opacity:0.9;transform:translateY(0)}
-.search-wrap{width:100%;max-width:320px;position:relative;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s,border-radius 0.25s ease}
+.search-wrap{width:100%;max-width:320px;position:relative;background:none;border:none;border-radius:0;overflow:visible;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s}
 .search-wrap.show{opacity:1;transform:translateY(0)}
-.search-wrap.has-results{border-radius:16px}
+.search-input-row{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px}
+.search-wrap.has-results .search-input-row{border-radius:22px 22px 0 0;border-bottom-color:transparent;background:rgba(30,40,80,0.82);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4)}
 .search-input-row{position:relative}
 .search-wrap.has-results .search-input-row{border-bottom:1px solid rgba(255,255,255,0.1)}
 .search-input{width:100%;background:transparent;border:none;border-radius:0;padding:10px 46px 10px 20px;font-family:var(--font-oscar);font-size:13px;font-weight:400;color:white;outline:none;-webkit-appearance:none}
 .search-input::placeholder{color:rgba(255,255,255,0.28)}
 .s-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.28);pointer-events:none}
-.search-results{display:none}
+.search-results{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(30,40,80,0.82);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border:1px solid rgba(255,255,255,0.12);border-top:none;border-radius:0 0 22px 22px;overflow-y:auto;overflow-x:hidden;max-height:35svh;z-index:20;-webkit-overflow-scrolling:touch}
 .search-results.visible{display:block}
 .sri{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;display:flex;flex-direction:column;gap:3px;transition:background 0.12s}
 .sri:last-child{border-bottom:none}
 .sri:active{background:rgba(255,255,255,0.05)}
 .sri-ch{font-family:var(--font-oracle);font-weight:400;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
 .sri-t{font-family:var(--font-oscar);font-weight:400;font-size:15px;color:rgba(255,255,255,0.85)}
+.sri-snip{font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(255,255,255,0.35);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sri-snip mark{background:none;color:rgba(255,255,255,0.65);font-weight:500}
+.sri-empty{color:rgba(255,255,255,0.35);font-family:var(--font-oscar);font-size:13px;text-align:center;padding:14px 18px;cursor:default}
 /* Kategorie-Buttons im Hero */
 .quick-nav{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:28px 0 0;max-width:270px;width:100%;opacity:0;transform:translateY(10px);transition:opacity 0.8s ease 0.4s,transform 0.8s ease 0.4s}
 .quick-nav.show{opacity:1;transform:translateY(0)}
-.quick-nav.search-hidden{opacity:0;pointer-events:none}
+.quick-nav.search-hidden{opacity:0;pointer-events:none;transition:opacity 0.1s ease}
 .qn-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:7px 10px;font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(255,255,255,0.75);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background 0.2s,border-color 0.2s;white-space:nowrap;text-align:center}
 .qn-btn:active{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.28)}
 .qn-btn-wide{grid-column:1/-1}
@@ -206,6 +210,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
   font-variant-ligatures:common-ligatures discretionary-ligatures;
   font-feature-settings:"liga" 1,"clig" 1,"dlig" 1,"ss02" 1;
 }
+.wordmark-title .alt-t{font-feature-settings:"liga" 1,"clig" 1,"dlig" 1,"ss02" 1,"aalt" 1;}
 .custom-wordmark .wordmark-subtitle{
   font-family:var(--font-oracle);
   font-size:15px;
@@ -219,7 +224,7 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 
 /* === SPIEL MECHANIK – PDF-Design === */
 :root{--mech-bg:#E2EAF6}
-html{background:var(--navy-deep);color-scheme:dark}
+html{background:var(--navy-deep);color-scheme:light}
 html.mech-page-html{background:var(--mech-bg);overflow-y:auto;color-scheme:light}
 body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 #chapterView.mech-open .cv-back{display:none}
@@ -309,7 +314,8 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 .cv-scroll-header.sh-menu-open .sh-icon-close{display:block}
 /* Expandable chapter menu */
 .cv-sh-menu{max-height:0;overflow:hidden;transition:max-height 0.44s cubic-bezier(0.16,1,0.3,1)}
-.cv-scroll-header.sh-menu-open .cv-sh-menu{max-height:62svh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.cv-scroll-header.sh-menu-open .cv-sh-menu{max-height:62svh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y}
+.cv-scroll-header.sh-menu-open{overflow:visible}
 /* Chapter-level items */
 .cv-sh-item{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px 4px;border:none;border-top:1px solid rgba(30,44,110,0.07);background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:center;position:relative}
 .cv-sh-item:first-child{margin-top:8px;border-top:1px solid rgba(30,44,110,0.12)}
@@ -329,6 +335,15 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 .cv-sh-search-input{flex:1;background:none;border:none;outline:none;font-family:var(--font-oscar);font-size:13px;color:var(--navy);padding:0}
 .cv-sh-search-input::placeholder{color:rgba(30,44,110,0.3)}
 .cv-sh-sec-ch{display:block;font-family:var(--font-oscar);font-size:10px;color:rgba(30,44,110,0.4);margin-top:2px}
+.cv-sh-sec-snip{display:block;font-family:var(--font-oscar);font-size:10px;color:rgba(30,44,110,0.35);margin-top:3px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.cv-sh-sec-snip mark{background:none;color:rgba(30,44,110,0.65);font-weight:500}
+.cv-sh-sri{display:flex;flex-direction:column;align-items:flex-start;width:100%;padding:12px 14px;border:none;border-top:1px solid rgba(30,44,110,0.07);background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left;gap:3px}
+.cv-sh-sri:first-child{border-top:none}
+.cv-sh-sri:active{background:rgba(30,44,110,0.04)}
+.cv-sh-sri-ch{font-family:var(--font-oracle);font-size:10px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:rgba(30,44,110,0.4)}
+.cv-sh-sri-lbl{font-family:var(--font-oscar);font-size:15px;font-weight:400;color:var(--navy);line-height:1.2}
+.cv-sh-sri-snip{font-family:var(--font-oscar);font-size:11px;color:rgba(30,44,110,0.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.cv-sh-sri-snip mark{background:none;color:rgba(30,44,110,0.6);font-weight:500}
 .cv-sh-no-results{font-family:var(--font-oscar);font-size:12px;color:rgba(30,44,110,0.4);padding:14px 4px;text-align:center}
 
 /* ── TABLET (iPad) ── */
@@ -362,6 +377,15 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
   .custom-wordmark .wordmark-subtitle { font-size: 21px; }
   .search-wrap { max-width: 420px; }
   .search-input { font-size: 15px; padding: 13px 52px 13px 22px; }
+  .cv-sh-sri { padding: 14px 10px; gap: 3px; }
+  .cv-sh-sri-ch { font-size: 13px; }
+  .cv-sh-sri-lbl { font-size: 19px; }
+  .cv-sh-sri-snip { font-size: 14px; }
+  .sri { padding: 14px 22px; gap: 4px; }
+  .sri-ch { font-size: 13px; }
+  .sri-t { font-size: 19px; }
+  .sri-snip { font-size: 14px; }
+  .sri-empty { font-size: 16px; }
   .scroll-hint { bottom: 48px; }
   .scroll-hint-lbl { font-size: 12px; }
   .scroll-pill { width: 12px; height: 12px; }
@@ -372,8 +396,8 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
   .qn-btn { font-size: 13px; padding: 9px 14px; }
 
   /* Hero: push content up on desktop (flex:1 on logo-area causes bottom-heavy layout) */
-  .hero-logo-area { flex: 0.3; padding-top: max(40px, 6vh); justify-content: flex-end; }
-  .hero-controls { padding-top: 16px; padding-bottom: 80px; }
+  .hero-logo-area { flex: 0.3; padding-top: max(40px, 6vh); justify-content: center; }
+  .hero-controls { position: absolute; bottom: 300px; left: 0; right: 0; padding: 0 32px; }
 
   /* Main burger: more contrast on dark hero background */
   .main-burger-btn { color: rgba(255,255,255,0.88); }
@@ -423,13 +447,14 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
   /* Rotated category label on chapter header */
   .mech-cat-vert { font-size: 15px; top: 40%; }
 
-  /* Scroll header buttons + title */
-  .cv-scroll-header-btn, .cv-sh-menu-btn { width: 44px; height: 44px; }
-  .cv-scroll-header-btn svg, .cv-sh-menu-btn svg { width: 21px; height: 21px; }
-  .cv-scroll-header-title { font-size: 18px; }
-  .cv-back-lbl { font-size: 16px; }
+  /* Scroll header: compact height on desktop */
+  .cv-scroll-header { padding: 6px 10px; }
+  .cv-scroll-header-btn, .cv-sh-menu-btn { width: 32px; height: 32px; }
+  .cv-scroll-header-btn svg, .cv-sh-menu-btn svg { width: 16px; height: 16px; }
+  .cv-scroll-header-title { font-size: 14px; }
+  .cv-back-lbl { font-size: 14px; }
   /* Center title when back button is hidden (no matching left spacer) */
-  .cv-scroll-header.sh-no-back .cv-scroll-header-title { padding-left: 44px; }
+  .cv-scroll-header.sh-no-back .cv-scroll-header-title { padding-left: 32px; }
 
   /* Burger menu font sizes scaled for desktop */
   .cv-sh-home-lbl { font-size: 20px; }
@@ -442,10 +467,16 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
   /* Hero: all 4 quick-nav buttons in one row */
   .quick-nav { max-width: 430px; grid-template-columns: repeat(4, 1fr); }
 
-  /* Allow hero image to bleed wider */
+  /* Hero: match impressum image width */
   .hero { overflow: visible; }
-  .hero-verlauf {
+  .hero-verlauf-wrap {
     width: 120%;
+    left: -10%;
+    right: auto;
+  }
+  .hero-verlauf {
+    height: auto;
+    object-fit: initial;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
   }
@@ -469,6 +500,15 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
     width: 120%; margin-left: -10%;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 17%, black 83%, transparent 100%);
+  }
+}
+
+/* Desktop landscape: image fills full hero height so red area stays visible */
+@media (min-width: 600px) and (orientation: landscape) {
+  .hero-verlauf {
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
   }
 }
 
