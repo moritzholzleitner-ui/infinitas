@@ -377,6 +377,31 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 
 /* ── TABLET (iPad) ── */
 @media (min-width: 600px) {
+  /* Hero orbs: kleinere Größe auf Desktop damit sie sich nicht zu stark überlagern */
+  .hdb-orb-blue{
+    background:radial-gradient(ellipse 46vmin 46vmin at 50% 18%,#83bbd3 0%,#189ac6 30%,rgba(24,154,198,0.25) 60%,transparent 75%);
+  }
+  .hdb-orb-red{
+    background:radial-gradient(ellipse 46vmin 46vmin at 50% 88%,#e86542 0%,rgba(232,101,66,0.55) 40%,transparent 72%);
+  }
+  /* Hero auf volle Viewport-Breite: Full-Bleed aus dem 430px Body heraus */
+  body{ overflow-x: visible; }
+  .hero{
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+  }
+  /* Wrap wieder normal absolut — Hero ist jetzt schon 100vw breit */
+  .hero-verlauf-wrap{
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    width: auto; height: auto;
+    clip-path: none;
+    overflow: visible;
+  }
+  /* Stärkerer Fade unten auf Desktop */
+  .hero::after{height:28%;}
+
   /* Sub-pages: break white-zone out to full viewport width */
   .mech-white-zone {
     width: 100vw;
