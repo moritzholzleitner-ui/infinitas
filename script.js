@@ -633,7 +633,7 @@ const intro=document.getElementById('intro');
 const eight=document.getElementById('introEight');
 const mainEl=document.getElementById('main');
 // Force GIF restart on every load (Safari caches last frame)
-if(eight&&eight.tagName==='IMG'){const s=eight.src;eight.src='';eight.src=s+'?t='+Date.now();}
+if(eight&&eight.tagName==='IMG'){const s=eight.src.split('?')[0];eight.src='';eight.src=s+'?t='+Date.now();}
 const _initHash=decodeURIComponent(location.hash.slice(1));
 
 function _showMainInstant(){
@@ -652,11 +652,13 @@ if(_initHash&&chapters[_initHash]){
   _showMainInstant();
   history.replaceState(null,'',location.pathname);
   openChapter(_initHash);
-}else if(_introSeen){
-  // already played once this session — skip straight to main
+}else if(_introSeen&&false){
+  // already played once this session — skip straight to main (disabled during dev)
   _showMainInstant();
 }else{
   sessionStorage.setItem('introSeen','1');
+  // GIF 24 frames × 50ms = 1200ms pro Durchlauf, 2× = 2400ms
+  // Fade bei 2150ms → kurz vor Ende 2. Durchlauf, bevor 3. startet
   setTimeout(()=>{
     intro.classList.add('fade-out');
     mainEl.classList.add('visible');
@@ -664,5 +666,5 @@ if(_initHash&&chapters[_initHash]){
       intro.style.display='none';
       ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
     },300);
-  },600);
+  },2150);
 }
