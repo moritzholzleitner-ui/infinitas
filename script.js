@@ -46,16 +46,11 @@ const chapters = {
   übersicht:{
     eyebrow:'Kapitel 02', titel:'Spiel', sub:'Übersicht',
     sections:[{
-      label:'Übersicht', ey:'Spiel', ttl:'Übersicht',
-      lead:'Infinitas verbindet Alltag, Entscheidungen und kleine Herausforderungen zu einem gemeinsamen Spielerlebnis.',
+      label:'Übersicht', ey:'Spiel', ttl:'Prinzip',
+      lead:'Infinitas verbindet alltägliche Situationen, kleine Ärgernisse und spontane Entscheidungen zu einem gemeinsamen Spielerlebnis.<br><br>Zwischen Glück, Pech und Schadenfreude entstehen laufend neue Wendungen, die den normalen Alltag plötzlich zum Spiel machen.',
       img:'Grafik_Anleitung_inventar.png',
-      extra:`<div class="mini-stats"><div class="ms"><span class="ms-v">2–6</span><span class="ms-l">Spieler</span></div><div class="ms"><span class="ms-v">12+</span><span class="ms-l">Jahre</span></div><div class="ms"><span class="ms-v">30–60'</span><span class="ms-l">Dauer</span></div><div class="ms"><span class="ms-v">v1.0</span><span class="ms-l">Version</span></div></div>`,
-      body:[
-        {head:'Spielinformationen', text:'Das Spiel ist für 2–6 Spieler ausgelegt, empfohlen ab 12 Jahren und dauert etwa 30 bis 60 Minuten pro Runde.'},
-        {head:'Spielziel', text:'Ziel des Spiels ist es, möglichst viele Harmoniepunkte (Harmoniejetons) zu sammeln und dabei nicht ins Burnout zu geraten. Unterschiedliche Karten, Ereignisse und Entscheidungen beeinflussen dabei den Spielverlauf der Spieler.'},
-        {head:'Spielinhalt', text:'Das Spiel enthält verschiedene Kartenarten, Harmoniejetons, Spielfiguren sowie weiteres Spielzubehör wie Würfel und Sanduhr.'},
-        {head:'', text:'Die 52 Harmonie- & Ärgerniskarten sind in positive und negative Ereignisse unterteilt. Positive Karten sind hellblau, negative Karten rot-orange gekennzeichnet. Zusätzlich befinden sich sechs Hardcorekarten mit dunklem Erscheinungsbild im Kartenstapel.'}
-      ]
+      extra:`<img src="media/Grafik_Anleitung_Alter-Spieler.png" alt="Alter &amp; Spieleranzahl" style="width:80%;max-width:280px;height:auto;display:block;margin:0 auto 52px 13%;">`,
+      body:[]
     }]
   },
   aufbau:{
@@ -234,11 +229,19 @@ const sresults=document.getElementById('searchResults');
 const squickNav=document.getElementById('quickNav');
 const swrap=document.getElementById('searchWrap');
 const _scrollHintEl=document.getElementById('scrollHint');
-function _clearSearch(){
+if(_scrollHintEl){
+  _scrollHintEl.style.cursor='pointer';
+  _scrollHintEl.addEventListener('click',()=>{
+    const target=document.querySelector('.page-titel')||document.querySelector('.page');
+    if(target)target.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+}
+function _clearSearch(clearInput=false){
   sresults.classList.remove('visible');
   swrap&&swrap.classList.remove('has-results');
   squickNav&&squickNav.classList.remove('search-hidden');
   if(_scrollHintEl)_scrollHintEl.style.opacity='';
+  if(clearInput)sinput.value='';
 }
 sinput.addEventListener('input',function(){
   const q=this.value.trim().toLowerCase();
@@ -265,7 +268,7 @@ sinput.addEventListener('input',function(){
   if(_scrollHintEl)_scrollHintEl.style.opacity='0';
 });
 document.addEventListener('click',e=>{
-  if(!e.target.closest('.search-wrap')){_clearSearch();}
+  if(!e.target.closest('.search-wrap')){_clearSearch(true);}
 });
 
 let _chId='';
@@ -302,7 +305,7 @@ function chSelect(id,idx){
   const lead=document.getElementById('mechLead');
   if(ey)ey.textContent=s.ey||ch.eyebrow;
   if(ttl)ttl.textContent=s.ttl||s.label;
-  if(lead){lead.textContent=s.lead||'';lead.style.display=s.lead?'':'none';}
+  if(lead){lead.innerHTML=s.lead||'';lead.style.display=s.lead?'':'none';}
   document.querySelectorAll('.mech-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   const extraEl=document.getElementById('mechExtra');
   if(extraEl){
@@ -434,6 +437,7 @@ let _skipPopstate=false;
 function closeChapter(fromPopstate=false){
   if(!_chapterOpen)return;
   _chapterOpen=false;
+  _chId='';
   _hideScrollHeader(true); // sofort, kein 0.32s-Slide der hellblauen Leiste
   document.querySelector('meta[name="theme-color"]').content='#4a8abf';
   document.querySelector('meta[name="color-scheme"]').content='light';
@@ -572,7 +576,7 @@ function toggleShMenu(){
     return;
   }
   _showScrollHeader();_sh.classList.add('sh-visible');
-  if(!_chapterOpen){if(_shTitle)_shTitle.textContent='Spiel Einführung';_sh.classList.add('sh-no-back');}else{_sh.classList.remove('sh-no-back');}
+  if(!_chapterOpen){if(_shTitle)_shTitle.textContent='Startseite';_sh.classList.add('sh-no-back');}else{_sh.classList.remove('sh-no-back');}
   
   _menuExpandedCh=null;
   _menuSearchQuery='';
@@ -611,7 +615,7 @@ function shGoHome(){
 function shSecSelect(chId,idx){
   if(_menuSearchQuery)_pendingHighlight=_menuSearchQuery;
   closeShMenu();
-  if(chId===_chId){chSelect(chId,idx);}else{openChapter(chId,idx);}
+  if(_chapterOpen&&chId===_chId){chSelect(chId,idx);}else{openChapter(chId,idx);}
 }
 function _onChapterScroll(){
   if(!_chapterOpen)return;
@@ -668,3 +672,68 @@ if(_initHash&&chapters[_initHash]){
     },300);
   },2150);
 }
+
+// ── STARTSEITE BILD-SCROLL PILLE ──
+(function(){
+  const scroll=document.getElementById('pageImgScroll');
+  const track=document.getElementById('pageImgTrack');
+  const pill=document.getElementById('pageImgPill');
+  if(!scroll||!track||!pill)return;
+
+  function update(){
+    const max=scroll.scrollWidth-scroll.clientWidth;
+    if(max<=0){pill.style.left='0px';return;}
+    const progress=scroll.scrollLeft/max;
+    const maxLeft=track.offsetWidth-pill.offsetWidth;
+    pill.style.left=(progress*maxLeft)+'px';
+  }
+  scroll.addEventListener('scroll',update,{passive:true});
+
+  // Draggable pill
+  let _dragging=false,_startX=0,_startLeft=0;
+  function onDragStart(e){
+    _dragging=true;
+    _startX=e.touches?e.touches[0].clientX:e.clientX;
+    _startLeft=parseFloat(pill.style.left)||0;
+    pill.style.transition='none';
+    e.preventDefault();
+  }
+  function onDragMove(e){
+    if(!_dragging)return;
+    const x=e.touches?e.touches[0].clientX:e.clientX;
+    const dx=x-_startX;
+    const maxLeft=track.offsetWidth-pill.offsetWidth;
+    const newLeft=Math.max(0,Math.min(maxLeft,_startLeft+dx));
+    pill.style.left=newLeft+'px';
+    const max=scroll.scrollWidth-scroll.clientWidth;
+    scroll.scrollLeft=(newLeft/maxLeft)*max;
+  }
+  function onDragEnd(){
+    _dragging=false;
+    pill.style.transition='';
+  }
+  // Click on track jumps to position
+  track.addEventListener('click',e=>{
+    if(e.target===pill)return;
+    const rect=track.getBoundingClientRect();
+    const x=e.clientX-rect.left-pill.offsetWidth/2;
+    const maxLeft=track.offsetWidth-pill.offsetWidth;
+    const newLeft=Math.max(0,Math.min(maxLeft,x));
+    const max=scroll.scrollWidth-scroll.clientWidth;
+    scroll.scrollLeft=(newLeft/maxLeft)*max;
+  });
+  pill.addEventListener('mousedown',onDragStart);
+  pill.addEventListener('touchstart',onDragStart,{passive:false});
+  document.addEventListener('mousemove',onDragMove);
+  document.addEventListener('touchmove',onDragMove,{passive:false});
+  document.addEventListener('mouseup',onDragEnd);
+  document.addEventListener('touchend',onDragEnd);
+
+  // Scroll-Position zurücksetzen wenn Startseite wieder sichtbar wird
+  window.addEventListener('popstate',()=>{
+    requestAnimationFrame(()=>{
+      scroll.scrollLeft=0;
+      pill.style.left='0px';
+    });
+  });
+})();

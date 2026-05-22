@@ -30,7 +30,7 @@
   --t-lead-size:17px;
   --t-body-size:15px;
 }
-html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
 #rotateOverlay{display:none;position:fixed;inset:0;z-index:9999;background:var(--navy-deep);flex-direction:column;align-items:center;justify-content:center;gap:20px;color:rgba(255,255,255,0.7)}
 #rotateOverlay p{font-family:var(--font-oscar);font-size:16px;font-weight:400}
 @media (orientation:landscape) and (max-height:600px){#rotateOverlay{display:flex}}
@@ -93,13 +93,13 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .search-wrap{width:100%;max-width:320px;position:relative;background:none;border:none;border-radius:0;overflow:visible;opacity:0;transform:translateY(14px);transition:opacity 0.8s ease 0.28s,transform 0.8s ease 0.28s}
 .search-wrap.show{opacity:1;transform:translateY(0)}
 .search-input-row{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:16px 0 16px 16px}
-.search-wrap.has-results .search-input-row{border-radius:16px 0 0 0;border-bottom-color:transparent;background:rgba(30,40,80,0.82);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4)}
+.search-wrap.has-results .search-input-row{border-radius:16px 0 0 0;border-bottom-color:transparent;background:rgba(56,57,109,0.65);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4)}
 .search-input-row{position:relative}
 .search-wrap.has-results .search-input-row{border-bottom:1px solid rgba(255,255,255,0.1)}
 .search-input{width:100%;background:transparent;border:none;border-radius:0;padding:10px 46px 10px 20px;font-family:var(--font-oscar);font-size:13px;font-weight:400;color:white;outline:none;-webkit-appearance:none}
 .search-input::placeholder{color:rgba(255,255,255,0.28)}
 .s-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.28);pointer-events:none}
-.search-results{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(30,40,80,0.82);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border:1px solid rgba(255,255,255,0.12);border-top:none;border-radius:0 0 16px 16px;overflow-y:auto;overflow-x:hidden;max-height:35svh;z-index:20;-webkit-overflow-scrolling:touch}
+.search-results{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(56,57,109,0.65);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border:1px solid rgba(255,255,255,0.12);border-top:none;border-radius:0 0 16px 16px;overflow-y:auto;overflow-x:hidden;max-height:35svh;z-index:20;-webkit-overflow-scrolling:touch}
 .search-results.visible{display:block}
 .sri{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;display:flex;flex-direction:column;gap:3px;transition:background 0.12s}
 .sri:last-child{border-bottom:none}
@@ -131,6 +131,20 @@ body{font-family:var(--font-oscar);font-weight:400;font-size:var(--t-body-size);
 .page-lead{font-family:var(--font-oscar);font-weight:500;font-size:17px;color:white;line-height:1.4;margin-bottom:18px;max-width:320px;margin-left:auto;margin-right:auto}
 .page-body{font-family:var(--font-oscar);font-weight:400;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.5;margin-bottom:12px}
 .page-body strong{font-weight:500;color:white}
+.page--clip{padding-left:0;padding-right:0;padding-top:60px;padding-bottom:32px;overflow:hidden}
+.page-pad{padding:0 28px}
+.page-img-scroll{width:100%;margin:28px 0 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;display:flex;align-items:center}
+.page-img-scroll::-webkit-scrollbar{display:none}
+.page-img{height:440px;width:auto;max-width:none;flex-shrink:0;margin-left:28px}
+.page-img-scroll::after{content:'';min-width:28px;flex-shrink:0}
+.page-img-dots{display:flex;align-items:center;justify-content:center;padding:14px 0 2px}
+.page-img-track{position:relative;width:120px;height:11px;border-radius:50px;background:rgba(255,255,255,0.15);cursor:pointer}
+.page-img-pill{position:absolute;left:0;top:0;height:11px;width:36px;border-radius:50px;background:rgba(255,255,255,0.65);transition:left 0.12s ease;cursor:grab}
+.page-img-pill:active{cursor:grabbing}
+.page-img-legend{margin-top:32px}
+.page-story-img{width:100%;height:auto;display:block;margin:68px 0}
+.page-img-legend p{font-family:var(--font-oscar);font-weight:400;font-size:12px;color:rgba(255,255,255,0.45);line-height:1;letter-spacing:0.01em;display:flex;align-items:center;gap:7px;padding:4px 0}
+.leg-n{font-family:var(--font-oracle);font-weight:400;font-size:12px;color:var(--navy-deep);background:rgba(255,255,255,0.65);width:15px;height:15px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1}
 .divider{width:28px;height:1px;background:rgba(255,255,255,0.1);margin:40px auto}
 .stat-row{display:flex;gap:36px;margin:36px 0;justify-content:center}
 .stat{display:flex;flex-direction:column;gap:3px}
@@ -292,7 +306,7 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 .mech-nav-hint{font-family:var(--font-oscar);font-size:10px;font-weight:400;color:rgba(30,44,110,0.28);letter-spacing:0.04em;text-align:center}
 
 /* Bild-Container: hellblauer Rahmen, oben-rechts eckig */
-.mech-img-wrap{margin:0 20px;border:1px solid rgba(100,130,200,0.32);border-radius:14px 0 14px 14px;overflow:hidden;background:white}
+.mech-img-wrap{margin:0 20px 28px;border:1px solid rgba(100,130,200,0.32);border-radius:14px 0 14px 14px;overflow:hidden;background:white}
 .mech-img-wrap img{width:100%;display:block}
 .mech-img-caption{padding:10px 16px 14px;text-align:center;font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(30,44,110,0.38);line-height:1.6;letter-spacing:0.02em}
 .mech-img-wrap .step-row{padding:11px 16px;border-bottom:1px solid rgba(30,44,110,0.06);display:flex;gap:14px}
@@ -307,7 +321,7 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 /* Kein Karten-Bild: kurzer Übergang und kein Padding oben */
 .mech-white-zone.no-card{background:var(--mech-bg);padding-top:0}
 /* Extra-Inhalte: transparent damit Gradient sichtbar bleibt */
-.ch-extra{background:transparent;padding:20px 20px 8px}
+.ch-extra{background:transparent;padding:8px 20px 8px}
 /* Ohne Karten-Bild: Extra braucht weißen Hintergrund */
 .mech-white-zone.no-card .ch-extra{background:white}
 
@@ -331,7 +345,7 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 #cvContent.cv-switching{opacity:0}
 
 /* ── SCROLL HEADER ── */
-.cv-scroll-header{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.55);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;flex-direction:column;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none;overflow:hidden}
+.cv-scroll-header{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(calc(-100% - 20px));width:calc(100% - 24px);max-width:406px;z-index:80;background:rgba(226,234,246,0.42);border:1px solid rgba(30,44,110,0.1);border-radius:14px 0 14px 14px;box-shadow:0 4px 20px rgba(30,44,110,0.1);display:flex;flex-direction:column;padding:10px 14px;transition:transform 0.32s cubic-bezier(0.16,1,0.3,1);pointer-events:none;overflow:hidden}
 /* backdrop-filter nur wenn sichtbar – zerstört GPU-Compositing-Layer wenn versteckt */
 .cv-scroll-header.sh-visible{transform:translateX(-50%) translateY(0);pointer-events:auto;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .cv-sh-bar{display:flex;align-items:center;gap:10px;width:100%}
@@ -339,6 +353,7 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 .cv-scroll-header-title{font-family:var(--font-oscar);font-weight:500;font-size:13px;color:var(--navy);flex:1;text-align:center}
 .sh-icon-close{display:none}
 .cv-scroll-header.sh-no-back .cv-scroll-header-btn{display:none}
+.cv-scroll-header.sh-no-back .cv-scroll-header-title{padding-left:32px}
 .cv-scroll-header.sh-menu-open .sh-icon-burger{display:none}
 .cv-scroll-header.sh-menu-open .sh-icon-close{display:block}
 /* Expandable chapter menu */
@@ -375,6 +390,38 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 .cv-sh-sri-snip mark{background:none;color:rgba(30,44,110,0.6);font-weight:500}
 .cv-sh-no-results{font-family:var(--font-oscar);font-size:12px;color:rgba(30,44,110,0.4);padding:14px 4px;text-align:center}
 
+/* ── STARTSEITEN-BURGER: dunkles Theme passend zum navy Hintergrund ── */
+.cv-scroll-header.sh-no-back{
+  background:rgba(56,57,109,0.65);
+  border-color:rgba(255,255,255,0.1);
+  box-shadow:0 4px 24px rgba(0,0,0,0.25);
+}
+.cv-scroll-header.sh-no-back .cv-scroll-header-btn,
+.cv-scroll-header.sh-no-back .cv-sh-menu-btn{color:rgba(255,255,255,0.85)}
+.cv-scroll-header.sh-no-back .cv-scroll-header-title{color:rgba(255,255,255,0.85)}
+.cv-scroll-header.sh-no-back .cv-sh-item{border-top-color:rgba(255,255,255,0.07)}
+.cv-scroll-header.sh-no-back .cv-sh-item:first-child{border-top-color:rgba(255,255,255,0.12)}
+.cv-scroll-header.sh-no-back .cv-sh-item-cap{color:rgba(255,255,255,0.35)}
+.cv-scroll-header.sh-no-back .cv-sh-item-lbl{color:rgba(255,255,255,0.88)}
+.cv-scroll-header.sh-no-back .cv-sh-ch-arr{color:rgba(255,255,255,0.35)}
+.cv-scroll-header.sh-no-back .cv-sh-sec-item{border-top-color:rgba(255,255,255,0.05)}
+.cv-scroll-header.sh-no-back .cv-sh-sec-dot{background:rgba(255,255,255,0.25)}
+.cv-scroll-header.sh-no-back .cv-sh-sec-lbl{color:rgba(255,255,255,0.75)}
+.cv-scroll-header.sh-no-back .cv-sh-home-lbl{color:rgba(255,255,255,0.88)}
+.cv-scroll-header.sh-no-back .cv-sh-search-wrap{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.35)}
+.cv-scroll-header.sh-no-back .cv-sh-search-input{color:rgba(255,255,255,0.88)}
+.cv-scroll-header.sh-no-back .cv-sh-search-input::placeholder{color:rgba(255,255,255,0.3)}
+.cv-scroll-header.sh-no-back .cv-sh-sec-ch{color:rgba(255,255,255,0.3)}
+.cv-scroll-header.sh-no-back .cv-sh-sec-snip{color:rgba(255,255,255,0.3)}
+.cv-scroll-header.sh-no-back .cv-sh-sec-snip mark{color:rgba(255,255,255,0.65)}
+.cv-scroll-header.sh-no-back .cv-sh-sri{border-top-color:rgba(255,255,255,0.07)}
+.cv-scroll-header.sh-no-back .cv-sh-sri:active{background:rgba(255,255,255,0.05)}
+.cv-scroll-header.sh-no-back .cv-sh-sri-ch{color:rgba(255,255,255,0.35)}
+.cv-scroll-header.sh-no-back .cv-sh-sri-lbl{color:rgba(255,255,255,0.88)}
+.cv-scroll-header.sh-no-back .cv-sh-sri-snip{color:rgba(255,255,255,0.3)}
+.cv-scroll-header.sh-no-back .cv-sh-sri-snip mark{color:rgba(255,255,255,0.65)}
+.cv-scroll-header.sh-no-back .cv-sh-no-results{color:rgba(255,255,255,0.3)}
+
 /* ── TABLET (iPad) ── */
 @media (min-width: 600px) {
   /* Hero orbs: kleinere Größe auf Desktop damit sie sich nicht zu stark überlagern */
@@ -389,15 +436,15 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
   .hero{
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    overflow: hidden;
+    overflow: visible;
   }
-  /* Wrap wieder normal absolut — Hero ist jetzt schon 100vw breit */
+  /* Wrap clippt den Orb-Blur — Hero bleibt overflow:visible damit Suchdropdown nicht geclipt wird */
   .hero-verlauf-wrap{
     position: absolute;
     left: 0; right: 0; top: 0; bottom: 0;
     width: auto; height: auto;
+    overflow: hidden;
     clip-path: none;
-    overflow: visible;
   }
   /* Stärkerer Fade unten auf Desktop */
   .hero::after{height:28%;}
@@ -415,6 +462,18 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
     max-width: 680px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  /* Info-Bilder auf Unterseiten kleiner darstellen */
+  .mech-white-zone .mech-img-wrap {
+    max-width: 400px;
+  }
+
+  /* Alter-Spieler Bild auf Desktop zentrieren */
+  .mech-white-zone .ch-extra img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    transform: translateX(8px);
   }
 
   /* Scale up type */
@@ -487,8 +546,31 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
   .cv-back { max-width: 680px; margin: 0 auto; }
   #safeBottomGuard { max-width: 680px !important; }
 
-  /* Scroll header */
-  .cv-scroll-header { max-width: calc(100vw - 48px); }
+  /* Startseite (sh-no-back): rechts angedockt, mobile-Breite */
+  .cv-scroll-header.sh-no-back {
+    left: auto;
+    right: 24px;
+    max-width: 406px;
+    transform: translateY(calc(-100% - 20px));
+  }
+  .cv-scroll-header.sh-no-back.sh-visible {
+    transform: translateY(0);
+  }
+  /* Kapitel (kein sh-no-back): volle Breite, rechts verankert */
+  .cv-scroll-header:not(.sh-no-back) {
+    left: auto;
+    right: 24px;
+    max-width: calc(100vw - 48px);
+    transform: translateY(calc(-100% - 20px));
+    transition: transform 0.32s cubic-bezier(0.16,1,0.3,1), max-width 0.32s cubic-bezier(0.16,1,0.3,1);
+  }
+  .cv-scroll-header:not(.sh-no-back).sh-visible {
+    transform: translateY(0);
+  }
+  /* Burger-Menü offen auf Kapitelseite → auf mobile Breite schrumpfen */
+  .cv-scroll-header:not(.sh-no-back).sh-menu-open {
+    max-width: 406px;
+  }
 
   /* Burger buttons repositioned + scaled for wider container */
   .main-burger-btn { right: 24px; width: 44px; height: 44px; }
