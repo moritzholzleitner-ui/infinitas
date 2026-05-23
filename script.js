@@ -348,7 +348,7 @@ function openChapter(id,startIdx){
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
       <button class="mech-burger-btn" onclick="toggleShMenu()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="19" x2="21" y2="19"/></svg>
+        <img class="burger-wave-icon" src="media/Grafik_Burger%20Icon.svg" alt="" width="22" height="17">
       </button>
       <span class="mech-cat-vert"><span class="cat-regular">${ch.titel} </span><span class="cat-bold">${ch.sub}</span></span>
     </div>
@@ -507,11 +507,13 @@ function _hideScrollHeader(instant=false){
     }
   }
   _menuSearchQuery='';
+  const _mb=document.querySelector('.mech-burger-btn');
+  if(_mb)_mb.style.opacity='';
 }
 function _showScrollHeader(){
-  if(_sh){
-    _sh.style.display='';
-  }
+  if(_sh){_sh.style.display='';}
+  const _mb=document.querySelector('.mech-burger-btn');
+  if(_mb)_mb.style.opacity='0';
 }
 
 function _buildChapterNav(){
@@ -737,3 +739,51 @@ if(_initHash&&chapters[_initHash]){
     });
   });
 })();
+
+// ── AR / 3D VIEWER ──
+function openArViewer(){
+  const ov=document.getElementById('arOverlay');
+  if(!ov)return;
+  ov.classList.add('ar-open');
+  document.body.style.overflow='hidden';
+  // reset to Objekt tab and init pill
+  requestAnimationFrame(()=>{ arSwitchTab('obj',true); });
+  // Zurück-Switch wenn AR-Session endet
+  const mv=document.getElementById('arModelViewer');
+  if(mv && !mv._arStatusBound){
+    mv._arStatusBound=true;
+    mv.addEventListener('ar-status',(e)=>{
+      if(e.detail.status==='session-ended'||e.detail.status==='failed'){
+        arSwitchTab('obj');
+      }
+    });
+  }
+}
+function closeArViewer(){
+  const ov=document.getElementById('arOverlay');
+  if(!ov)return;
+  ov.classList.remove('ar-open');
+  document.body.style.overflow='';
+}
+function arSwitchTab(tab, instant){
+  const btnObj=document.getElementById('arBtnObj');
+  const btnAr=document.getElementById('arBtnAr');
+  const pill=document.getElementById('arSegPill');
+  const mv=document.getElementById('arModelViewer');
+  if(!btnObj||!btnAr||!pill)return;
+  if(instant)pill.style.transition='none';
+  if(tab==='obj'){
+    btnObj.classList.add('ar-seg-active');
+    btnAr.classList.remove('ar-seg-active');
+    pill.style.width=btnObj.offsetWidth+'px';
+    pill.style.transform='translateX(0)';
+  } else {
+    btnAr.classList.add('ar-seg-active');
+    btnObj.classList.remove('ar-seg-active');
+    pill.style.width=btnAr.offsetWidth+'px';
+    pill.style.transform='translateX('+btnObj.offsetWidth+'px)';
+    // AR starten
+    if(mv && mv.canActivateAR) mv.activateAR();
+  }
+  if(instant) requestAnimationFrame(()=>{ pill.style.transition=''; });
+}

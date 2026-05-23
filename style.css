@@ -278,6 +278,7 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 .mech-back-btn{position:absolute;top:12px;left:16px;transform:none;z-index:20;width:32px;height:32px;border-radius:50%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(30,44,110,0.45);padding:0;-webkit-tap-highlight-color:transparent}
 .mech-burger-btn{position:absolute;top:12px;right:16px;z-index:20;width:32px;height:32px;border-radius:50%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(30,44,110,0.45);padding:0;-webkit-tap-highlight-color:transparent}
 /* Fixed burger on main/hero page — sits below chapterView (z-index:60) so auto-hidden in chapters */
+body.mech-page #mainBurger{display:none}
 .main-burger-btn{position:fixed;top:calc(12px + env(safe-area-inset-top));right:max(16px,calc(50% - 199px));z-index:55;width:32px;height:32px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.55);padding:0;-webkit-tap-highlight-color:transparent}
 
 /* Header: PNG füllt den Bereich, Text liegt darüber */
@@ -398,6 +399,11 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
 }
 .cv-scroll-header.sh-no-back .cv-scroll-header-btn,
 .cv-scroll-header.sh-no-back .cv-sh-menu-btn{color:rgba(255,255,255,0.85)}
+.main-burger-btn .burger-wave-icon,
+.cv-scroll-header.sh-no-back .burger-wave-icon{filter:brightness(0) invert(1)}
+.mech-burger-btn .burger-wave-icon{filter:none;opacity:0.35}
+.cv-scroll-header:not(.sh-no-back) .burger-wave-icon{filter:none;opacity:1}
+.mech-burger-btn{transition:opacity 0.2s ease}
 .cv-scroll-header.sh-no-back .cv-scroll-header-title{color:rgba(255,255,255,0.85)}
 .cv-scroll-header.sh-no-back .cv-sh-item{border-top-color:rgba(255,255,255,0.07)}
 .cv-scroll-header.sh-no-back .cv-sh-item:first-child{border-top-color:rgba(255,255,255,0.12)}
@@ -653,3 +659,22 @@ body.mech-page{background:var(--mech-bg)!important;overflow-y:auto!important}
   .cv-back{ padding-top:calc(13px + env(safe-area-inset-top)); }
 }
 
+
+/* ── AR BUTTON ── */
+.qn-btn-ar{grid-column:1/-1;margin-top:14px;border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.9);font-weight:500;display:flex;align-items:center;justify-content:center;gap:7px}
+.ar-apple-icon{filter:brightness(0) invert(1);opacity:0.9;flex-shrink:0}
+.qn-btn-ar:active{background:rgba(255,255,255,0.2)}
+
+/* ── AR OVERLAY ── */
+#arOverlay{display:none;position:fixed;inset:0;z-index:300;background:var(--navy-deep);flex-direction:column;padding-bottom:env(safe-area-inset-bottom,0px)}
+#arOverlay.ar-open{display:flex}
+.ar-bar{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,16px) + 12px) 16px 12px;flex-shrink:0}
+.ar-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ar-close:active{background:rgba(255,255,255,0.15)}
+.ar-title{font-family:var(--font-oracle);font-weight:400;font-size:16px;color:rgba(255,255,255,0.85);letter-spacing:0.01em}
+/* AR segmented control */
+.ar-seg-wrap{flex-shrink:0;display:flex;justify-content:center;padding:16px 0 calc(16px + env(safe-area-inset-bottom,0px))}
+.ar-seg{position:relative;display:flex;background:rgba(255,255,255,0.1);border-radius:50px;padding:3px;gap:0}
+.ar-seg-pill{position:absolute;top:3px;left:3px;height:calc(100% - 6px);border-radius:50px;background:rgba(255,255,255,0.18);transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),width 0.25s cubic-bezier(0.34,1.56,0.64,1)}
+.ar-seg-btn{position:relative;z-index:1;border:none;background:none;border-radius:50px;padding:8px 22px;font-family:var(--font-oscar);font-weight:400;font-size:13px;color:rgba(255,255,255,0.5);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color 0.2s;white-space:nowrap;display:flex;align-items:center}
+.ar-seg-btn.ar-seg-active{color:rgba(255,255,255,0.95);font-weight:500}

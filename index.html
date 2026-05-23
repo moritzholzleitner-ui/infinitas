@@ -18,6 +18,7 @@
 <meta name="twitter:description" content="Die digitale Spielanleitung für Infinitas.">
 <meta name="twitter:image" content="https://moritzholzleitner-ui.github.io/infinitas/media/Grafik_Anleitung_Titelbild.png">
 <link rel="stylesheet" href="style.css">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
 
@@ -54,6 +55,10 @@
         <button class="qn-btn" onclick="openChapter('aufbau')">Spiel Aufbau</button>
         <button class="qn-btn" onclick="openChapter('ablauf')">Spiel Ablauf</button>
         <button class="qn-btn" onclick="openChapter('mechanik')">Spiel Mechanik</button>
+        <button class="qn-btn qn-btn-ar" onclick="openArViewer()">
+          Spiel in AR ansehen
+          <img class="ar-apple-icon" src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="15" height="15">
+        </button>
       </div>
     </div>
     <div class="scroll-hint" id="scrollHint">
@@ -127,7 +132,7 @@
 
 <!-- Fixed main-page burger (hidden behind chapter view via z-index) -->
 <button id="mainBurger" class="main-burger-btn" onclick="toggleShMenu()">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="19" x2="21" y2="19"/></svg>
+  <img class="burger-wave-icon" src="media/Grafik_Burger%20Icon.svg" alt="" width="22" height="17">
 </button>
 
 <!-- SCROLL HEADER (shown on scroll-down inside chapter) -->
@@ -138,7 +143,7 @@
     </button>
     <span class="cv-scroll-header-title" id="cvScrollTitle"></span>
     <button class="cv-sh-menu-btn" onclick="toggleShMenu()">
-      <svg class="sh-icon-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="19" x2="21" y2="19"/></svg>
+      <img class="sh-icon-burger burger-wave-icon" src="media/Grafik_Burger%20Icon.svg" alt="" width="22" height="17">
       <svg class="sh-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
     </button>
   </div>
@@ -148,7 +153,7 @@
 <!-- CHAPTER VIEW -->
 <div id="chapterView">
   <div class="cv-back" onclick="closeChapter()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="15" height="15" style="color:rgba(30,44,110,0.35)"><path d="M15 18l-6-6 6-6"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="17" height="17" style="color:rgba(30,44,110,0.35)"><path d="M15 18l-6-6 6-6"/></svg>
     <span class="cv-back-lbl" id="cvBackLbl">Zurück</span>
   </div>
   <div id="cvContent"></div>
@@ -158,6 +163,40 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" width="48" height="48"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 21h6"/></svg>
   <p>Bitte drehe dein Gerät</p>
 </div>
+<!-- AR / 3D VIEWER OVERLAY -->
+<div id="arOverlay">
+  <div class="ar-bar">
+    <button class="ar-close" onclick="closeArViewer()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+    <span class="ar-title">Infinitas 3D</span>
+    <div style="width:36px"></div>
+  </div>
+  <model-viewer
+    id="arModelViewer"
+    src="media/Infinitas.glb"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls
+    auto-rotate
+    auto-rotate-delay="500"
+    shadow-intensity="0.8"
+    exposure="1"
+    style="width:100%;flex:1;background:transparent">
+    <button slot="ar-button" style="display:none"></button>
+  </model-viewer>
+  <div class="ar-seg-wrap">
+    <div class="ar-seg" id="arSeg">
+      <div class="ar-seg-pill" id="arSegPill"></div>
+      <button class="ar-seg-btn ar-seg-active" id="arBtnObj" onclick="arSwitchTab('obj')">Objekt</button>
+      <button class="ar-seg-btn" id="arBtnAr" onclick="arSwitchTab('ar')">
+        AR
+        <img src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="13" height="13" style="filter:brightness(0) invert(1);opacity:0.85;vertical-align:-1px;margin-left:4px">
+      </button>
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
