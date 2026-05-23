@@ -753,9 +753,14 @@ function openArViewer(){
   if(mv && !mv._arStatusBound){
     mv._arStatusBound=true;
     mv.addEventListener('ar-status',(e)=>{
-      if(e.detail.status==='session-ended'||e.detail.status==='failed'){
+      const s=e.detail.status;
+      if(s==='session-ended'||s==='failed'||s==='not-presenting'){
         arSwitchTab('obj');
       }
+    });
+    // iOS Quick Look schließt sich ohne ar-status – visibilitychange fängt Rückkehr ab
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible') arSwitchTab('obj');
     });
   }
 }
