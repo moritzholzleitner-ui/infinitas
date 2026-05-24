@@ -184,16 +184,17 @@
     exposure="1"
     style="width:100%;flex:1;background:transparent">
     <button slot="ar-button" style="display:none"></button>
+    <div slot="progress-bar" style="display:none"></div>
   </model-viewer>
+  <div id="arLoadingOverlay">
+    <img id="arSanduhr" src="media/intro_animation.gif" alt="" width="80" height="80">
+  </div>
+  <a id="arQuickLookLink" href="media/Infinitas.usdz" rel="ar" style="display:none"><img src=""></a>
   <div class="ar-seg-wrap">
-    <div class="ar-seg" id="arSeg">
-      <div class="ar-seg-pill" id="arSegPill"></div>
-      <button class="ar-seg-btn ar-seg-active" id="arBtnObj" onclick="arSwitchTab('obj')">Objekt</button>
-      <button class="ar-seg-btn" id="arBtnAr" onclick="arSwitchTab('ar')">
-        AR
-        <img src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="13" height="13" style="filter:brightness(0) invert(1);opacity:0.85;vertical-align:-1px;margin-left:4px">
-      </button>
-    </div>
+    <button class="ar-seg-btn" id="arBtnAr" onclick="activateAR()">
+      In AR öffnen
+      <img src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="13" height="13" style="filter:brightness(0) invert(1);opacity:0.85;vertical-align:-1px;margin-left:4px">
+    </button>
   </div>
 </div>
 

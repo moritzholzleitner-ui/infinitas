@@ -746,22 +746,29 @@ function openArViewer(){
   if(!ov)return;
   ov.classList.add('ar-open');
   document.body.style.overflow='hidden';
-  // reset to Objekt tab and init pill
-  requestAnimationFrame(()=>{ arSwitchTab('obj',true); });
-  // Zurück-Switch wenn AR-Session endet
-  const mv=document.getElementById('arModelViewer');
-  if(mv && !mv._arStatusBound){
-    mv._arStatusBound=true;
-    mv.addEventListener('ar-status',(e)=>{
-      const s=e.detail.status;
-      if(s==='session-ended'||s==='failed'||s==='not-presenting'){
-        arSwitchTab('obj');
+
+  // Reset und zeige Lade-Overlay
+  const loadOv=document.getElementById('arLoadingOverlay');
+  const gif=document.getElementById('arSanduhr');
+  if(loadOv&&gif){
+    loadOv.classList.remove('ar-loading-hidden');
+    // GIF neu starten
+    const s=gif.src; gif.src=''; gif.src=s;
+
+    const GIF_MS=1200; // eine Sanduhr-Loop
+    let gifDone=false, modelDone=false;
+    const tryReveal=()=>{
+      if(gifDone&&modelDone) loadOv.classList.add('ar-loading-hidden');
+    };
+    setTimeout(()=>{ gifDone=true; tryReveal(); }, GIF_MS);
+
+    const mv=document.getElementById('arModelViewer');
+    if(mv){
+      if(mv._mvLoaded){ modelDone=true; }
+      else {
+        mv.addEventListener('load',()=>{ mv._mvLoaded=true; modelDone=true; tryReveal(); },{once:true});
       }
-    });
-    // iOS Quick Look schließt sich ohne ar-status – visibilitychange fängt Rückkehr ab
-    document.addEventListener('visibilitychange',()=>{
-      if(document.visibilityState==='visible') arSwitchTab('obj');
-    });
+    }
   }
 }
 function closeArViewer(){
@@ -770,25 +777,33 @@ function closeArViewer(){
   ov.classList.remove('ar-open');
   document.body.style.overflow='';
 }
-function arSwitchTab(tab, instant){
-  const btnObj=document.getElementById('arBtnObj');
-  const btnAr=document.getElementById('arBtnAr');
-  const pill=document.getElementById('arSegPill');
-  const mv=document.getElementById('arModelViewer');
-  if(!btnObj||!btnAr||!pill)return;
-  if(instant)pill.style.transition='none';
-  if(tab==='obj'){
-    btnObj.classList.add('ar-seg-active');
-    btnAr.classList.remove('ar-seg-active');
-    pill.style.width=btnObj.offsetWidth+'px';
-    pill.style.transform='translateX(0)';
+function activateAR(){
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+  if(isIOS){
+    // iOS: direkt USDZ via Quick Look öffnen (kein In-Browser-Konvertierung)
+    const link=document.getElementById('arQuickLookLink');
+    if(link){ link.click(); }
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible'){
+        const mv=document.getElementById('arModelViewer');
+        if(mv) mv.style.opacity='1';
+      }
+    },{once:true});
   } else {
-    btnAr.classList.add('ar-seg-active');
-    btnObj.classList.remove('ar-seg-active');
-    pill.style.width=btnAr.offsetWidth+'px';
-    pill.style.transform='translateX('+btnObj.offsetWidth+'px)';
-    // AR starten
-    if(mv && mv.canActivateAR) mv.activateAR();
+    const mv=document.getElementById('arModelViewer');
+    if(!mv||!mv.canActivateAR)return;
+    mv.style.opacity='0';
+    mv.activateAR();
+    if(!mv._arReturnBound){
+      mv._arReturnBound=true;
+      mv.addEventListener('ar-status',(e)=>{
+        if(e.detail.status==='session-ended'||e.detail.status==='failed'){
+          mv.style.opacity='1';
+        }
+      });
+      document.addEventListener('visibilitychange',()=>{
+        if(document.visibilityState==='visible') mv.style.opacity='1';
+      });
+    }
   }
-  if(instant) requestAnimationFrame(()=>{ pill.style.transition=''; });
 }
