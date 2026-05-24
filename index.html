@@ -165,7 +165,6 @@
 </div>
 <!-- AR / 3D VIEWER OVERLAY -->
 <div id="arOverlay">
-  <div id="arProgressPillWrap"><div id="arProgressTrack"><div id="arProgressPill"></div></div></div>
   <div class="ar-bar">
     <button class="ar-close" onclick="closeArViewer()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
@@ -185,10 +184,8 @@
     exposure="1"
     style="width:100%;flex:1;background:transparent">
     <button slot="ar-button" style="display:none"></button>
-    <div slot="progress-bar" style="display:none"></div>
   </model-viewer>
-  <a id="arQuickLookLink" href="media/Infinitas.usdz" rel="ar" style="display:none"><img src=""></a>
-  <div class="ar-seg-wrap">
+<div class="ar-seg-wrap">
     <button class="ar-seg-btn" id="arBtnAr" onclick="activateAR()">
       In AR öffnen
       <img src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="13" height="13" style="filter:brightness(0) invert(1);opacity:0.85;vertical-align:-1px;margin-left:4px">

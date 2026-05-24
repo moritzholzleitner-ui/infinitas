@@ -481,10 +481,9 @@ function closeChapter(fromPopstate=false){
     },300);
   }
 }
-window.addEventListener('popstate',(e)=>{
+window.addEventListener('popstate',()=>{
   if(_skipPopstate){_skipPopstate=false;return;}
-  if(_arOpen){closeArViewer(true);return;}
-  if(_chapterOpen&&!e.state?.ar)closeChapter(true);
+  if(_chapterOpen)closeChapter(true);
 });
 
 // ── SCROLL HEADER ──
@@ -647,7 +646,6 @@ function _showMainInstant(){
   intro.style.display='none';
   mainEl.classList.add('visible');
   ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
-  if(!location.hash||location.hash==='#'||location.hash==='#startseite') history.replaceState(null,'','#startseite');
 }
 
 // Auf Mobile: Guard auf Startseite ausblenden – Verlauf-Bild läuft bis ganz oben durch
@@ -656,11 +654,7 @@ function _showMainInstant(){
 window.addEventListener('pageshow',e=>{if(e.persisted)_showMainInstant();});
 
 const _introSeen=sessionStorage.getItem('introSeen');
-if(_initHash==='ar'){
-  _showMainInstant();
-  history.replaceState(null,'','#startseite');
-  openArViewer();
-}else if(_initHash&&chapters[_initHash]){
+if(_initHash&&chapters[_initHash]){
   _showMainInstant();
   history.replaceState(null,'',location.pathname);
   openChapter(_initHash);
@@ -677,7 +671,6 @@ if(_initHash==='ar'){
     setTimeout(()=>{
       intro.style.display='none';
       ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
-      history.replaceState(null,'','#startseite');
     },300);
   },2150);
 }
@@ -748,71 +741,32 @@ if(_initHash==='ar'){
 })();
 
 // ── AR / 3D VIEWER ──
-let _arOpen=false;
 function openArViewer(){
   const ov=document.getElementById('arOverlay');
   if(!ov)return;
-  _arOpen=true;
   ov.classList.add('ar-open');
   document.body.style.overflow='hidden';
-  document.querySelector('meta[name="theme-color"]').content='#0d1b3e';
-  history.pushState({ar:true},'','#ar');
-
-  const pill=document.getElementById('arProgressPill');
-  const wrap=document.getElementById('arProgressPillWrap');
-  const mv=document.getElementById('arModelViewer');
-  if(pill&&wrap&&mv){
-    pill.style.width='0%';
-    wrap.classList.remove('ar-progress-done');
-    if(!mv._progressBound){
-      mv._progressBound=true;
-      mv.addEventListener('progress',(e)=>{
-        const p=Math.round(e.detail.totalProgress*100);
-        pill.style.width=p+'%';
-      });
-      mv.addEventListener('load',()=>{
-        pill.style.width='100%';
-        setTimeout(()=>wrap.classList.add('ar-progress-done'),400);
-      });
-    }
-  }
 }
-function closeArViewer(fromPopstate=false){
+function closeArViewer(){
   const ov=document.getElementById('arOverlay');
-  if(!ov||!_arOpen)return;
-  _arOpen=false;
+  if(!ov)return;
   ov.classList.remove('ar-open');
   document.body.style.overflow='';
-  document.querySelector('meta[name="theme-color"]').content='#4a8abf';
-  if(!fromPopstate) requestAnimationFrame(()=>{ _skipPopstate=true; history.back(); });
 }
 function activateAR(){
-  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
-  if(isIOS){
-    // iOS: direkt USDZ via Quick Look öffnen (kein In-Browser-Konvertierung)
-    const link=document.getElementById('arQuickLookLink');
-    if(link){ link.click(); }
-    document.addEventListener('visibilitychange',()=>{
-      if(document.visibilityState==='visible'){
-        const mv=document.getElementById('arModelViewer');
-        if(mv) mv.style.opacity='1';
+  const mv=document.getElementById('arModelViewer');
+  if(!mv||!mv.canActivateAR)return;
+  mv.style.opacity='0';
+  mv.activateAR();
+  if(!mv._arReturnBound){
+    mv._arReturnBound=true;
+    mv.addEventListener('ar-status',(e)=>{
+      if(e.detail.status==='session-ended'||e.detail.status==='failed'){
+        mv.style.opacity='1';
       }
-    },{once:true});
-  } else {
-    const mv=document.getElementById('arModelViewer');
-    if(!mv||!mv.canActivateAR)return;
-    mv.style.opacity='0';
-    mv.activateAR();
-    if(!mv._arReturnBound){
-      mv._arReturnBound=true;
-      mv.addEventListener('ar-status',(e)=>{
-        if(e.detail.status==='session-ended'||e.detail.status==='failed'){
-          mv.style.opacity='1';
-        }
-      });
-      document.addEventListener('visibilitychange',()=>{
-        if(document.visibilityState==='visible') mv.style.opacity='1';
-      });
-    }
+    });
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible') mv.style.opacity='1';
+    });
   }
 }
