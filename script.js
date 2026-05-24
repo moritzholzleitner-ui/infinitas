@@ -481,9 +481,10 @@ function closeChapter(fromPopstate=false){
     },300);
   }
 }
-window.addEventListener('popstate',()=>{
+window.addEventListener('popstate',(e)=>{
   if(_skipPopstate){_skipPopstate=false;return;}
-  if(_chapterOpen)closeChapter(true);
+  if(_arOpen){closeArViewer(true);return;}
+  if(_chapterOpen&&!e.state?.ar)closeChapter(true);
 });
 
 // ── SCROLL HEADER ──
@@ -646,6 +647,7 @@ function _showMainInstant(){
   intro.style.display='none';
   mainEl.classList.add('visible');
   ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
+  if(!location.hash||location.hash==='#'||location.hash==='#startseite') history.replaceState(null,'','#startseite');
 }
 
 // Auf Mobile: Guard auf Startseite ausblenden – Verlauf-Bild läuft bis ganz oben durch
@@ -654,7 +656,11 @@ function _showMainInstant(){
 window.addEventListener('pageshow',e=>{if(e.persisted)_showMainInstant();});
 
 const _introSeen=sessionStorage.getItem('introSeen');
-if(_initHash&&chapters[_initHash]){
+if(_initHash==='ar'){
+  _showMainInstant();
+  history.replaceState(null,'','#startseite');
+  openArViewer();
+}else if(_initHash&&chapters[_initHash]){
   _showMainInstant();
   history.replaceState(null,'',location.pathname);
   openChapter(_initHash);
@@ -671,6 +677,7 @@ if(_initHash&&chapters[_initHash]){
     setTimeout(()=>{
       intro.style.display='none';
       ['heroLogo','searchWrap','quickNav','scrollHint'].forEach(id=>document.getElementById(id)?.classList.add('show'));
+      history.replaceState(null,'','#startseite');
     },300);
   },2150);
 }
@@ -741,41 +748,43 @@ if(_initHash&&chapters[_initHash]){
 })();
 
 // ── AR / 3D VIEWER ──
+let _arOpen=false;
 function openArViewer(){
   const ov=document.getElementById('arOverlay');
   if(!ov)return;
+  _arOpen=true;
   ov.classList.add('ar-open');
   document.body.style.overflow='hidden';
+  document.querySelector('meta[name="theme-color"]').content='#0d1b3e';
+  history.pushState({ar:true},'','#ar');
 
-  // Reset und zeige Lade-Overlay
-  const loadOv=document.getElementById('arLoadingOverlay');
-  const gif=document.getElementById('arSanduhr');
-  if(loadOv&&gif){
-    loadOv.classList.remove('ar-loading-hidden');
-    // GIF neu starten
-    const s=gif.src; gif.src=''; gif.src=s;
-
-    const GIF_MS=1200; // eine Sanduhr-Loop
-    let gifDone=false, modelDone=false;
-    const tryReveal=()=>{
-      if(gifDone&&modelDone) loadOv.classList.add('ar-loading-hidden');
-    };
-    setTimeout(()=>{ gifDone=true; tryReveal(); }, GIF_MS);
-
-    const mv=document.getElementById('arModelViewer');
-    if(mv){
-      if(mv._mvLoaded){ modelDone=true; }
-      else {
-        mv.addEventListener('load',()=>{ mv._mvLoaded=true; modelDone=true; tryReveal(); },{once:true});
-      }
+  const pill=document.getElementById('arProgressPill');
+  const wrap=document.getElementById('arProgressPillWrap');
+  const mv=document.getElementById('arModelViewer');
+  if(pill&&wrap&&mv){
+    pill.style.width='0%';
+    wrap.classList.remove('ar-progress-done');
+    if(!mv._progressBound){
+      mv._progressBound=true;
+      mv.addEventListener('progress',(e)=>{
+        const p=Math.round(e.detail.totalProgress*100);
+        pill.style.width=p+'%';
+      });
+      mv.addEventListener('load',()=>{
+        pill.style.width='100%';
+        setTimeout(()=>wrap.classList.add('ar-progress-done'),400);
+      });
     }
   }
 }
-function closeArViewer(){
+function closeArViewer(fromPopstate=false){
   const ov=document.getElementById('arOverlay');
-  if(!ov)return;
+  if(!ov||!_arOpen)return;
+  _arOpen=false;
   ov.classList.remove('ar-open');
   document.body.style.overflow='';
+  document.querySelector('meta[name="theme-color"]').content='#4a8abf';
+  if(!fromPopstate) requestAnimationFrame(()=>{ _skipPopstate=true; history.back(); });
 }
 function activateAR(){
   const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
