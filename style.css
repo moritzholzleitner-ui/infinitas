@@ -666,7 +666,7 @@ body.mech-page #mainBurger{display:none}
 .ar-page-btn:active{background:rgba(255,255,255,0.15)}
 
 /* ── AR OVERLAY ── */
-#arOverlay{display:none;position:fixed;inset:0;z-index:300;background:var(--navy-deep);flex-direction:column;padding-bottom:env(safe-area-inset-bottom,0px)}
+#arOverlay{display:none;position:fixed;inset:0;z-index:300;background:var(--navy-deep);flex-direction:column;padding-bottom:env(safe-area-inset-bottom,0px);touch-action:none}
 #arOverlay.ar-open{display:flex}
 .ar-bar{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,16px) + 12px) 16px 12px;flex-shrink:0}
 .ar-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);cursor:pointer;-webkit-tap-highlight-color:transparent}
