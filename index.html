@@ -99,8 +99,8 @@
       <p><span class="leg-n">9</span>Quick-Guide Anleitung</p>
     </div>
     <button class="ar-page-btn" onclick="openArViewer()">
-      Spiel in AR ansehen
-      <img class="ar-apple-icon" src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="15" height="15">
+      <img class="ar-apple-icon" src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="19" height="19">
+      Spiel in AR ansehen!
     </button>
     </div>
   </div>
@@ -165,16 +165,18 @@
 </div>
 <!-- AR / 3D VIEWER OVERLAY -->
 <div id="arOverlay">
-  <div class="ar-bar">
-    <button class="ar-close" onclick="closeArViewer()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-    </button>
-    <span class="ar-title">Infinitas 3D</span>
-    <div style="width:36px"></div>
+  <div class="ar-header-wrap">
+    <div class="ar-sh-bar">
+      <button class="cv-scroll-header-btn" onclick="closeArViewer()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <span class="cv-scroll-header-title">3D Spielansicht</span>
+      <div style="width:32px;flex-shrink:0"></div>
+    </div>
   </div>
   <model-viewer
     id="arModelViewer"
-    src="media/Infinitas.glb"
+    src="media/Infinitas-AR.glb"
     ar
     ar-modes="webxr scene-viewer quick-look"
     camera-controls
@@ -184,11 +186,15 @@
     exposure="1"
     style="width:100%;flex:1;background:transparent">
     <button slot="ar-button" style="display:none"></button>
+    <div slot="progress-bar" style="display:none"></div>
   </model-viewer>
-<div class="ar-seg-wrap">
-    <button class="ar-seg-btn" id="arBtnAr" onclick="activateAR()">
-      In AR öffnen
-      <img src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="13" height="13" style="filter:brightness(0) invert(1);opacity:0.85;vertical-align:-1px;margin-left:4px">
+  <div class="ar-seg-wrap">
+    <div id="arLoadingTrack" class="ar-loading-track">
+      <div id="arLoadingPill" class="ar-loading-pill"></div>
+    </div>
+    <button class="ar-seg-btn" id="arBtnAr" onclick="activateAR()" style="display:none">
+      <img src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="26" height="26" style="filter:brightness(0) invert(1);opacity:0.9;flex-shrink:0">
+      In AR öffnen!
     </button>
   </div>
 </div>

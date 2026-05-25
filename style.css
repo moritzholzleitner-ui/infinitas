@@ -662,7 +662,7 @@ body.mech-page #mainBurger{display:none}
 
 /* ── AR BUTTON ── */
 .ar-apple-icon{filter:brightness(0) invert(1);opacity:0.9;flex-shrink:0}
-.ar-page-btn{-webkit-appearance:none;appearance:none;margin-top:28px;width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:50px;padding:9px 16px;font-family:var(--font-oscar);font-weight:400;font-size:12px;color:rgba(255,255,255,0.75);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;-webkit-tap-highlight-color:transparent;transition:background 0.2s}
+.ar-page-btn{-webkit-appearance:none;appearance:none;margin-top:48px;width:100%;align-self:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:50px;padding:9px 16px;font-family:var(--font-oscar);font-weight:400;font-size:12px;color:rgba(255,255,255,0.75);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;-webkit-tap-highlight-color:transparent;transition:background 0.2s}
 .ar-page-btn:active{background:rgba(255,255,255,0.15)}
 
 /* ── AR OVERLAY ── */
@@ -672,10 +672,20 @@ body.mech-page #mainBurger{display:none}
 .ar-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .ar-close:active{background:rgba(255,255,255,0.15)}
 .ar-title{font-family:var(--font-oracle);font-weight:400;font-size:16px;color:rgba(255,255,255,0.85);letter-spacing:0.01em}
+.ar-header-wrap{flex-shrink:0;padding:calc(12px + env(safe-area-inset-top)) 12px 0}
+.ar-sh-bar{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:14px 0 14px 14px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:10px 14px}
+.ar-sh-bar .cv-scroll-header-btn,.ar-sh-bar .cv-sh-menu-btn{color:rgba(255,255,255,0.85)}
+.ar-sh-bar .cv-scroll-header-title{color:rgba(255,255,255,0.85)}
+.ar-sh-bar .burger-wave-icon{filter:brightness(0) invert(1);opacity:1}
+#arOverlay.ar-open~* #cvScrollHeader,
+.cv-scroll-header.ar-mode{z-index:400!important}
 /* AR segmented control */
-.ar-seg-wrap{flex-shrink:0;display:flex;justify-content:center;padding:16px 0 calc(16px + env(safe-area-inset-bottom,0px))}
+.ar-seg-wrap{flex-shrink:0;display:flex;justify-content:center;align-items:center;padding:16px 0 calc(16px + env(safe-area-inset-bottom,0px));min-height:calc(40px + 20px)}
 .ar-seg{position:relative;display:flex;background:rgba(255,255,255,0.1);border-radius:50px;padding:3px;gap:0}
+#arModelViewer::part(default-progress-bar){display:none}
 .ar-seg-pill{position:absolute;top:3px;left:3px;height:calc(100% - 6px);border-radius:50px;background:rgba(255,255,255,0.18);transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),width 0.25s cubic-bezier(0.34,1.56,0.64,1)}
+.ar-loading-track{width:160px;height:11px;border-radius:50px;background:rgba(255,255,255,0.15);position:relative;overflow:hidden;margin:auto}
+.ar-loading-pill{position:absolute;left:0;top:0;height:100%;width:0%;border-radius:50px;background:rgba(255,255,255,0.65);transition:width 0.3s ease}
 .ar-seg-btn{-webkit-appearance:none;appearance:none;position:relative;z-index:1;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.1);border-radius:50px;padding:10px 28px;font-family:var(--font-oscar);font-weight:400;font-size:13px;color:rgba(255,255,255,0.85);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background 0.2s;white-space:nowrap;display:flex;align-items:center;gap:7px}
 .ar-seg-btn:active{background:rgba(255,255,255,0.2)}
 .ar-seg-btn.ar-seg-active{color:rgba(255,255,255,0.95);font-weight:500}

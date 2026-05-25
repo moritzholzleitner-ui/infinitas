@@ -1,4 +1,6 @@
 
+let _arOpen=false;
+
 // Map JS SVG keys to actual filenames in media/
 const SVG_MAP = {
   'Element_1Ritualkarte_Verlauf': 'Element 1Ritualkarte_Verlauf_2.svg',
@@ -483,6 +485,7 @@ function closeChapter(fromPopstate=false){
 }
 window.addEventListener('popstate',()=>{
   if(_skipPopstate){_skipPopstate=false;return;}
+  if(_arOpen){closeArViewer(true);return;}
   if(_chapterOpen)closeChapter(true);
 });
 
@@ -520,6 +523,7 @@ function _buildChapterNav(){
   const isHome=!_chapterOpen;
   let html=`<button class="cv-sh-item" onclick="${isHome?'closeShMenu()':'shGoHome()'}"><span class="cv-sh-home-lbl">Startseite</span></button>`;
   const order=['übersicht','aufbau','ablauf','mechanik'];
+
   order.forEach(key=>{
     const ch=chapters[key];
     const isActiveCh=key===_chId;
@@ -534,6 +538,7 @@ function _buildChapterNav(){
       });
     }
   });
+  if(isHome)html+=`<button class="cv-sh-item" onclick="closeShMenu();openArViewer()"><span class="cv-sh-item-lbl">3D Spielansicht</span></button>`;
   return html;
 }
 
@@ -594,7 +599,7 @@ function closeShMenu(){
 }
 
 function handleBackBtn(){
-  if(_chapterOpen){closeChapter();}else{closeShMenu();}
+  if(_arOpen){closeArViewer();}else if(_chapterOpen){closeChapter();}else{closeShMenu();}
 }
 
 function shMenuChClick(id){
@@ -630,7 +635,7 @@ _cvEl.addEventListener('scroll',_onChapterScroll,{passive:true});
 window.addEventListener('scroll',_onChapterScroll,{passive:true});
 
 // Close menu when tapping outside the scroll header
-function _isOutsideMenu(t){if(!t.isConnected)return false;return _sh&&!_sh.contains(t)&&!t.closest('#mainBurger,.mech-burger-btn');}
+function _isOutsideMenu(t){if(!t.isConnected)return false;return _sh&&!_sh.contains(t)&&!t.closest('#mainBurger,.mech-burger-btn,.ar-sh-bar');}
 document.addEventListener('touchstart',e=>{if(_sh&&_sh.classList.contains('sh-menu-open')&&_isOutsideMenu(e.target))closeShMenu();},{passive:true});
 document.addEventListener('click',e=>{if(_sh&&_sh.classList.contains('sh-menu-open')&&_isOutsideMenu(e.target))closeShMenu();});
 
@@ -654,7 +659,10 @@ function _showMainInstant(){
 window.addEventListener('pageshow',e=>{if(e.persisted)_showMainInstant();});
 
 const _introSeen=sessionStorage.getItem('introSeen');
-if(_initHash&&chapters[_initHash]){
+if(_initHash==='ar'){
+  _showMainInstant();
+  openArViewer();
+}else if(_initHash&&chapters[_initHash]){
   _showMainInstant();
   history.replaceState(null,'',location.pathname);
   openChapter(_initHash);
@@ -744,29 +752,48 @@ if(_initHash&&chapters[_initHash]){
 function openArViewer(){
   const ov=document.getElementById('arOverlay');
   if(!ov)return;
+  _arOpen=true;
   ov.classList.add('ar-open');
   document.body.style.overflow='hidden';
+  document.getElementById('main').style.display='none';
+  document.querySelector('meta[name="theme-color"]').content='#0d1b3e';
+  if(_sh){ _sh.classList.add('sh-no-back','ar-mode'); _sh.style.zIndex='400'; }
+  history.pushState({ar:true},'','#ar');
 }
-function closeArViewer(){
+function closeArViewer(fromPopstate=false){
   const ov=document.getElementById('arOverlay');
-  if(!ov)return;
+  if(!ov||!_arOpen)return;
+  _arOpen=false;
   ov.classList.remove('ar-open');
   document.body.style.overflow='';
+  document.getElementById('main').style.display='';
+  document.querySelector('meta[name="theme-color"]').content='#4a8abf';
+  if(_sh){ _sh.classList.remove('sh-no-back','ar-mode','sh-visible','sh-menu-open'); _sh.style.zIndex=''; }
+  if(!fromPopstate) requestAnimationFrame(()=>{ _skipPopstate=true; history.back(); });
 }
+function _initArProgress(){
+  const mv=document.getElementById('arModelViewer');
+  const pill=document.getElementById('arLoadingPill');
+  const track=document.getElementById('arLoadingTrack');
+  const btn=document.getElementById('arBtnAr');
+  if(!mv||!pill||!track||!btn)return;
+  if(mv._progressBound)return;
+  mv._progressBound=true;
+  mv.addEventListener('progress',(e)=>{
+    pill.style.width=Math.round(e.detail.totalProgress*100)+'%';
+  });
+  mv.addEventListener('load',()=>{
+    pill.style.width='100%';
+    setTimeout(()=>{
+      track.style.display='none';
+      btn.style.display='';
+    },300);
+  });
+}
+customElements.whenDefined('model-viewer').then(_initArProgress);
+
 function activateAR(){
   const mv=document.getElementById('arModelViewer');
   if(!mv||!mv.canActivateAR)return;
-  mv.style.opacity='0';
   mv.activateAR();
-  if(!mv._arReturnBound){
-    mv._arReturnBound=true;
-    mv.addEventListener('ar-status',(e)=>{
-      if(e.detail.status==='session-ended'||e.detail.status==='failed'){
-        mv.style.opacity='1';
-      }
-    });
-    document.addEventListener('visibilitychange',()=>{
-      if(document.visibilityState==='visible') mv.style.opacity='1';
-    });
-  }
 }
