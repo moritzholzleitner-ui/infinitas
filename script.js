@@ -1,5 +1,94 @@
 
 let _arOpen=false;
+let _personaOpen=false;
+
+// ── PERSONAS DATA ──
+let _personaIdx=0;
+
+const personas=[
+  {
+    id:'fritz',
+    eyebrow:'Persona 01',
+    role:'Pensionist',
+    name:'Fritz',
+    lead:'Er hat endlich Zeit für alles –<br>außer für Stress.',
+    portrait:'fritz Illustrationen-09.png',
+    stats:[
+      {label:'Basis Harmonie',value:'7'},
+      {label:'Alter',value:'74'},
+      {label:'Lebenssituation',value:'Verheiratet'},
+      {label:'Fortbewegung',value:'Fahrrad'}
+    ],
+    events:[
+      {type:'img', src:'fritz Illustrationen-01.webp'},
+      {type:'text', title:'Wecker<br>Schlummern', lead:'Das Bett lässt Fritz einfach nicht los.\nDer Morgen beginnt entspannt,\nbis er merkt, dass er keine Zeit mehr\nfür Frühstück und Kaffee hat.', body:'Egal, ich bin sowieso in der Pension!'},
+      {type:'img', src:'fritz Illustrationen-02.webp', label:'Fritz am Weg!'},
+      {type:'img', src:'fritz Illustrationen-03.webp'},
+      {type:'text', title:'Warmes<br>Brot', lead:'Fritz kauft frisches Brot beim Bäcker\nund merkt gleich, dass es noch warm ist.\nEr träumt schon vom Butterbrot\nmit frischer Kresse.'},
+      {type:'img', src:'fritz Illustrationen-04.webp'},
+      {type:'text', title:'Platter<br>Reifen', lead:'Fritz will entspannt zum Einkaufen durch die Stadt\nund merkt plötzlich, dass nicht nur\nihm die Luft ausgeht, sondern\nauch seinem Reifen.'},
+      {type:'img', src:'fritz Illustrationen-05.webp'},
+      {type:'text', title:'Zufälliges<br>Wiedersehen', lead:'Fritz trifft zufällig eine guten alte Freundin\nund plötzlich bleibt die Zeit stehen.\nManchmal braucht es eben nur ein\nbekanntes Gesicht um den Tag\nwieder besser zu machen.'},
+      {type:'img', src:'fritz Illustrationen-06.webp'},
+      {type:'text', title:'Endlose<br>Kassenschlange', lead:'Fritz will nur schnell was im Supermarkt holen,\nund es ist Primetime in der Stadt.\nDie Schlange an der Kassa\ngeht bis zum Mond.'},
+      {type:'img', src:'fritz Illustrationen-07.webp'},
+      {type:'text', title:'Kassa<br>Moment', lead:'Fritz hat nur wenige Sachen\nin der Hand. Die Person vor ihm\nlässt ihn ohne zu zögern vor.\nFritz freut sich über die kleine Geste.'},
+      {type:'img', src:'fritz Illustrationen-08.webp'},
+      {type:'text', title:'Frisches<br>Bett', lead:'Fritz legt sich in sein frisch überzogenes Bett.\nAlles ist sauber und gemütlich.\nFritz schläft sofort tief und fest ein.'},
+      {type:'img', src:'fritz Illustrationen-09.png'},
+      {type:'text', title:'Sei wie<br>Fritz!', lead:'Höhen und Tiefen – ganz normal.\nVerschlafen, platten Reifen,\nendlose Schlangen.\nAber auch warmes Brot,\nalte Freunde und frische Bettwäsche.\nFritz nimmt\'s gelassen.\nVielleicht sollten wir das auch.', logo:true},
+    ]
+  },
+  {
+    id:'tony', eyebrow:'Persona 02', role:'Fitnesstrainer', name:'Tony',
+    lead:'Er joggt sogar zum Bäcker –<br>natürlich nur zum Aufwärmen.',
+    portrait:'tony Illustrationen-09.png',
+    stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'29'},{label:'Lebenssituation',value:'Single'},{label:'Fortbewegung',value:'Fahrrad'}],
+    events:[]
+  },
+  {
+    id:'gottfried', eyebrow:'Persona 03', role:'Berater', name:'Gottfried',
+    lead:'Er hat für alles einen Termin –<br>sogar für seine Termine.',
+    portrait:null,
+    stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'39'},{label:'Lebenssituation',value:'Verheiratet'},{label:'Fortbewegung',value:'Auto'}],
+    events:[]
+  },
+  {
+    id:'hildegard', eyebrow:'Persona 04', role:'Floristin', name:'Hildegard',
+    lead:'Sie spricht lieber mit Pflanzen –<br>die hören wenigstens zu.',
+    portrait:null,
+    stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'56'},{label:'Lebenssituation',value:'Verwitwet'},{label:'Fortbewegung',value:'Öffentlicher Verkehr'}],
+    events:[]
+  },
+  {
+    id:'gertrude', eyebrow:'Persona 05', role:'Maklerin', name:'Gertrude',
+    lead:'Sie kennt jede Wohnung –<br>rein zufällig natürlich.',
+    portrait:null,
+    stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'44'},{label:'Lebenssituation',value:'Geschieden'},{label:'Fortbewegung',value:'Auto'}],
+    events:[]
+  },
+  {
+    id:'elfriede', eyebrow:'Persona 06', role:'Studentin', name:'Elfriede',
+    lead:'Sie studiert und weiß noch nicht,<br>was sie später will.',
+    portrait:null,
+    stats:[{label:'Basis Harmonie',value:'4'},{label:'Alter',value:'23'},{label:'Lebenssituation',value:'Verliebt'},{label:'Fortbewegung',value:'Öffentlicher Verkehr'}],
+    events:[]
+  },
+  {
+    id:'herbert', eyebrow:'Persona 07', role:'Büroangestellter', name:'Herbert',
+    lead:'Er arbeitet viel und zählt<br>die Stunden bis Feierabend.',
+    portrait:null,
+    stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'31'},{label:'Lebenssituation',value:'In Beziehung'},{label:'Fortbewegung',value:'Zu Fuß / Fahrrad'}],
+    events:[]
+  },
+  {
+    id:'roswitha', eyebrow:'Persona 08', role:'Yogalehrerin', name:'Roswitha',
+    lead:'Sie bleibt ruhig und nimmt<br>alles, wie es kommt.',
+    portrait:null,
+    stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'42'},{label:'Lebenssituation',value:'Lebt alleine'},{label:'Fortbewegung',value:'Zu Fuß / Auto'}],
+    events:[]
+  }
+];
 
 // Map JS SVG keys to actual filenames in media/
 const SVG_MAP = {
@@ -486,6 +575,8 @@ function closeChapter(fromPopstate=false){
 window.addEventListener('popstate',()=>{
   if(_skipPopstate){_skipPopstate=false;return;}
   if(_arOpen){closeArViewer(true);return;}
+  if(_fritzOpen){closeFritzAlltag(true);return;}
+  if(_personaOpen){closePersonaPage(true);return;}
   if(_chapterOpen)closeChapter(true);
 });
 
@@ -521,7 +612,8 @@ function _showScrollHeader(){
 
 function _buildChapterNav(){
   const isHome=!_chapterOpen;
-  let html=`<button class="cv-sh-item" onclick="${isHome?'closeShMenu()':'shGoHome()'}"><span class="cv-sh-home-lbl">Startseite</span></button>`;
+  const _arr=`<svg class="cv-sh-ch-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M9 18l6-6-6-6"/></svg>`;
+  let html=`<button class="cv-sh-item" onclick="${isHome?'closeShMenu()':'shGoHome()'}"><span class="cv-sh-home-lbl">Startseite</span>${_arr}</button>`;
   const order=['übersicht','aufbau','ablauf','mechanik'];
 
   order.forEach(key=>{
@@ -529,7 +621,7 @@ function _buildChapterNav(){
     const isActiveCh=key===_chId;
     const isExpanded=key===_menuExpandedCh;
     const hasSub=ch.sections.length>1;
-    const arr=hasSub?`<svg class="cv-sh-ch-arr${isExpanded?' expanded':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M9 18l6-6-6-6"/></svg>`:'';
+    const arr=`<svg class="cv-sh-ch-arr${isExpanded&&hasSub?' expanded':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M9 18l6-6-6-6"/></svg>`;
     html+=`<button class="cv-sh-item" onclick="shMenuChClick('${key}')"><span class="cv-sh-item-lbl">${ch.sub}</span>${arr}</button>`;
     if(hasSub&&isExpanded){
       ch.sections.forEach((s,i)=>{
@@ -538,7 +630,16 @@ function _buildChapterNav(){
       });
     }
   });
-  if(isHome)html+=`<button class="cv-sh-item" onclick="closeShMenu();openArViewer()"><span class="cv-sh-item-lbl">3D Spielansicht</span></button>`;
+  const personaExpanded=_menuExpandedCh==='personas';
+  const personaArr=`<svg class="cv-sh-ch-arr${personaExpanded?' expanded':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M9 18l6-6-6-6"/></svg>`;
+  html+=`<button class="cv-sh-item" onclick="shMenuPersonaClick()"><span class="cv-sh-item-lbl">Persona Storys</span>${personaArr}</button>`;
+  if(personaExpanded){
+    personas.forEach((p,i)=>{
+      const cur=_personaOpen&&i===_personaIdx;
+      html+=`<button class="cv-sh-sec-item${cur?' sh-item-active':''}" onclick="shOpenPersonaAt(${i})"><span class="cv-sh-sec-dot"></span><span class="cv-sh-sec-lbl">${p.name}</span></button>`;
+    });
+  }
+  if(isHome)html+=`<button class="cv-sh-item" onclick="closeShMenu();openArViewer()"><span class="cv-sh-item-lbl">3D Spielansicht</span>${_arr}</button>`;
   return html;
 }
 
@@ -579,11 +680,11 @@ function toggleShMenu(){
     _menuSearchQuery='';
     _menuExpandedCh=null;
     // Auf Startseite oder wenn nicht gescrollt: komplett aus dem Compositing-Tree
-    if(!_chapterOpen||(window.scrollY||_cvEl.scrollTop)<60)_hideScrollHeader(true);
+    if(!_chapterOpen&&!_personaOpen||(window.scrollY||_cvEl.scrollTop)<60)_hideScrollHeader(true);
     return;
   }
   _showScrollHeader();_sh.classList.add('sh-visible');
-  if(!_chapterOpen){if(_shTitle)_shTitle.textContent='Startseite';_sh.classList.add('sh-no-back');}else{_sh.classList.remove('sh-no-back');}
+  if(!_chapterOpen&&!_personaOpen){if(_shTitle)_shTitle.textContent='Startseite';_sh.classList.add('sh-no-back');}else{_sh.classList.remove('sh-no-back');}
   
   _menuExpandedCh=null;
   _menuSearchQuery='';
@@ -595,11 +696,11 @@ function closeShMenu(){
   _menuSearchQuery='';
   _menuExpandedCh=null;
 
-  if(!_chapterOpen||(window.scrollY||_cvEl.scrollTop)<60)_hideScrollHeader(true);
+  if(!_chapterOpen&&!_personaOpen||(window.scrollY||_cvEl.scrollTop)<60)_hideScrollHeader(true);
 }
 
 function handleBackBtn(){
-  if(_arOpen){closeArViewer();}else if(_chapterOpen){closeChapter();}else{closeShMenu();}
+  if(_arOpen){closeArViewer();}else if(_personaOpen){closePersonaPage();}else if(_chapterOpen){closeChapter();}else{closeShMenu();}
 }
 
 function shMenuChClick(id){
@@ -611,17 +712,36 @@ function shMenuChClick(id){
 
 function shMenuSelect(id){
   closeShMenu();
+  if(_personaOpen){_closePersonaClean();history.replaceState(null,'',location.pathname);}
   openChapter(id);
 }
 
+function shMenuPersonaClick(){
+  _menuExpandedCh=(_menuExpandedCh==='personas')?null:'personas';
+  const nav=document.getElementById('cvShNavContent');
+  if(nav)nav.innerHTML=_buildChapterNav();
+}
+function shOpenPersonaAt(idx){
+  closeShMenu();
+  if(_chapterOpen){_chapterOpen=false;document.getElementById('chapterView').classList.remove('open','mech-open');document.body.classList.remove('mech-page');document.documentElement.classList.remove('mech-page-html');document.getElementById('mechChromeGuard').style.display='none';history.replaceState(null,'',location.pathname);}
+  if(_personaOpen){switchPersona(idx);}
+  else{openPersonaPage();requestAnimationFrame(()=>switchPersona(idx));}
+}
+function shOpenPersona(){
+  closeShMenu();
+  if(_chapterOpen){_chapterOpen=false;document.getElementById('chapterView').classList.remove('open','mech-open');document.body.classList.remove('mech-page');document.documentElement.classList.remove('mech-page-html');document.getElementById('mechChromeGuard').style.display='none';history.replaceState(null,'',location.pathname);}
+  openPersonaPage();
+}
 function shGoHome(){
   closeShMenu();
-  closeChapter();
+  if(_personaOpen){_closePersonaClean();history.replaceState(null,'',location.pathname);}
+  else closeChapter();
 }
 
 function shSecSelect(chId,idx){
   if(_menuSearchQuery)_pendingHighlight=_menuSearchQuery;
   closeShMenu();
+  if(_personaOpen){_closePersonaClean();history.replaceState(null,'',location.pathname);}
   if(_chapterOpen&&chId===_chId){chSelect(chId,idx);}else{openChapter(chId,idx);}
 }
 function _onChapterScroll(){
@@ -662,6 +782,9 @@ const _introSeen=sessionStorage.getItem('introSeen');
 if(_initHash==='ar'){
   _showMainInstant();
   openArViewer();
+}else if(_initHash==='personas'){
+  _showMainInstant();
+  openPersonaPage();
 }else if(_initHash&&chapters[_initHash]){
   _showMainInstant();
   history.replaceState(null,'',location.pathname);
@@ -747,6 +870,218 @@ if(_initHash==='ar'){
     });
   });
 })();
+
+// ── PERSONA PAGE ──
+function openPersonaPage(){
+  const pv=document.getElementById('personaView');
+  if(!pv)return;
+  _personaOpen=true;
+  _scrollPos=window.scrollY;
+  document.getElementById('main').style.display='none';
+  document.body.classList.add('mech-page');
+  document.querySelector('meta[name="theme-color"]').content='#E2EAF6';
+  document.querySelector('meta[name="color-scheme"]').content='light';
+  document.documentElement.classList.add('mech-page-html');
+  const _guard=document.getElementById('mechChromeGuard');
+  _guard.style.background='var(--mech-bg)';_guard.style.display='block';
+  pv.classList.add('open');
+  pv.scrollTop=0;
+  if(_sh){_sh.style.zIndex='210';}
+  if(_shTitle)_shTitle.textContent=personas[0].name;
+  if(!pv._scrollBound){
+    pv._scrollBound=true;
+    pv.addEventListener('scroll',()=>{
+      if(!_personaOpen)return;
+      const y=pv.scrollTop;
+      if(y>80){_showScrollHeader();_sh.classList.add('sh-visible');_sh.classList.remove('sh-no-back');}
+      else if(y<60)_hideScrollHeader(true);
+    },{passive:true});
+  }
+  _personaIdx=0;
+  const dots=personas.map((_,i)=>`<span class="mech-dot${i===0?' active':''}" onclick="switchPersona(${i})"></span>`).join('');
+  document.getElementById('pvContent').innerHTML=`
+    <div class="mech-view">
+      <div class="mech-header">
+        <img class="mech-header-img" src="media/Verlauf%20Unterseiten.png" alt="">
+        <button class="mech-back-btn" onclick="closePersonaPage()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="mech-burger-btn" onclick="toggleShMenu()">
+          <img class="burger-wave-icon" src="media/Grafik_Burger%20Icon.svg" alt="" width="22" height="17">
+        </button>
+        <span class="mech-cat-vert"><span class="cat-regular">Persona </span><span class="cat-bold">Storys</span></span>
+      </div>
+      <div class="mech-title-area" style="margin-top:-160px;padding-top:28px">
+        <p class="mech-ey" id="pvEy">${personas[0].role}</p>
+        <h1 class="mech-ttl" id="pvName">${personas[0].name}</h1>
+        <p class="mech-lead-txt" id="pvLead">${personas[0].lead}</p>
+      </div>
+      <div class="mech-nav" style="padding-top:0">
+        <div class="mech-dots" id="pvDots">${dots}</div>
+        <span class="mech-nav-hint">Auf die Punkte tippen um die Persona zu wechseln</span>
+      </div>
+      <div id="pvPortraitWrap" class="persona-portrait-wrap">
+        <img src="media/${encodeURIComponent(personas[0].portrait)}" class="persona-portrait" alt="${personas[0].role} ${personas[0].name}">
+      </div>
+      <div style="display:flex;justify-content:center;padding:36px 28px 24px" id="pvBtn">
+        <button class="persona-cta-btn" onclick="openFritzAlltag()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17" style="flex-shrink:0"><path d="M9 18l6-6-6-6"/></svg>
+          ${personas[0].name}' Alltag ansehen
+        </button>
+      </div>
+      <div class="persona-stats" id="pvStats">${personas[0].stats.map(s=>`<div><span class="persona-stat-lbl">${s.label}</span><span class="persona-stat-val">${s.value}</span></div>`).join('')}</div>
+    </div>`;
+  history.pushState({persona:true},'','#personas');
+  // Swipe between personas
+  if(!pv._swipeBound){
+    pv._swipeBound=true;
+    let _sx=0,_sy=0;
+    pv.addEventListener('touchstart',e=>{_sx=e.touches[0].clientX;_sy=e.touches[0].clientY;},{passive:true});
+    pv.addEventListener('touchend',e=>{
+      const dx=e.changedTouches[0].clientX-_sx;
+      const dy=e.changedTouches[0].clientY-_sy;
+      if(Math.abs(dx)<Math.abs(dy))return;
+      if(Math.abs(dx)>44)switchPersona(_personaIdx+(dx<0?1:-1));
+    },{passive:true});
+  }
+}
+
+function switchPersona(idx){
+  idx=(idx+personas.length)%personas.length;
+  _personaIdx=idx;
+  const p=personas[idx];
+  document.querySelectorAll('#pvDots .mech-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  document.getElementById('pvEy').textContent=p.role;
+  document.getElementById('pvName').textContent=p.name;
+  document.getElementById('pvLead').innerHTML=p.lead;
+  const statsEl=document.getElementById('pvStats');
+  if(statsEl)statsEl.innerHTML=p.stats.map(s=>`<div><span class="persona-stat-lbl">${s.label}</span><span class="persona-stat-val">${s.value}</span></div>`).join('');
+  const wrap=document.getElementById('pvPortraitWrap');
+  if(wrap){
+    if(p.portrait){wrap.innerHTML=`<img src="media/${encodeURIComponent(p.portrait)}" class="persona-portrait" alt="${p.role} ${p.name}">`;}
+    else{wrap.innerHTML=`<div class="persona-portrait-placeholder"><span>${p.name[0]}</span></div>`;}
+  }
+  const btn=document.getElementById('pvBtn');
+  if(btn){
+    if(p.events&&p.events.length){btn.style.display='';btn.innerHTML=`<button class="persona-cta-btn" onclick="openFritzAlltag()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17" style="flex-shrink:0"><path d="M9 18l6-6-6-6"/></svg>${p.name}' Alltag ansehen</button>`;}
+    else{btn.style.display='none';}
+  }
+  if(_shTitle)_shTitle.textContent=p.name;
+}
+function _closePersonaClean(){
+  if(!_personaOpen)return;
+  _personaOpen=false;
+  document.getElementById('personaView').classList.remove('open');
+  _hideScrollHeader(true);
+  if(_sh){_sh.style.zIndex='';}
+  document.getElementById('main').style.display='';
+  document.body.classList.remove('mech-page');
+  document.querySelector('meta[name="theme-color"]').content='#4a8abf';
+  document.querySelector('meta[name="color-scheme"]').content='light';
+  document.documentElement.classList.remove('mech-page-html');
+  document.getElementById('mechChromeGuard').style.display='none';
+}
+function closePersonaPage(fromPopstate=false){
+  if(!_personaOpen)return;
+  _closePersonaClean();
+  if(!fromPopstate)requestAnimationFrame(()=>{_skipPopstate=true;history.back();});
+  else history.replaceState(null,'',location.pathname);
+  window.scrollTo(0,_scrollPos);
+}
+
+function personaScrollNext(){
+  const strip=document.getElementById('personaScroll');
+  if(strip)strip.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── FRITZ ALLTAG OVERLAY ──
+let _fritzOpen=false;
+function openFritzAlltag(){
+  const ov=document.getElementById('fritzAlltag');
+  if(!ov)return;
+  _fritzOpen=true;
+  const p=personas[0];
+  const scroll=document.getElementById('faScroll');
+  scroll.innerHTML=p.events.map(e=>{
+    if(e.type==='text') return `<div class="fa-text-card"><h1 class="mech-ttl">${e.title}</h1><p class="mech-lead-txt fa-lead">${e.lead.replace(/\n/g,'<br>')}</p>${e.body?`<p class="fa-body-sm">${e.body.replace(/\n/g,'<br>')}</p>`:''}${e.logo?`<div class="fa-wordmark"><div class="fa-wm-title">Infini<span class="alt-t">t</span>as</div><div class="fa-wm-subtitle">Alles halb so wild?!</div></div>`:''}</div>`;
+    return `<div class="fa-img-card"${e.label?' style="position:relative"':''}>
+      <img src="media/${encodeURIComponent(e.src)}" alt="">
+      ${e.label?`<div class="fa-img-label">${e.label}</div>`:''}
+    </div>`;
+  }).join('');
+  scroll.scrollLeft=0;
+  ov.classList.add('open');
+  _initFaLoop(scroll);
+  _initFaPill();
+  history.pushState({fritzAlltag:true},'','#fritz-alltag');
+}
+function closeFritzAlltag(fromPopstate=false){
+  if(!_fritzOpen)return;
+  _fritzOpen=false;
+  document.getElementById('fritzAlltag').classList.remove('open');
+  if(!fromPopstate)requestAnimationFrame(()=>{_skipPopstate=true;history.back();});
+}
+function _initFaLoop(scroll){
+  const originals=Array.from(scroll.children);
+  // Prepend clone (backward buffer)
+  const firstChild=scroll.firstChild;
+  originals.forEach(el=>scroll.insertBefore(el.cloneNode(true),firstChild));
+  // Append clone (forward buffer)
+  originals.forEach(el=>scroll.appendChild(el.cloneNode(true)));
+  // Start at 0 = first image visible immediately
+  scroll.scrollLeft=0;
+  // Loop only when scrolling in the right direction → no jump on first open
+  let _lastLeft=0;
+  scroll.addEventListener('scroll',()=>{
+    const one=scroll.scrollWidth/3;
+    const dir=scroll.scrollLeft-_lastLeft;
+    _lastLeft=scroll.scrollLeft;
+    if(dir<0&&scroll.scrollLeft<one) scroll.scrollLeft+=one;
+    else if(dir>0&&scroll.scrollLeft>=2*one) scroll.scrollLeft-=one;
+  },{passive:true});
+}
+function _initFaPill(){
+  const scroll=document.getElementById('faScroll');
+  const track=document.getElementById('faPillTrack');
+  const pill=document.getElementById('faPill');
+  if(!scroll||!track||!pill)return;
+  scroll.removeEventListener('scroll',scroll._pillFn||null);
+  scroll._pillFn=function(){
+    const one=scroll.scrollWidth/3;
+    const pos=scroll.scrollLeft%one;
+    const max=one-scroll.clientWidth;
+    if(max<=0){pill.style.left='0px';return;}
+    const maxLeft=track.offsetWidth-pill.offsetWidth;
+    pill.style.left=((pos/max)*maxLeft)+'px';
+  };
+  scroll.addEventListener('scroll',scroll._pillFn,{passive:true});
+  scroll._pillFn();
+  // Draggable pill
+  let _dragging=false,_startX=0,_startScrollLeft=0;
+  function onDragStart(e){
+    _dragging=true;
+    _startX=e.touches?e.touches[0].clientX:e.clientX;
+    _startScrollLeft=scroll.scrollLeft;
+    pill.style.transition='none';
+    e.preventDefault();
+  }
+  function onDragMove(e){
+    if(!_dragging)return;
+    const x=e.touches?e.touches[0].clientX:e.clientX;
+    const dx=x-_startX;
+    const maxLeft=track.offsetWidth-pill.offsetWidth;
+    const half=scroll.scrollWidth/2;
+    const max=half-scroll.clientWidth;
+    scroll.scrollLeft=_startScrollLeft+(dx/maxLeft)*max;
+  }
+  function onDragEnd(){_dragging=false;pill.style.transition='';}
+  pill.addEventListener('mousedown',onDragStart);
+  pill.addEventListener('touchstart',onDragStart,{passive:false});
+  document.addEventListener('mousemove',onDragMove);
+  document.addEventListener('touchmove',onDragMove,{passive:false});
+  document.addEventListener('mouseup',onDragEnd);
+  document.addEventListener('touchend',onDragEnd);
+}
 
 // ── AR / 3D VIEWER ──
 function openArViewer(){

@@ -111,6 +111,14 @@
     <p class="page-body">Du stehst wegen eines Mopedautos im Stau. Statt dich zu ärgern, beobachtest du einen Hasen im Feld.</p>
     <img class="page-story-img" src="media/Grafik_Anleitung_Harmonie-Aergernis.png" alt="Harmonie &amp; Ärgernis">
     <p class="page-body">Du stehst wegen eines Mopedautos im Stau. Seit fünf Minuten überlegst du dir innerlich, wie langsam man eigentlich fahren kann.</p>
+    <p class="page-eyebrow" style="margin-top:140px">Die Personas</p>
+    <h2 class="page-titel">Im <em>Alltag.</em></h2>
+    <p class="page-lead">Auch die Personas im Spiel kennen den nicht ganz so perfekten Alltag.</p>
+    <p class="page-body">Kleine Ärgernisse, unerwartete Wendungen, Momente die einfach passieren – sie erleben das alles genauso. Aber wie du auch nehmen sie es gelassen. Alles halb so wild.</p>
+    <button class="ar-page-btn" onclick="openPersonaPage()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="19" height="19" style="flex-shrink:0;opacity:0.9"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Lerne die Personas kennen
+    </button>
   </div>
 
   <div class="impressum">
@@ -196,6 +204,32 @@
       <img src="media/logo-apple-ar-svgrepo-com.svg" alt="" width="26" height="26" style="filter:brightness(0) invert(1);opacity:0.9;flex-shrink:0">
       In AR öffnen!
     </button>
+  </div>
+</div>
+
+<!-- PERSONA VIEW -->
+<div id="personaView">
+  <div id="pvContent"></div>
+</div>
+
+<!-- FRITZ ALLTAG OVERLAY -->
+<div id="fritzAlltag">
+  <div class="fa-header">
+    <button class="cv-scroll-header-btn" onclick="closeFritzAlltag()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <span class="cv-scroll-header-title">Fritz' Alltag</span>
+    <div style="width:32px;flex-shrink:0"></div>
+  </div>
+  <div class="fa-scroll-wrap">
+    <div class="fa-fade fa-fade--top"></div>
+    <div class="fa-scroll" id="faScroll"></div>
+    <div class="fa-fade fa-fade--bottom"></div>
+  </div>
+  <div class="fa-pill-wrap">
+    <div class="page-img-track" id="faPillTrack" style="width:160px">
+      <div class="page-img-pill" id="faPill"></div>
+    </div>
   </div>
 </div>
 
