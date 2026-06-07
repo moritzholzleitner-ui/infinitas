@@ -20,20 +20,20 @@ const personas=[
       {label:'Fortbewegung',value:'Fahrrad'}
     ],
     events:[
-      {type:'img', src:'fritz Illustrationen-01.webp'},
+      {type:'img', src:'fritz Illustrationen-01.jpg'},
       {type:'text', title:'Wecker<br>Schlummern', lead:'Das Bett lässt Fritz einfach nicht los.\nDer Morgen beginnt entspannt,\nbis er merkt, dass er keine Zeit mehr\nfür Frühstück und Kaffee hat.', body:'Egal, ich bin sowieso in der Pension!'},
-      {type:'img', src:'fritz Illustrationen-02.webp', label:'Fritz am Weg!'},
-      {type:'img', src:'fritz Illustrationen-03.webp'},
+      {type:'img', src:'fritz Illustrationen-02.jpg', label:'Fritz am Weg!'},
+      {type:'img', src:'fritz Illustrationen-03.jpg'},
       {type:'text', title:'Warmes<br>Brot', lead:'Fritz kauft frisches Brot beim Bäcker\nund merkt gleich, dass es noch warm ist.\nEr träumt schon vom Butterbrot\nmit frischer Kresse.'},
-      {type:'img', src:'fritz Illustrationen-04.webp'},
+      {type:'img', src:'fritz Illustrationen-04.jpg'},
       {type:'text', title:'Platter<br>Reifen', lead:'Fritz will entspannt zum Einkaufen durch die Stadt\nund merkt plötzlich, dass nicht nur\nihm die Luft ausgeht, sondern\nauch seinem Reifen.'},
-      {type:'img', src:'fritz Illustrationen-05.webp'},
+      {type:'img', src:'fritz Illustrationen-05.jpg'},
       {type:'text', title:'Zufälliges<br>Wiedersehen', lead:'Fritz trifft zufällig eine guten alte Freundin\nund plötzlich bleibt die Zeit stehen.\nManchmal braucht es eben nur ein\nbekanntes Gesicht um den Tag\nwieder besser zu machen.'},
-      {type:'img', src:'fritz Illustrationen-06.webp'},
+      {type:'img', src:'fritz Illustrationen-06.jpg'},
       {type:'text', title:'Endlose<br>Kassenschlange', lead:'Fritz will nur schnell was im Supermarkt holen,\nund es ist Primetime in der Stadt.\nDie Schlange an der Kassa\ngeht bis zum Mond.'},
-      {type:'img', src:'fritz Illustrationen-07.webp'},
+      {type:'img', src:'fritz Illustrationen-07.jpg'},
       {type:'text', title:'Kassa<br>Moment', lead:'Fritz hat nur wenige Sachen\nin der Hand. Die Person vor ihm\nlässt ihn ohne zu zögern vor.\nFritz freut sich über die kleine Geste.'},
-      {type:'img', src:'fritz Illustrationen-08.webp'},
+      {type:'img', src:'fritz Illustrationen-08.jpg'},
       {type:'text', title:'Frisches<br>Bett', lead:'Fritz legt sich in sein frisch überzogenes Bett.\nAlles ist sauber und gemütlich.\nFritz schläft sofort tief und fest ein.'},
       {type:'img', src:'fritz Illustrationen-09.png'},
       {type:'text', title:'Sei wie<br>Fritz!', lead:'Höhen und Tiefen – ganz normal.\nVerschlafen, platten Reifen,\nendlose Schlangen.\nAber auch warmes Brot,\nalte Freunde und frische Bettwäsche.\nFritz nimmt\'s gelassen.\nVielleicht sollten wir das auch.', logo:true},
@@ -877,6 +877,7 @@ function openPersonaPage(){
   if(!pv)return;
   _personaOpen=true;
   _scrollPos=window.scrollY;
+  _hideScrollHeader(true);
   document.getElementById('main').style.display='none';
   document.body.classList.add('mech-page');
   document.querySelector('meta[name="theme-color"]').content='#E2EAF6';
@@ -884,6 +885,7 @@ function openPersonaPage(){
   document.documentElement.classList.add('mech-page-html');
   const _guard=document.getElementById('mechChromeGuard');
   _guard.style.background='var(--mech-bg)';_guard.style.display='block';
+  if(window.innerWidth<600){const _tb=document.getElementById('chapterTopBar');if(_tb)_tb.style.display='block';}
   pv.classList.add('open');
   pv.scrollTop=0;
   if(_sh){_sh.style.zIndex='210';}
@@ -980,6 +982,8 @@ function _closePersonaClean(){
   document.querySelector('meta[name="color-scheme"]').content='light';
   document.documentElement.classList.remove('mech-page-html');
   document.getElementById('mechChromeGuard').style.display='none';
+  const _tb=document.getElementById('chapterTopBar');
+  if(_tb)_tb.style.display='none';
 }
 function closePersonaPage(fromPopstate=false){
   if(!_personaOpen)return;
@@ -1005,40 +1009,73 @@ function openFritzAlltag(){
   scroll.innerHTML=p.events.map(e=>{
     if(e.type==='text') return `<div class="fa-text-card"><h1 class="mech-ttl">${e.title}</h1><p class="mech-lead-txt fa-lead">${e.lead.replace(/\n/g,'<br>')}</p>${e.body?`<p class="fa-body-sm">${e.body.replace(/\n/g,'<br>')}</p>`:''}${e.logo?`<div class="fa-wordmark"><div class="fa-wm-title">Infini<span class="alt-t">t</span>as</div><div class="fa-wm-subtitle">Alles halb so wild?!</div></div>`:''}</div>`;
     return `<div class="fa-img-card"${e.label?' style="position:relative"':''}>
-      <img src="media/${encodeURIComponent(e.src)}" alt="">
+      <img data-src="media/${encodeURIComponent(e.src)}" class="fa-lazy" alt="">
       ${e.label?`<div class="fa-img-label">${e.label}</div>`:''}
     </div>`;
   }).join('');
-  scroll.scrollLeft=0;
   ov.classList.add('open');
   _initFaLoop(scroll);
+  _initFaLazy(scroll);
   _initFaPill();
   history.pushState({fritzAlltag:true},'','#fritz-alltag');
+}
+function _initFaLoop(scroll){
+  // Reset von einem evtl. vorherigen Open (innerHTML wird neu gesetzt, Listener am scroll-Element bleiben sonst hängen)
+  if(scroll._loopFn){scroll.removeEventListener(scroll._loopEvt,scroll._loopFn);clearTimeout(scroll._loopTimer);}
+  const originals=Array.from(scroll.children);
+  const firstChild=scroll.firstChild;
+  originals.forEach(el=>scroll.insertBefore(el.cloneNode(true),firstChild));
+  originals.forEach(el=>scroll.appendChild(el.cloneNode(true)));
+  // Start in der mittleren (Original-)Kopie, damit nach beiden Seiten Puffer existiert.
+  // offsetLeft statt scrollWidth/3 verwenden – die Bilder sind beim Klonen noch nicht
+  // geladen (lazy), scrollWidth wäre also noch zu klein und die Startposition würde
+  // später, wenn die Karten ihre echte Breite bekommen, nicht mehr stimmen.
+  scroll.scrollLeft=originals[0].offsetLeft;
+  // Korrektur erst, wenn das Scrollen zur Ruhe gekommen ist – nie mitten in der Bewegung,
+  // sonst entsteht (wie zuvor) eine Rückkopplungsschleife aus scrollLeft-Sets und scroll-Events
+  const settle=()=>{
+    const w=scroll.scrollWidth/3;
+    if(scroll.scrollLeft<w*0.5)scroll.scrollLeft+=w;
+    else if(scroll.scrollLeft>=w*1.5)scroll.scrollLeft-=w;
+  };
+  if('onscrollend' in window){
+    scroll._loopEvt='scrollend';
+    scroll._loopFn=settle;
+  }else{
+    scroll._loopEvt='scroll';
+    scroll._loopFn=()=>{
+      clearTimeout(scroll._loopTimer);
+      scroll._loopTimer=setTimeout(settle,120);
+    };
+  }
+  scroll.addEventListener(scroll._loopEvt,scroll._loopFn,{passive:true});
+}
+function _initFaLazy(scroll){
+  if(scroll._lazyIo)scroll._lazyIo.disconnect();
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(!en.isIntersecting)return;
+      const img=en.target;
+      img.addEventListener('load',()=>{
+        const label=img.parentElement.querySelector('.fa-img-label');
+        if(label)label.classList.add('visible');
+      },{once:true});
+      img.src=img.dataset.src;
+      img.removeAttribute('data-src');
+      io.unobserve(img);
+    });
+  },{root:scroll,rootMargin:'0px 200% 0px 200%'});
+  scroll._lazyIo=io;
+  scroll.querySelectorAll('.fa-lazy').forEach(img=>io.observe(img));
 }
 function closeFritzAlltag(fromPopstate=false){
   if(!_fritzOpen)return;
   _fritzOpen=false;
-  document.getElementById('fritzAlltag').classList.remove('open');
+  const ov=document.getElementById('fritzAlltag');
+  ov.classList.remove('open');
+  const scroll=document.getElementById('faScroll');
+  if(scroll&&scroll._lazyIo){scroll._lazyIo.disconnect();scroll._lazyIo=null;}
   if(!fromPopstate)requestAnimationFrame(()=>{_skipPopstate=true;history.back();});
-}
-function _initFaLoop(scroll){
-  const originals=Array.from(scroll.children);
-  // Prepend clone (backward buffer)
-  const firstChild=scroll.firstChild;
-  originals.forEach(el=>scroll.insertBefore(el.cloneNode(true),firstChild));
-  // Append clone (forward buffer)
-  originals.forEach(el=>scroll.appendChild(el.cloneNode(true)));
-  // Start at 0 = first image visible immediately
-  scroll.scrollLeft=0;
-  // Loop only when scrolling in the right direction → no jump on first open
-  let _lastLeft=0;
-  scroll.addEventListener('scroll',()=>{
-    const one=scroll.scrollWidth/3;
-    const dir=scroll.scrollLeft-_lastLeft;
-    _lastLeft=scroll.scrollLeft;
-    if(dir<0&&scroll.scrollLeft<one) scroll.scrollLeft+=one;
-    else if(dir>0&&scroll.scrollLeft>=2*one) scroll.scrollLeft-=one;
-  },{passive:true});
 }
 function _initFaPill(){
   const scroll=document.getElementById('faScroll');
@@ -1070,8 +1107,8 @@ function _initFaPill(){
     const x=e.touches?e.touches[0].clientX:e.clientX;
     const dx=x-_startX;
     const maxLeft=track.offsetWidth-pill.offsetWidth;
-    const half=scroll.scrollWidth/2;
-    const max=half-scroll.clientWidth;
+    const one=scroll.scrollWidth/3;
+    const max=one-scroll.clientWidth;
     scroll.scrollLeft=_startScrollLeft+(dx/maxLeft)*max;
   }
   function onDragEnd(){_dragging=false;pill.style.transition='';}
