@@ -542,6 +542,8 @@ body.mech-page #mainBurger{display:none}
   .mech-body-head { font-size: 18px !important; }
   .mech-img-wrap .step-t { font-size: 17px !important; }
   .mech-img-wrap .warn { font-size: 17px !important; }
+  .persona-desc { font-size: 18px !important; max-width: 624px !important; }
+  .persona-desc-h { font-size: 18px !important; }
 
   /* Wider container */
   body { max-width: 680px; }
@@ -550,6 +552,43 @@ body.mech-page #mainBurger{display:none}
   #chapterView { max-width: 100%; }
   #cvContent { max-width: 680px; margin: 0 auto; }
   .cv-back { max-width: 680px; margin: 0 auto; }
+
+  /* Persona-Seite: exakt derselbe Aufbau wie #chapterView/#cvContent — Container
+     full-bleed (damit .mech-back-btn/.mech-burger-btn, die fixed an den Viewport-Rändern
+     verankert sind, zur Kurvengrafik passen), Inhalt mittig auf 680px begrenzt */
+  #personaView.open { max-width: 100%; }
+  #pvContent { max-width: 680px; margin: 0 auto; }
+
+  /* Das Impressum-PNG ist nur ~430px breit gerendert; auf dem 680px-Container zeigt es
+     dadurch eine harte Kante links/rechts. Mit einer Maske blenden wir die Ränder weich
+     zur Hintergrundfarbe (--mech-bg) aus, sodass kein Kantenversatz sichtbar bleibt. */
+  .persona-imp-bg {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+  }
+
+  /* Fritz' Alltag Overlay: Container full-bleed wie #chapterView — die Kopfleiste bleibt
+     dabei (anders als .cv-back) über die volle Breite eingefärbt, damit sie randlos an
+     den Bildschirmrand reicht; nur die Pille wird wie auf den Unterseiten mittig begrenzt.
+     Höhere Spezifität als die spätere Basisregel #fritzAlltag{max-width:430px} (Zeile ~722),
+     die sonst per Source-Order gewinnen würde, obwohl unsere Media-Query-Regel "neuer" ist */
+  #fritzAlltag.open { max-width: 100%; }
+  /* Auf breiten Screens liegen die Karten dichter beieinander als auf Mobile (die Textkarte
+     ist jetzt fix auf 380px begrenzt, der Viewport aber viel breiter) – dadurch lugt der
+     Text der nächsten Karte schon störend ins Bild. Mehr Abstand zwischen den Karten löst das.
+     margin-right statt gap: gap würde scrollWidth/3 (Basis von Loop-Korrektur & Pille in
+     script.js) verfälschen, weil die Lücke an den drei Kopiergrenzen anders gezählt wird als
+     dazwischen; mit Margin pro Karte trägt jede der 3 geklonten Kopien exakt gleich viel zur
+     Gesamtbreite bei, scrollWidth/3 bleibt also weiterhin exakt "eine Kopie". */
+  .fa-img-card, .fa-text-card { margin-right: 8vw; }
+  .fa-img-card.fa-no-gap { margin-right: 0; }
+  /* Auf Desktop dürfen die Textzeilen breiter laufen, sonst brechen sie unschön mitten im
+     Wort/Satz um. Etwas mehr als die 380px-Grenze von .fa-text-card – das Verhältnis zu den
+     ~810px breiten Bildkarten bleibt dabei noch stimmig (vergleichbar mit dem Mobile-Verhältnis). */
+  .fa-text-card { max-width: 520px; }
+  .fa-text-card .mech-lead-txt, .fa-text-card .fa-body-sm { max-width: 460px; }
+  .fa-header .cv-scroll-header-title { font-size: 14px; }
+  .fa-pill-wrap .page-img-track { max-width: 680px; }
   #safeBottomGuard { max-width: 680px !important; }
 
   /* Startseite (sh-no-back): rechts angedockt, mobile-Breite */
@@ -703,6 +742,15 @@ body.mech-page #mainBurger{display:none}
 .persona-stats{display:flex;flex-direction:column;gap:12px;padding:40px 28px 36px;text-align:center;align-items:center}
 .persona-stat-lbl{font-family:var(--font-oscar);font-size:11px;color:rgba(30,44,110,0.4);font-weight:400;letter-spacing:0.04em;display:block}
 .persona-stat-val{font-family:var(--font-oracle);font-size:20px;color:var(--navy);font-weight:400;display:block;line-height:1.2}
+.persona-desc{font-family:var(--font-oscar);font-weight:400;font-size:15px;color:var(--navy);line-height:1.34;text-align:center;max-width:340px;margin:0 auto;padding:0 28px 36px}
+.persona-desc-h{display:block;font-family:var(--font-oscar);font-weight:600;font-size:15px;letter-spacing:0.02em;color:var(--navy);margin:18px 0 15px}
+.persona-desc-h:first-child{margin-top:0}
+/* Persona Impressum — transparent, blends into the light mech-bg of #personaView */
+.persona-imp{padding:0;background:transparent}
+.persona-imp-bg{width:100%;display:block}
+.persona-imp-inner{padding:0 28px 64px;margin-top:-60px;position:relative;background:transparent}
+.persona-imp-p{font-family:var(--font-oscar);font-weight:400;font-size:11px;color:rgba(30,44,110,0.32);line-height:1.85;margin-bottom:10px}
+.persona-imp-p:last-child{margin-bottom:0}
 /* Horizontal event strip */
 .persona-events-strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
 .persona-events-strip::-webkit-scrollbar{display:none}
@@ -730,7 +778,12 @@ body.mech-page #mainBurger{display:none}
 #fritzAlltag .page-img-pill{background:rgba(30,44,110,0.45)}
 .persona-cta-btn{-webkit-appearance:none;appearance:none;background:#fff;border:1px solid rgba(30,44,110,0.12);border-radius:50px;padding:14px 28px;font-family:var(--font-oscar);font-weight:500;font-size:14px;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:10px;-webkit-tap-highlight-color:transparent;transition:background 0.2s;width:100%;max-width:320px;justify-content:center;box-shadow:0 2px 12px rgba(30,44,110,0.1)}
 .persona-cta-btn:active{background:rgba(255,255,255,0.7)}
-.fa-text-card{flex-shrink:0;width:82%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;gap:14px}
+/* max-width verhindert, dass die Textkarte auf breiten (Desktop-)Viewports riesig wird:
+   Die Bildkarten sind über height:68vh auf eine feste, viewport-unabhängige Breite skaliert
+   (~ihre Bildbreite/-höhe-Relation), die Textkarte würde bei reinem %-Wert dagegen mit dem
+   Container mitwachsen und so viel breiter als die Bilder werden – seitliche Nachbarkarten
+   ragen dann nur noch winzig an den äußersten Rändern rein statt sichtbar hereinzuspitzen. */
+.fa-text-card{flex-shrink:0;width:82%;max-width:380px;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;gap:14px}
 .fa-lead{margin-top:4px}
 .fa-body-sm{font-family:var(--font-oscar);font-size:14px;color:rgba(30,44,110,0.4);line-height:1.6;font-style:italic}
 .fa-label-card{flex-shrink:0;width:55%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 16px}

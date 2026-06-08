@@ -7,12 +7,25 @@ let _personaIdx=0;
 
 const personas=[
   {
+    id:'alle',
+    eyebrow:'Wir. Alle. Du.',
+    role:'Wir. Alle.',
+    name:'Du.',
+    menuLabel:'Die Top Acht!',
+    lead:'Verschiedene Leben, verschiedene Wege<br>und doch stehen wir alle im selben Aufzug.',
+    portrait:'Alle Perona.png',
+    desc:'<span class="persona-desc-h">Acht Menschen. Acht Alltage.</span>Fritz hat endlich Zeit. Tony zählt seine Schritte. Gottfried hat drei Meetings zu viel. Hildegard denkt an ihre Pflanzen. Gertrude kennt jede Wohnung in der Stadt. Elfriede weiß noch nicht was sie will. Herbert zählt die Stunden bis Feierabend. Und Roswitha atmet einfach tief durch.<span class="persona-desc-h">Unendlich viele Momente.</span>Platte Reifen, herzlose Busfahrer, warmes Brot vom Bäcker, ein zufälliges Wiedersehen auf der Straße. Die kleinen Dinge des Alltags die uns alle verbinden – egal wer wir sind, wo wir wohnen oder was wir machen.<span class="persona-desc-h">Einer von uns.</span>Irgendwo zwischen Ärgernis und Harmonie steckst auch du. Vielleicht bist du ein Fritz. Vielleicht ein Tony. Vielleicht ein bisschen von allem.<span class="persona-desc-h">Infinitas – weil der Alltag<br>uns alle verbindet.</span>',
+    stats:[],
+    events:[]
+  },
+  {
     id:'fritz',
     eyebrow:'Persona 01',
     role:'Pensionist',
     name:'Fritz',
     lead:'Er hat endlich Zeit für alles –<br>außer für Stress.',
     portrait:'fritz Illustrationen-09.png',
+    desc:'Er hat endlich Zeit. Für alles. Den Kaffee, die Zeitung, den Nachbarn der eigentlich nur kurz vorbeikommen wollte. Fritz ärgert sich selten – und wenn, dann nur kurz. Er hat schließlich gelernt, dass das Leben zu kurz ist um sich über platte Reifen aufzuregen. Meistens zumindest.',
     stats:[
       {label:'Basis Harmonie',value:'7'},
       {label:'Alter',value:'74'},
@@ -43,48 +56,92 @@ const personas=[
     id:'tony', eyebrow:'Persona 02', role:'Fitnesstrainer', name:'Tony',
     lead:'Er joggt sogar zum Bäcker –<br>natürlich nur zum Aufwärmen.',
     portrait:'tony Illustrationen-09.png',
+    desc:'Er joggt zum Bäcker. Zum Aufwärmen. Er trinkt keinen Kaffee, er optimiert seine Energiezufuhr. Er schläft nicht, er regeneriert. Tony ist eigentlich ganz nett – solange man nicht fragt warum er keinen Zucker isst.',
     stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'29'},{label:'Lebenssituation',value:'Single'},{label:'Fortbewegung',value:'Fahrrad'}],
-    events:[]
+    events:[
+      {type:'img', src:'tony Illustrationen-01.jpg'},
+      {type:'text', title:'Knie<br>Schmerz', lead:'Beim Laufen bekommt Tony plötzlich Schmerzen\nund darf den Heimweg mit dem Bus antreten.', body:'Auch wir Fitnesstrainer sind nur Menschen.'},
+      {type:'img', src:'tony Illustrationen-02.jpg', label:'Mist ... der Bus!'},
+      {type:'img', src:'tony Illustrationen-03.jpg'},
+      {type:'text', title:'Herzloser<br>Busfahrer', lead:'Tony sprintet zum Bus wie in einem schlechten Actionfilm,\nnur damit der Fahrer ihm direkt vor der Nase davonfährt.', body:'Perfektes Timing. Wieder mal.'},
+      {type:'img', src:'tony Illustrationen-04.jpg'},
+      {type:'text', title:'Musik<br>Moment', lead:'Tony steckt die Kopfhörer rein und lässt\nden herzlosen Busfahrer einfach hinter sich.\nManchmal ist der Fußweg nach Hause die beste Therapie.'},
+      {type:'img', src:'tony Illustrationen-05.jpg'},
+      {type:'text', title:'Bluetooth<br>Problem', lead:'Tony tritt nun den Heimweg zu Fuß an,\ner will gemütlich Musik hören und plötzlich ist es still,\ndas Handy war gerade noch verbunden,\naber jetzt will es einfach nicht mehr funktionieren.', body:'Natürlich.'},
+      {type:'img', src:'tony Illustrationen-06.jpg'},
+      {type:'text', title:'Terrassen<br>Kaffee', lead:'Tony sitzt draußen in der Sonne, Kaffee in der Hand,\nseine Freundin ihm gegenüber – sie reden und lachen,\ndie Zeit vergeht wie im Flug.', body:'Nach dem Tag hat Tony sich das verdient.'},
+      {type:'img', src:'tony Illustrationen-07.jpg'},
+      {type:'text', title:'Akku<br>Pech', lead:'Tony wollte sein Handy nehmen, aber das Kabel\nwar anscheinend nicht richtig eingesteckt.\nSchick angezogen, Date in zehn Minuten –\nund das Handy zeigt einen leeren Bildschirm.', body:'Natürlich.'},
+      {type:'img', src:'tony Illustrationen-08.jpg'},
+      {type:'text', title:'Serien<br>Abend', lead:'Tag geschafft. Couch verdient.\nSnacks bereit, Serie läuft, der Rest kann warten.', body:'Tony nimmt\'s gelassen.'},
+      {type:'img', src:'tony Illustrationen-09.png'},
+      {type:'text', title:'Sei wie<br>Tony!', lead:'Höhen und Tiefen – auch im Training.\nVerpasste Busse, leere Akkus, schmerzende Knie.\nAber auch Kaffeepausen, entspannte Serienabende\nund kleine Erfolge zwischendurch.\nTony nimmt\'s gelassen. Vielleicht sollten wir das auch.', logo:true},
+    ]
   },
   {
     id:'gottfried', eyebrow:'Persona 03', role:'Berater', name:'Gottfried',
     lead:'Er hat für alles einen Termin –<br>sogar für seine Termine.',
-    portrait:null,
+    portrait:'gottfried Illustrationen-09.png',
+    desc:'Sein Kalender ist sein Heiligtum. Er hat Termine für seine Termine und eine Erinnerung für seine Erinnerungen. Irgendwo zwischen Meeting und Deadline vergisst er manchmal zu atmen. Aber keine Sorge – das hat er auch eingeplant.',
     stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'39'},{label:'Lebenssituation',value:'Verheiratet'},{label:'Fortbewegung',value:'Auto'}],
-    events:[]
+    events:[
+      {type:'img', src:'gottfried Illustrationen-01.jpg'},
+      {type:'text', title:'Ewige<br>Baustelle', lead:'Gottfried sitzt im Auto und schaut auf die Uhr, noch drei Minuten bis zum Meeting – die Baustelle sieht das offenbar anders.', body:'Sie existiert gefühlt schon länger als manche Beziehungen.'},
+      {type:'img', src:'gottfried Illustrationen-02.jpg'},
+      {type:'text', title:'Gutes<br>Feedback', lead:'Gottfried hat alles gegeben, die Präsentation sitzt perfekt und die Kollegen klatschen.', body:'Manchmal läuft es einfach.'},
+      {type:'img', src:'gottfried Illustrationen-03.jpg'},
+      {type:'text', title:'Parkplatz<br>Mythos', lead:'Gottfried fährt jetzt zum fünften Mal um den Block – der freie Parkplatz scheint eine urbane Legende zu sein.', body:'Er hat dafür extra früher aufgehört.'},
+      {type:'img', src:'gottfried Illustrationen-04.jpg'},
+      {type:'text', title:'Produktiver<br>Tag', lead:'Gottfried lehnt sich zurück – alles erledigt, alles auf der Liste abgehakt.', body:'Das Gefühl kennt er selten. Aber wenn, dann ist es gut.'},
+      {type:'img', src:'gottfried Illustrationen-05.jpg'},
+      {type:'text', title:'Update<br>Zeitpunkt', lead:'Gottfried wollte nur schnell etwas erledigen, da entscheidet sein Laptop, ausgerechnet jetzt ein Update zu starten.', body:'In fünf Minuten beginnt das nächste Meeting.'},
+      {type:'img', src:'gottfried Illustrationen-06.jpg'},
+      {type:'text', title:'Früher<br>Feierabend', lead:'Der letzte Termin fällt aus, Gottfried schaut ungläubig auf seine Uhr – plötzlich hat er Zeit.', body:'Er weiß kurz nicht, was er damit anfangen soll.'},
+      {type:'img', src:'gottfried Illustrationen-07.jpg'},
+      {type:'text', title:'Beobachtende<br>Blicke', lead:'Gottfried hat den Parkplatz endlich gefunden und natürlich schauen alle genau jetzt zu.', body:'Ausgerechnet heute läuft das Einparken überhaupt nicht gut.'},
+      {type:'img', src:'gottfried Illustrationen-08.jpg'},
+      {type:'text', title:'Feierabend<br>Getränk', lead:'Gottfried hält sein Glas Wein in der Hand – der Stau, das Update, die Blicke, alles ist auf einmal vergessen.', body:'Manchmal reicht ein einziger Moment, um den ganzen Tag zu retten.'},
+      {type:'img', src:'gottfried Illustrationen-09.png'},
+      {type:'text', title:'Sei wie<br>Gottfried!', lead:'Höhen und Tiefen – auch im Büro. Ewige Baustellen, volle Kalender, kein Parkplatz in Sicht. Aber auch gutes Feedback, ein früher Feierabend und ein Glas Wein, das alles wieder gut macht. Gottfried nimmt\'s gelassen. Vielleicht sollten wir das auch.', logo:true},
+    ]
   },
   {
     id:'hildegard', eyebrow:'Persona 04', role:'Floristin', name:'Hildegard',
     lead:'Sie spricht lieber mit Pflanzen –<br>die hören wenigstens zu.',
-    portrait:null,
+    portrait:'hildegard Illustrationen-09.png',
+    desc:'Sie redet lieber mit ihren Pflanzen als mit Menschen. Die Pflanzen hören zu, wachsen und beschweren sich nicht über den Preis. Ihre Rosen sind makellos. Ihr Geduldsfaden auch – solange niemand eine Tulpe als Lilie bezeichnet.',
     stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'56'},{label:'Lebenssituation',value:'Verwitwet'},{label:'Fortbewegung',value:'Öffentlicher Verkehr'}],
     events:[]
   },
   {
     id:'gertrude', eyebrow:'Persona 05', role:'Maklerin', name:'Gertrude',
     lead:'Sie kennt jede Wohnung –<br>rein zufällig natürlich.',
-    portrait:null,
+    portrait:'gertrude Illustrationen-09.png',
+    desc:'Sie kennt jede Wohnung in der Stadt. Zufällig natürlich. Sie lächelt immer, auch wenn sie innerlich schreit. Besonders wenn der Kunde zum siebten Mal fragt ob die Küche wirklich neu ist. Sie ist neu. Das Lächeln auch.',
     stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'44'},{label:'Lebenssituation',value:'Geschieden'},{label:'Fortbewegung',value:'Auto'}],
     events:[]
   },
   {
     id:'elfriede', eyebrow:'Persona 06', role:'Studentin', name:'Elfriede',
     lead:'Sie studiert und weiß noch nicht,<br>was sie später will.',
-    portrait:null,
+    portrait:'elfriede Illustrationen-09.png',
+    desc:'Sie studiert. Was genau, das klärt sich noch. Ihr Laptop ist immer dabei, ihre Zukunftspläne eher nicht. Sie ist verliebt, leicht verträumt und überzeugt dass sich alles irgendwie ergibt. Bis dahin: noch einen Oat Latte bitte.',
     stats:[{label:'Basis Harmonie',value:'4'},{label:'Alter',value:'23'},{label:'Lebenssituation',value:'Verliebt'},{label:'Fortbewegung',value:'Öffentlicher Verkehr'}],
     events:[]
   },
   {
     id:'herbert', eyebrow:'Persona 07', role:'Büroangestellter', name:'Herbert',
     lead:'Er arbeitet viel und zählt<br>die Stunden bis Feierabend.',
-    portrait:null,
+    portrait:'herbert Illustrationen-09.png',
+    desc:'Er zählt die Stunden bis Feierabend. Nicht weil er seinen Job hasst – er mag ihn sogar irgendwie. Aber Feierabend ist Feierabend. Er kommt pünktlich, geht pünktlich und trinkt dabei mehr Kaffee als medizinisch empfohlen.',
     stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'31'},{label:'Lebenssituation',value:'In Beziehung'},{label:'Fortbewegung',value:'Zu Fuß / Fahrrad'}],
     events:[]
   },
   {
     id:'roswitha', eyebrow:'Persona 08', role:'Yogalehrerin', name:'Roswitha',
     lead:'Sie bleibt ruhig und nimmt<br>alles, wie es kommt.',
-    portrait:null,
+    portrait:'roswitha Illustrationen-09.png',
+    desc:'Sie nimmt alles wie es kommt. Den Stau, den Regen, den Schüler der seit drei Monaten die Krieger-Pose falsch macht. Sie atmet tief durch. Immer. Manchmal fragt man sich ob sie überhaupt jemals gestresst ist. Sie ist es. Aber sehr entspannt dabei.',
     stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'42'},{label:'Lebenssituation',value:'Lebt alleine'},{label:'Fortbewegung',value:'Zu Fuß / Auto'}],
     events:[]
   }
@@ -611,7 +668,7 @@ function _showScrollHeader(){
 }
 
 function _buildChapterNav(){
-  const isHome=!_chapterOpen;
+  const isHome=!_chapterOpen&&!_personaOpen;
   const _arr=`<svg class="cv-sh-ch-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M9 18l6-6-6-6"/></svg>`;
   let html=`<button class="cv-sh-item" onclick="${isHome?'closeShMenu()':'shGoHome()'}"><span class="cv-sh-home-lbl">Startseite</span>${_arr}</button>`;
   const order=['übersicht','aufbau','ablauf','mechanik'];
@@ -636,7 +693,8 @@ function _buildChapterNav(){
   if(personaExpanded){
     personas.forEach((p,i)=>{
       const cur=_personaOpen&&i===_personaIdx;
-      html+=`<button class="cv-sh-sec-item${cur?' sh-item-active':''}" onclick="shOpenPersonaAt(${i})"><span class="cv-sh-sec-dot"></span><span class="cv-sh-sec-lbl">${p.name}</span></button>`;
+      const menuLbl=(p.menuLabel||p.name).replace(/<br>/g,' ');
+      html+=`<button class="cv-sh-sec-item${cur?' sh-item-active':''}" onclick="shOpenPersonaAt(${i})"><span class="cv-sh-sec-dot"></span><span class="cv-sh-sec-lbl">${menuLbl}</span></button>`;
     });
   }
   if(isHome)html+=`<button class="cv-sh-item" onclick="closeShMenu();openArViewer()"><span class="cv-sh-item-lbl">3D Spielansicht</span>${_arr}</button>`;
@@ -734,6 +792,10 @@ function shOpenPersona(){
 }
 function shGoHome(){
   closeShMenu();
+  // Fritz' Alltag liegt als Overlay über der Persona-Seite – beim Sprung zur Startseite
+  // muss es zuerst sauber geschlossen werden, sonst bleibt es sichtbar über der
+  // Startseite hängen UND sein '#fritz-alltag'-History-Eintrag bleibt in der URL stehen.
+  if(_fritzOpen)closeFritzAlltag(true);
   if(_personaOpen){_closePersonaClean();history.replaceState(null,'',location.pathname);}
   else closeChapter();
 }
@@ -889,7 +951,7 @@ function openPersonaPage(){
   pv.classList.add('open');
   pv.scrollTop=0;
   if(_sh){_sh.style.zIndex='210';}
-  if(_shTitle)_shTitle.textContent=personas[0].name;
+  if(_shTitle)_shTitle.textContent=(personas[0].menuLabel||personas[0].name).replace(/<br>/g,' ');
   if(!pv._scrollBound){
     pv._scrollBound=true;
     pv.addEventListener('scroll',()=>{
@@ -900,6 +962,10 @@ function openPersonaPage(){
     },{passive:true});
   }
   _personaIdx=0;
+  const p0=personas[0];
+  const p0HasStats=p0.stats&&p0.stats.length;
+  const p0HasDesc=!!p0.desc;
+  const p0HasEvents=p0.events&&p0.events.length;
   const dots=personas.map((_,i)=>`<span class="mech-dot${i===0?' active':''}" onclick="switchPersona(${i})"></span>`).join('');
   document.getElementById('pvContent').innerHTML=`
     <div class="mech-view">
@@ -925,13 +991,24 @@ function openPersonaPage(){
       <div id="pvPortraitWrap" class="persona-portrait-wrap">
         <img src="media/${encodeURIComponent(personas[0].portrait)}" class="persona-portrait" alt="${personas[0].role} ${personas[0].name}">
       </div>
-      <div style="display:flex;justify-content:center;padding:36px 28px 24px" id="pvBtn">
-        <button class="persona-cta-btn" onclick="openFritzAlltag()">
+      <div style="display:${p0HasEvents?'flex':'none'};justify-content:center;padding:36px 28px 24px" id="pvBtn">
+        ${p0HasEvents?`<button class="persona-cta-btn" onclick="openFritzAlltag()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17" style="flex-shrink:0"><path d="M9 18l6-6-6-6"/></svg>
-          ${personas[0].name}' Alltag ansehen
-        </button>
+          ${p0.name}' Alltag ansehen
+        </button>`:''}
       </div>
-      <div class="persona-stats" id="pvStats">${personas[0].stats.map(s=>`<div><span class="persona-stat-lbl">${s.label}</span><span class="persona-stat-val">${s.value}</span></div>`).join('')}</div>
+      <div class="persona-stats" id="pvStats" style="${p0HasStats?'':'display:none'}">${p0HasStats?p0.stats.map(s=>`<div><span class="persona-stat-lbl">${s.label}</span><span class="persona-stat-val">${s.value}</span></div>`).join(''):''}</div>
+      <p class="persona-desc" id="pvDesc" style="${p0HasDesc?'':'display:none'}">${p0.desc||''}</p>
+      <div class="persona-imp">
+        <img class="persona-imp-bg" src="media/Verlauf%20Impressum_persona.png" alt="">
+        <div class="persona-imp-inner">
+          <p class="persona-imp-p">© 2026 Infinitas</p>
+          <p class="persona-imp-p">Spielkonzept, Gestaltung und Spielsystem: Holzleitner Moritz</p>
+          <p class="persona-imp-p">Infinitas ist ein fiktives Spielkonzept im Rahmen eines Designprojekts. Die Ereignisse auf den Karten basieren auf einer Umfrage während des Entstehungsprozesses und wurden teilweise überarbeitet oder fiktiv erweitert. Texte mit Unterstützung von ChatGPT überarbeitet.</p>
+          <p class="persona-imp-p">Alle Rechte vorbehalten. Nachdruck, Vervielfältigung oder Veröffentlichung – auch auszugsweise – nur mit schriftlicher Genehmigung.</p>
+          <p class="persona-imp-p">Version 1.0 – INF-01-2026</p>
+        </div>
+      </div>
     </div>`;
   history.pushState({persona:true},'','#personas');
   // Swipe between personas
@@ -954,10 +1031,18 @@ function switchPersona(idx){
   const p=personas[idx];
   document.querySelectorAll('#pvDots .mech-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   document.getElementById('pvEy').textContent=p.role;
-  document.getElementById('pvName').textContent=p.name;
+  document.getElementById('pvName').innerHTML=p.name;
   document.getElementById('pvLead').innerHTML=p.lead;
   const statsEl=document.getElementById('pvStats');
-  if(statsEl)statsEl.innerHTML=p.stats.map(s=>`<div><span class="persona-stat-lbl">${s.label}</span><span class="persona-stat-val">${s.value}</span></div>`).join('');
+  if(statsEl){
+    if(p.stats&&p.stats.length){statsEl.style.display='flex';statsEl.innerHTML=p.stats.map(s=>`<div><span class="persona-stat-lbl">${s.label}</span><span class="persona-stat-val">${s.value}</span></div>`).join('');}
+    else{statsEl.style.display='none';statsEl.innerHTML='';}
+  }
+  const descEl=document.getElementById('pvDesc');
+  if(descEl){
+    if(p.desc){descEl.style.display='block';descEl.innerHTML=p.desc;}
+    else{descEl.style.display='none';descEl.innerHTML='';}
+  }
   const wrap=document.getElementById('pvPortraitWrap');
   if(wrap){
     if(p.portrait){wrap.innerHTML=`<img src="media/${encodeURIComponent(p.portrait)}" class="persona-portrait" alt="${p.role} ${p.name}">`;}
@@ -965,10 +1050,10 @@ function switchPersona(idx){
   }
   const btn=document.getElementById('pvBtn');
   if(btn){
-    if(p.events&&p.events.length){btn.style.display='';btn.innerHTML=`<button class="persona-cta-btn" onclick="openFritzAlltag()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17" style="flex-shrink:0"><path d="M9 18l6-6-6-6"/></svg>${p.name}' Alltag ansehen</button>`;}
+    if(p.events&&p.events.length){btn.style.display='flex';btn.innerHTML=`<button class="persona-cta-btn" onclick="openFritzAlltag()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17" style="flex-shrink:0"><path d="M9 18l6-6-6-6"/></svg>${p.name}' Alltag ansehen</button>`;}
     else{btn.style.display='none';}
   }
-  if(_shTitle)_shTitle.textContent=p.name;
+  if(_shTitle)_shTitle.textContent=(p.menuLabel||p.name).replace(/<br>/g,' ');
 }
 function _closePersonaClean(){
   if(!_personaOpen)return;
@@ -1004,12 +1089,26 @@ function openFritzAlltag(){
   const ov=document.getElementById('fritzAlltag');
   if(!ov)return;
   _fritzOpen=true;
-  const p=personas[0];
+  const p=personas[_personaIdx];
+  const faTitle=document.getElementById('faTitle');
+  if(faTitle)faTitle.textContent=p.name+'\' Alltag';
   const scroll=document.getElementById('faScroll');
+  // Die manuellen Zeilenumbrüche (\n) in den Texten sind auf die schmalen Mobile-Karten
+  // (~350px) abgestimmt. Auf breiteren Desktop-Karten (~520px) erzwingen sie unschön kurze,
+  // mitten-im-Satz-umbrechende Zeilen statt natürlich zu fließen. Ab 600px daher \n→Leerzeichen,
+  // damit der Text den verfügbaren Platz selbst ausnutzt und sauber umbricht.
+  const _faNl=window.innerWidth>=600?' ':'<br>';
   scroll.innerHTML=p.events.map(e=>{
-    if(e.type==='text') return `<div class="fa-text-card"><h1 class="mech-ttl">${e.title}</h1><p class="mech-lead-txt fa-lead">${e.lead.replace(/\n/g,'<br>')}</p>${e.body?`<p class="fa-body-sm">${e.body.replace(/\n/g,'<br>')}</p>`:''}${e.logo?`<div class="fa-wordmark"><div class="fa-wm-title">Infini<span class="alt-t">t</span>as</div><div class="fa-wm-subtitle">Alles halb so wild?!</div></div>`:''}</div>`;
-    return `<div class="fa-img-card"${e.label?' style="position:relative"':''}>
-      <img data-src="media/${encodeURIComponent(e.src)}" class="fa-lazy" alt="">
+    if(e.type==='text') return `<div class="fa-text-card"><h1 class="mech-ttl">${e.title}</h1><p class="mech-lead-txt fa-lead">${e.lead.replace(/\n/g,_faNl)}</p>${e.body?`<p class="fa-body-sm">${e.body.replace(/\n/g,_faNl)}</p>`:''}${e.logo?`<div class="fa-wordmark"><div class="fa-wm-title">Infini<span class="alt-t">t</span>as</div><div class="fa-wm-subtitle">Alles halb so wild?!</div></div>`:''}</div>`;
+    // width/height = echte Pixelmaße der Datei → Browser kennt das Seitenverhältnis sofort
+    // und berechnet die finale Kartenbreite (CSS: height:68vh;width:auto), bevor das Bild
+    // überhaupt geladen ist. Ohne das ändert sich die Kartenbreite erst nach dem Laden,
+    // wodurch die drei geklonten Karussell-Kopien unterschiedlich breit sind und die
+    // Loop-Korrektur (die scrollWidth/3 als Kopie-Breite annimmt) an der falschen Stelle landet.
+    const _portraitDims={fritz:[4913,7176],tony:[4913,7533]};
+    const [iw,ih]=/-09\./.test(e.src)?(_portraitDims[p.id]||[4913,7176]):[2400,1813];
+    return `<div class="fa-img-card${e.label?' fa-no-gap':''}"${e.label?' style="position:relative"':''}>
+      <img data-src="media/${encodeURIComponent(e.src)}" class="fa-lazy" alt="" width="${iw}" height="${ih}">
       ${e.label?`<div class="fa-img-label">${e.label}</div>`:''}
     </div>`;
   }).join('');
@@ -1020,23 +1119,36 @@ function openFritzAlltag(){
   history.pushState({fritzAlltag:true},'','#fritz-alltag');
 }
 function _initFaLoop(scroll){
-  // Reset von einem evtl. vorherigen Open (innerHTML wird neu gesetzt, Listener am scroll-Element bleiben sonst hängen)
+  // Reset von einem evtl. vorherigen Open (innerHTML wird neu gesetzt, Listener am scroll-Element
+  // und an einzelnen <img>s bleiben sonst hängen und überlagern sich mit dem neuen Lauf)
   if(scroll._loopFn){scroll.removeEventListener(scroll._loopEvt,scroll._loopFn);clearTimeout(scroll._loopTimer);}
+
   const originals=Array.from(scroll.children);
   const firstChild=scroll.firstChild;
   originals.forEach(el=>scroll.insertBefore(el.cloneNode(true),firstChild));
   originals.forEach(el=>scroll.appendChild(el.cloneNode(true)));
-  // Start in der mittleren (Original-)Kopie, damit nach beiden Seiten Puffer existiert.
-  // offsetLeft statt scrollWidth/3 verwenden – die Bilder sind beim Klonen noch nicht
-  // geladen (lazy), scrollWidth wäre also noch zu klein und die Startposition würde
-  // später, wenn die Karten ihre echte Breite bekommen, nicht mehr stimmen.
-  scroll.scrollLeft=originals[0].offsetLeft;
-  // Korrektur erst, wenn das Scrollen zur Ruhe gekommen ist – nie mitten in der Bewegung,
-  // sonst entsteht (wie zuvor) eine Rückkopplungsschleife aus scrollLeft-Sets und scroll-Events
+
+  // Startkarte = "Sei wie Fritz!" (letzte Karte, Logo) – Teaser/Abschluss-Slide direkt beim Öffnen.
+  const startEl=originals[originals.length-1];
+
+  // Dank fester width/height-Attribute auf den <img>s steht die Kartenbreite (und damit
+  // scrollWidth) sofort fest – kein Nachjustieren beim Laden mehr nötig, ein einziges
+  // Einrasten reicht. Startkarte mittig zentrieren (sie ist schmaler als der Viewport),
+  // sonst schaut die Nachbarkarte rechts rein.
+  scroll.scrollLeft=startEl.offsetLeft-(scroll.clientWidth-startEl.offsetWidth)/2;
+
+  // Die Pille soll bei "Sei wie Fritz!" (= unsere Startkarte, NICHT die erste Karte in
+  // originals[]) auf "Anfang" stehen. Referenzwert merken, damit _initFaPill die Position
+  // relativ zur Startkarte statt relativ zu originals[0] berechnen kann.
+  scroll._faPillRef=scroll.scrollLeft%(scroll.scrollWidth/3);
+
+  // ── Loop-Korrektur ──
+  // Läuft von Anfang an mit; landet man (durch Scrollen) zu nah an einem Rand der
+  // dreifach geklonten Reihe, wird um genau eine Kopie-Breite zurück in die Mitte gesprungen.
   const settle=()=>{
-    const w=scroll.scrollWidth/3;
-    if(scroll.scrollLeft<w*0.5)scroll.scrollLeft+=w;
-    else if(scroll.scrollLeft>=w*1.5)scroll.scrollLeft-=w;
+    const one=scroll.scrollWidth/3;
+    if(scroll.scrollLeft<one*0.5)scroll.scrollLeft+=one;
+    else if(scroll.scrollLeft>=one*1.5)scroll.scrollLeft-=one;
   };
   if('onscrollend' in window){
     scroll._loopEvt='scrollend';
@@ -1085,7 +1197,15 @@ function _initFaPill(){
   scroll.removeEventListener('scroll',scroll._pillFn||null);
   scroll._pillFn=function(){
     const one=scroll.scrollWidth/3;
-    const pos=scroll.scrollLeft%one;
+    const ref=scroll._faPillRef||0;
+    // Position relativ zur Startkarte ("Sei wie Fritz!"), nicht zu originals[0] – sonst
+    // würde die Pille beim Öffnen fälschlich "Ende" statt "Anfang" anzeigen, weil die
+    // Startkarte die letzte in originals[] ist.
+    let pos=(scroll.scrollLeft%one-ref+one)%one;
+    // Rundungsdifferenzen zwischen offsetLeft (gerundet) und scrollWidth/3 (Float) lassen
+    // den Wert an der Kopiergrenze hauchdünn unter "one" statt bei 0 landen → Pille würde
+    // fälschlich ans Ende springen. Werte nahe der Grenze auf 0 klemmen.
+    if(pos>one-2)pos=0;
     const max=one-scroll.clientWidth;
     if(max<=0){pill.style.left='0px';return;}
     const maxLeft=track.offsetWidth-pill.offsetWidth;
