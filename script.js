@@ -172,7 +172,7 @@ const personas=[
       {type:'text', title:'Frühlings<br>Luft', lead:'Roswitha tritt vor die Tür. Die warme Luft trifft sie sofort. Erster richtiger Frühlingstag.', body:'Sie schließt kurz die Augen und genießt jeden Atemzug.'},
       {type:'img', src:'roswitha Illustrationen-03.jpg'},
       {type:'text', title:'Ahnungsloser<br>Sprachassistent', lead:'Roswitha hat Teig an den Händen und will nur schnell einen Timer stellen. Der Sprachassistent versteht: „Spiele 80er Hits."', body:'Roswitha backt jetzt zu Bonnie Tyler.'},
-      {type:'img', src:'roswitha Illustrationen-04.jpg', label:'Einfach mal nichts.'},
+      {type:'img', src:'roswitha Illustrationen-04.jpg', label:'Einfach mal nichts.', labelStyle:'left:50%;transform:translate(calc(-50% + 30px),-50%)'},
       {type:'text', title:'Kuschel<br>Teppich', lead:'Roswitha legt sich auf ihren Lieblingsteppich. Einfach so. Auf den Boden. Decke über sich, Augen zu.', body:'Der Rest kann warten.'},
       {type:'img', src:'roswitha Illustrationen-05.jpg'},
       {type:'text', title:'Ruhezone<br>Fehlanzeige', lead:'Roswitha setzt sich bewusst in die Ruhezone. Jemand telefoniert lautstark und tratscht ohne Ende.', body:'Roswitha atmet tief durch. Wieder mal.'},
@@ -1213,7 +1213,7 @@ function openFritzAlltag(){
     const [iw,ih]=/-09\./.test(e.src)?(_portraitDims[p.id]||[4913,7176]):[2400,1813];
     return `<div class="fa-img-card${e.label?' fa-no-gap':''}"${e.label?' style="position:relative"':''}>
       <img data-src="media/${encodeURIComponent(e.src)}" class="fa-lazy" alt="" width="${iw}" height="${ih}">
-      ${e.label?`<div class="fa-img-label">${e.label}</div>`:''}
+      ${e.label?`<div class="fa-img-label"${e.labelStyle?` style="${e.labelStyle}"`:''}}>${e.label}</div>`:''}
     </div>`;
   }).join('');
   ov.classList.add('open');
