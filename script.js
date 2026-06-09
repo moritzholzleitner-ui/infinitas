@@ -53,7 +53,34 @@ const personas=[
     ]
   },
   {
-    id:'tony', eyebrow:'Persona 02', role:'Fitnesstrainer', name:'Tony',
+    id:'hildegard', eyebrow:'Persona 02', role:'Floristin', name:'Hildegard',
+    lead:'Sie spricht lieber mit Pflanzen –<br>die hören wenigstens zu.',
+    portrait:'hildegard Illustrationen-09.png',
+    desc:'Sie redet lieber mit ihren Pflanzen als mit Menschen. Die Pflanzen hören zu, wachsen und beschweren sich nicht über den Preis. Ihre Rosen sind makellos. Ihr Geduldsfaden auch – solange niemand eine Tulpe als Lilie bezeichnet.',
+    stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'56'},{label:'Lebenssituation',value:'Verwitwet'},{label:'Fortbewegung',value:'Öffentlicher Verkehr'}],
+    events:[
+      {type:'img', src:'hildegard Illustrationen-01.jpg'},
+      {type:'text', title:'Überfüllter<br>Zug', lead:'Hildegard steigt in den Zug, der wieder so voll ist, dass sie überlegt beim nächsten Mal einfach ihren eigenen Stuhl mitzunehmen.'},
+      {type:'img', src:'hildegard Illustrationen-02.jpg'},
+      {type:'text', title:'Pflanzen<br>Freude', lead:'Hildegard öffnet die Werkstatttür. Die Pflanzen haben den Winter überlebt. Alle. Sogar die schwierige Orchidee.', body:'Hildegard spricht kurz mit ihr. Nur zur Sicherheit.'},
+      {type:'img', src:'hildegard Illustrationen-03.jpg'},
+      {type:'text', title:'Drängel<br>Chaos', lead:'Hildegard will aus der U-Bahn aussteigen, aber beim Aussteigen drängen schon alle hinein, als gäbe es drinnen Gold zu gewinnen.', body:'Hildegard atmet tief durch. Die Pflanzen würden das nicht tun.'},
+      {type:'img', src:'hildegard Illustrationen-04.jpg'},
+      {type:'text', title:'Überraschungs<br>Blumen', lead:'Ein Kunde betritt das Geschäft und legt einen Strauß auf den Tresen – einfach so, als Dankeschön.', body:'Hildegard ist sprachlos. Das passiert selten.'},
+      {type:'img', src:'hildegard Illustrationen-05.jpg'},
+      {type:'text', title:'Cent<br>Zählung', lead:'Hildegard steht an der Kassa. Die Person vor ihr zählt jede einzelne Münze ab.', body:'Hildegard lernt Geduld auf eine ganz neue Art.'},
+      {type:'img', src:'hildegard Illustrationen-06.jpg'},
+      {type:'text', title:'Sonniger<br>Bahnsteig', lead:'Der Zug hat Verspätung. Hildegard stellt ihre Tasche ab und dreht einfach ihr Gesicht in die Sonne.', body:'Manchmal ist Warten gar nicht so schlimm.'},
+      {type:'img', src:'hildegard Illustrationen-07.jpg'},
+      {type:'text', title:'Schlüssel<br>Chaos', lead:'Hildegard steht vor ihrer Haustür und sucht ihren Schlüssel überall, nur nicht dort wo sie ihn „ganz sicher" hingelegt hat.'},
+      {type:'img', src:'hildegard Illustrationen-08.jpg'},
+      {type:'text', title:'Gemütlicher<br>Abend', lead:'Hildegard sitzt in ihrem Sessel. Draußen regnet es, drinnen ist es warm. Kaffee in der Hand, Buch auf dem Schoß.', body:'Kein Mensch. Keine Pflanze. Nur Ruhe.'},
+      {type:'img', src:'hildegard Illustrationen-09.png'},
+      {type:'text', title:'Sei wie<br>Hildegard!', lead:'Überfüllte Züge, drängende Mitfahrer, verlegte Schlüssel. Aber auch blühende Orchideen, unerwartete Blumensträuße und ein stiller Abend im Sessel. Hildegard nimmt\'s gelassen. Vielleicht sollten wir das auch.', logo:true},
+    ]
+  },
+  {
+    id:'tony', eyebrow:'Persona 03', role:'Fitnesstrainer', name:'Tony',
     lead:'Er joggt sogar zum Bäcker –<br>natürlich nur zum Aufwärmen.',
     portrait:'tony Illustrationen-09.png',
     desc:'Er joggt zum Bäcker. Zum Aufwärmen. Er trinkt keinen Kaffee, er optimiert seine Energiezufuhr. Er schläft nicht, er regeneriert. Tony ist eigentlich ganz nett – solange man nicht fragt warum er keinen Zucker isst.',
@@ -79,7 +106,34 @@ const personas=[
     ]
   },
   {
-    id:'gottfried', eyebrow:'Persona 03', role:'Berater', name:'Gottfried',
+    id:'gertrude', eyebrow:'Persona 04', role:'Maklerin', name:'Gertrude',
+    lead:'Sie kennt jede Wohnung –<br>rein zufällig natürlich.',
+    portrait:'gertrude Illustrationen-09.png',
+    desc:'Sie kennt jede Wohnung in der Stadt. Zufällig natürlich. Sie lächelt immer, auch wenn sie innerlich schreit. Besonders wenn der Kunde zum siebten Mal fragt ob die Küche wirklich neu ist. Sie ist neu. Das Lächeln auch.',
+    stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'44'},{label:'Lebenssituation',value:'Geschieden'},{label:'Fortbewegung',value:'Auto'}],
+    events:[
+      {type:'img', src:'gertrude Illustrationen-01.jpg'},
+      {type:'text', title:'Mopedauto<br>Schicksal', lead:'Gertrude ist auf dem Weg zur Besichtigung und fährt seit fünf Minuten hinter einem Mopedauto her.', body:'Sie fragt sich langsam ob sie zu Fuß schneller wäre.'},
+      {type:'img', src:'gertrude Illustrationen-02.jpg'},
+      {type:'text', title:'Sonnen<br>Moment', lead:'Gertrude hält kurz an, setzt ihre Sonnenbrille auf und dreht das Gesicht in die Sonne.', body:'Sie fühlt sich sofort wie im Urlaub.'},
+      {type:'img', src:'gertrude Illustrationen-03.jpg'},
+      {type:'text', title:'Regen<br>Schauer', lead:'Gertrude kommt aus der Besichtigung. Strahlender Sonnenschein beim Reingehen, Sintflut beim Rauskommen.', body:'Regenschirm natürlich im Auto.'},
+      {type:'img', src:'gertrude Illustrationen-04.jpg'},
+      {type:'text', title:'Vertrags<br>Abschluss', lead:'Gertrude legt den Stift auf den Tisch. Unterschrift. Handschlag. Fertig. Die Wohnung ist verkauft.', body:'Sie lächelt. Diesmal ehrlich.'},
+      {type:'img', src:'gertrude Illustrationen-05.jpg'},
+      {type:'text', title:'Unbekannter<br>Anrufer', lead:'Gertrudes Handy klingelt. Eine unbekannte Nummer. Sie hebt ab, niemand sagt etwas.', body:'Scheinbar ein sehr schüchterner Betrüger.'},
+      {type:'img', src:'gertrude Illustrationen-06.jpg'},
+      {type:'text', title:'Freundliches<br>Kompliment', lead:'Gertrude geht die Straße entlang und ein fremder Mensch macht ihr ein ehrliches Kompliment.', body:'Der ganze Tag fühlt sich sofort besser an.'},
+      {type:'img', src:'gertrude Illustrationen-07.jpg'},
+      {type:'text', title:'Cabrio<br>Regen', lead:'Gertrude hat das Verdeck offen gelassen. Es sah nach gutem Wetter aus.', body:'Es war kein gutes Wetter. Die Sitze sind komplett durchnässt.'},
+      {type:'img', src:'gertrude Illustrationen-08.jpg'},
+      {type:'text', title:'Musik<br>Moment', lead:'Gertrude sitzt im Auto. Lieblingssong im Radio, Lautstärke voll aufgedreht.', body:'Den Rest des Tages einfach vergessen.'},
+      {type:'img', src:'gertrude Illustrationen-09.png'},
+      {type:'text', title:'Sei wie<br>Gertrude!', lead:'Mopedautos, Regenschauer und schüchterne Betrüger. Aber auch Sonnenbrillen-Momente, ehrliche Komplimente und der perfekte Song im Radio. Gertrude nimmt\'s gelassen. Vielleicht sollten wir das auch.', logo:true},
+    ]
+  },
+  {
+    id:'gottfried', eyebrow:'Persona 05', role:'Berater', name:'Gottfried',
     lead:'Er hat für alles einen Termin –<br>sogar für seine Termine.',
     portrait:'gottfried Illustrationen-09.png',
     desc:'Sein Kalender ist sein Heiligtum. Er hat Termine für seine Termine und eine Erinnerung für seine Erinnerungen. Irgendwo zwischen Meeting und Deadline vergisst er manchmal zu atmen. Aber keine Sorge – das hat er auch eingeplant.',
@@ -106,28 +160,31 @@ const personas=[
     ]
   },
   {
-    id:'hildegard', eyebrow:'Persona 04', role:'Floristin', name:'Hildegard',
-    lead:'Sie spricht lieber mit Pflanzen –<br>die hören wenigstens zu.',
-    portrait:'hildegard Illustrationen-09.png',
-    desc:'Sie redet lieber mit ihren Pflanzen als mit Menschen. Die Pflanzen hören zu, wachsen und beschweren sich nicht über den Preis. Ihre Rosen sind makellos. Ihr Geduldsfaden auch – solange niemand eine Tulpe als Lilie bezeichnet.',
-    stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'56'},{label:'Lebenssituation',value:'Verwitwet'},{label:'Fortbewegung',value:'Öffentlicher Verkehr'}],
-    events:[]
-  },
-  {
-    id:'gertrude', eyebrow:'Persona 05', role:'Maklerin', name:'Gertrude',
-    lead:'Sie kennt jede Wohnung –<br>rein zufällig natürlich.',
-    portrait:'gertrude Illustrationen-09.png',
-    desc:'Sie kennt jede Wohnung in der Stadt. Zufällig natürlich. Sie lächelt immer, auch wenn sie innerlich schreit. Besonders wenn der Kunde zum siebten Mal fragt ob die Küche wirklich neu ist. Sie ist neu. Das Lächeln auch.',
-    stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'44'},{label:'Lebenssituation',value:'Geschieden'},{label:'Fortbewegung',value:'Auto'}],
-    events:[]
-  },
-  {
-    id:'elfriede', eyebrow:'Persona 06', role:'Studentin', name:'Elfriede',
-    lead:'Sie studiert und weiß noch nicht,<br>was sie später will.',
-    portrait:'elfriede Illustrationen-09.png',
-    desc:'Sie studiert. Was genau, das klärt sich noch. Ihr Laptop ist immer dabei, ihre Zukunftspläne eher nicht. Sie ist verliebt, leicht verträumt und überzeugt dass sich alles irgendwie ergibt. Bis dahin: noch einen Oat Latte bitte.',
-    stats:[{label:'Basis Harmonie',value:'4'},{label:'Alter',value:'23'},{label:'Lebenssituation',value:'Verliebt'},{label:'Fortbewegung',value:'Öffentlicher Verkehr'}],
-    events:[]
+    id:'roswitha', eyebrow:'Persona 06', role:'Yogalehrerin', name:'Roswitha',
+    lead:'Sie bleibt ruhig und nimmt<br>alles, wie es kommt.',
+    portrait:'roswitha Illustrationen-09.png',
+    desc:'Sie nimmt alles wie es kommt. Den Stau, den Regen, den Schüler der seit drei Monaten die Krieger-Pose falsch macht. Sie atmet tief durch. Immer. Manchmal fragt man sich ob sie überhaupt jemals gestresst ist. Sie ist es. Aber sehr entspannt dabei.',
+    stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'42'},{label:'Lebenssituation',value:'Lebt alleine'},{label:'Fortbewegung',value:'Zu Fuß / Auto'}],
+    events:[
+      {type:'img', src:'roswitha Illustrationen-01.jpg'},
+      {type:'text', title:'Spaziergang<br>Falle', lead:'Roswitha ist mit ihrem Hund unterwegs, alles läuft entspannt – bis zu dem Moment wo sie merkt dass kein Sackerl in der Tasche ist.', body:'Roswitha atmet tief durch. Sehr tief.'},
+      {type:'img', src:'roswitha Illustrationen-02.jpg'},
+      {type:'text', title:'Frühlings<br>Luft', lead:'Roswitha tritt vor die Tür. Die warme Luft trifft sie sofort. Erster richtiger Frühlingstag.', body:'Sie schließt kurz die Augen und genießt jeden Atemzug.'},
+      {type:'img', src:'roswitha Illustrationen-03.jpg'},
+      {type:'text', title:'Ahnungsloser<br>Sprachassistent', lead:'Roswitha hat Teig an den Händen und will nur schnell einen Timer stellen. Der Sprachassistent versteht: „Spiele 80er Hits."', body:'Roswitha backt jetzt zu Bonnie Tyler.'},
+      {type:'img', src:'roswitha Illustrationen-04.jpg', label:'Einfach mal nichts.'},
+      {type:'text', title:'Kuschel<br>Teppich', lead:'Roswitha legt sich auf ihren Lieblingsteppich. Einfach so. Auf den Boden. Decke über sich, Augen zu.', body:'Der Rest kann warten.'},
+      {type:'img', src:'roswitha Illustrationen-05.jpg'},
+      {type:'text', title:'Ruhezone<br>Fehlanzeige', lead:'Roswitha setzt sich bewusst in die Ruhezone. Jemand telefoniert lautstark und tratscht ohne Ende.', body:'Roswitha atmet tief durch. Wieder mal.'},
+      {type:'img', src:'roswitha Illustrationen-06.jpg'},
+      {type:'text', title:'Hunde<br>Freund', lead:'Roswitha kommt nach Hause. Ihr Hund wartet schon an der Tür, wedelt, springt, freut sich unbändig.', body:'Nach diesem Tag genau das Richtige.'},
+      {type:'img', src:'roswitha Illustrationen-07.jpg'},
+      {type:'text', title:'Yoga im<br>Garten', lead:'Roswitha rollt ihre Matte aus. Sonne, Ruhe, perfekte Bedingungen. Sie kommt in die erste Pose –', body:'und dann fängt es an zu regnen.'},
+      {type:'img', src:'roswitha Illustrationen-08.jpg'},
+      {type:'text', title:'Wellness<br>Abend', lead:'Roswitha lässt das Wasser einlaufen. Schaumbad, ruhige Musik, Kerzenlicht. Der Hund sitzt vor der Tür und wartet.', body:'Roswitha genießt jeden einzelnen Moment.'},
+      {type:'img', src:'roswitha Illustrationen-09.png'},
+      {type:'text', title:'Sei wie<br>Roswitha!', lead:'Fehlende Sackerl, laute Ruhezonen und Regen mitten im Yoga. Aber auch Frühlingsluft, ein wedelnder Hund und ein perfekter Wellnessabend. Roswitha atmet tief durch. Vielleicht sollten wir das auch.', logo:true},
+    ]
   },
   {
     id:'herbert', eyebrow:'Persona 07', role:'Büroangestellter', name:'Herbert',
@@ -135,18 +192,55 @@ const personas=[
     portrait:'herbert Illustrationen-09.png',
     desc:'Er zählt die Stunden bis Feierabend. Nicht weil er seinen Job hasst – er mag ihn sogar irgendwie. Aber Feierabend ist Feierabend. Er kommt pünktlich, geht pünktlich und trinkt dabei mehr Kaffee als medizinisch empfohlen.',
     stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'31'},{label:'Lebenssituation',value:'In Beziehung'},{label:'Fortbewegung',value:'Zu Fuß / Fahrrad'}],
-    events:[]
+    events:[
+      {type:'img', src:'herbert Illustrationen-01.jpg'},
+      {type:'text', title:'Chef<br>Lob', lead:'Herbert hat alles gegeben, das Projekt sitzt perfekt. Sein Chef sagt kurz nüchtern „Danke" und geht weiter.', body:'Herbert schaut ihm nach. Lange.'},
+      {type:'img', src:'herbert Illustrationen-02.jpg'},
+      {type:'text', title:'Ruhiger<br>Kaffee', lead:'Herbert sitzt alleine am Tisch. Kein Handy, kein Laptop, kein Chef. Nur er und sein Kaffee.', body:'So soll der Tag immer anfangen.'},
+      {type:'img', src:'herbert Illustrationen-03.jpg'},
+      {type:'text', title:'Kaffee<br>Experiment', lead:'Herbert schaut ungläubig zu, wie sein Chef die Kaffeebohnen in den Wassertank füllt.', body:'Herbert ist gespannt was heute dabei rauskommt.'},
+      {type:'img', src:'herbert Illustrationen-04.jpg'},
+      {type:'text', title:'Krapfen<br>Pause', lead:'Ein Kollege betritt das Büro. In der Hand: eine Schachtel Krapfen. Herberts Gesicht leuchtet auf.', body:'Der Nachmittag ist gerettet.'},
+      {type:'img', src:'herbert Illustrationen-05.jpg'},
+      {type:'text', title:'Paket<br>Versuch', lead:'Herbert steht vor der Post. Geschlossen. Natürlich. Er wollte nur schnell ein Paket aufgeben.', body:'Die Post sieht das anders.'},
+      {type:'img', src:'herbert Illustrationen-06.jpg'},
+      {type:'text', title:'Langes<br>Gespräch', lead:'Herberts Handy klingelt. Ein alter Freund, nach Monaten. Sie reden stundenlang über alles.', body:'Herbert merkt gar nicht wie spät es wird.'},
+      {type:'img', src:'herbert Illustrationen-07.jpg'},
+      {type:'text', title:'Technischer<br>Defekt', lead:'Herbert ist gerade eingestiegen, kaum sitzt er kommt die Durchsage: Technischer Defekt auf der Strecke, bitte alle aussteigen.', body:'Natürlich.'},
+      {type:'img', src:'herbert Illustrationen-08.jpg'},
+      {type:'text', title:'Lauter<br>Abend', lead:'Herbert ist alleine zuhause, Lautstärke voll aufgedreht. Er singt und tanzt einfach drauf los.', body:'Niemand schaut zu. Perfekt.'},
+      {type:'img', src:'herbert Illustrationen-09.png'},
+      {type:'text', title:'Sei wie<br>Herbert!', lead:'Nüchternes Chef-Lob, geschlossene Postämter und technische Defekte. Aber auch ruhige Kaffeepausen, Krapfen zur rechten Zeit und Abende wo niemand zuschaut. Herbert nimmt\'s gelassen. Vielleicht sollten wir das auch.', logo:true},
+    ]
   },
   {
-    id:'roswitha', eyebrow:'Persona 08', role:'Yogalehrerin', name:'Roswitha',
-    lead:'Sie bleibt ruhig und nimmt<br>alles, wie es kommt.',
-    portrait:'roswitha Illustrationen-09.png',
-    desc:'Sie nimmt alles wie es kommt. Den Stau, den Regen, den Schüler der seit drei Monaten die Krieger-Pose falsch macht. Sie atmet tief durch. Immer. Manchmal fragt man sich ob sie überhaupt jemals gestresst ist. Sie ist es. Aber sehr entspannt dabei.',
-    stats:[{label:'Basis Harmonie',value:'6'},{label:'Alter',value:'42'},{label:'Lebenssituation',value:'Lebt alleine'},{label:'Fortbewegung',value:'Zu Fuß / Auto'}],
-    events:[]
+    id:'moritz', eyebrow:'Persona 08', role:'Designer', name:'Moritz',
+    lead:'Er plant alles bis ins Detail –<br>und wackelt trotzdem.',
+    portrait:'moritz Illustrationen-09.png',
+    desc:'Er plant alles. Bis ins kleinste Detail. Der Drucker läuft, die Liste ist abgehakt, das Zuhause ist aufgeräumt. Und trotzdem wackelt das Möbelstück. Moritz ist Perfektionist – aber er weiß mittlerweile, dass auch Perfektion manchmal eine Pause braucht.',
+    stats:[{label:'Basis Harmonie',value:'5'},{label:'Alter',value:'26'},{label:'Lebenssituation',value:'Single'},{label:'Fortbewegung',value:'Öffentlicher Verkehr'}],
+    events:[
+      {type:'img', src:'moritz Illustrationen-01.jpg'},
+      {type:'text', title:'Möbel<br>Anleitung', lead:'Moritz hat alles genau geplant, die Anleitung liegt daneben. Das Möbelstück steht schief und wackelt bedenklich.', body:'Der Perfektionist in ihm weint leise.'},
+      {type:'img', src:'moritz Illustrationen-02.jpg'},
+      {type:'text', title:'Perfekter<br>3D Druck', lead:'Moritz nimmt das Teil vom Drucker. Perfekte Schichten, perfekte Kanten, perfektes Ergebnis.', body:'Er dreht es einmal in der Hand und lächelt zufrieden vor sich hin.'},
+      {type:'img', src:'moritz Illustrationen-03.jpg'},
+      {type:'text', title:'Bluetooth<br>Problem', lead:'Moritz will Musik hören. Der Lautsprecher war gestern noch verbunden, heute kennt er sein Handy anscheinend nicht mehr.', body:'Moritz – Technik Nerd – kämpft gegen Bluetooth.'},
+      {type:'img', src:'moritz Illustrationen-04.jpg'},
+      {type:'text', title:'Aufgeräumtes<br>Zuhause', lead:'Moritz räumt auf. Alles hat seinen Platz, alles ist sauber. Er lässt sich auf die Couch fallen.', body:'Und genießt die Perfektion seines Zuhauses.'},
+      {type:'img', src:'moritz Illustrationen-05.jpg'},
+      {type:'text', title:'Paket<br>Flut', lead:'Moritz bekommt ständig SMS dass sein Paket nicht zugestellt werden konnte.', body:'Spannend – er hat gar nichts bestellt. Dreimal. An einem Tag.'},
+      {type:'img', src:'moritz Illustrationen-06.jpg'},
+      {type:'text', title:'Frühes<br>Paket', lead:'Moritz öffnet die Tür. Das neue Technik-Produkt, früher als erwartet. Er reißt die Verpackung auf wie ein Kind an Weihnachten.', body:'Der Perfektionist macht kurz Pause.'},
+      {type:'img', src:'moritz Illustrationen-07.jpg'},
+      {type:'text', title:'Geschirrspüler<br>Defekt', lead:'Moritz öffnet die Spülmaschine. Sie läuft nicht. Sie hat nie angefangen. Ein Berg voller Geschirr wartet auf ihn.', body:'Von Hand. Heute Abend.'},
+      {type:'img', src:'moritz Illustrationen-08.jpg'},
+      {type:'text', title:'Spiele<br>Abend', lead:'Moritz sitzt mit Freunden am Tisch. Lachen, Chaos, schlechte Witze. Der Perfektionist verliert zum dritten Mal –', body:'und es ist ihm völlig egal.'},
+      {type:'img', src:'moritz Illustrationen-09.png'},
+      {type:'text', title:'Sei wie<br>Moritz!', lead:'Wackelnde Möbel, streikende Spülmaschinen und verwirrtes Bluetooth. Aber auch perfekte 3D-Drucke, frühe Pakete und Spieleabende wo Verlieren Spaß macht. Moritz nimmt\'s gelassen. Vielleicht sollten wir das auch.', logo:true},
+    ]
   }
 ];
-
 // Map JS SVG keys to actual filenames in media/
 const SVG_MAP = {
   'Element_1Ritualkarte_Verlauf': 'Element 1Ritualkarte_Verlauf_2.svg',
@@ -950,16 +1044,19 @@ function openPersonaPage(){
   if(window.innerWidth<600){const _tb=document.getElementById('chapterTopBar');if(_tb)_tb.style.display='block';}
   pv.classList.add('open');
   pv.scrollTop=0;
+  window.scrollTo(0,0);
   if(_sh){_sh.style.zIndex='210';}
   if(_shTitle)_shTitle.textContent=(personas[0].menuLabel||personas[0].name).replace(/<br>/g,' ');
   if(!pv._scrollBound){
     pv._scrollBound=true;
-    pv.addEventListener('scroll',()=>{
+    const _pvScroll=()=>{
       if(!_personaOpen)return;
-      const y=pv.scrollTop;
+      const y=pv.scrollTop||window.scrollY;
       if(y>80){_showScrollHeader();_sh.classList.add('sh-visible');_sh.classList.remove('sh-no-back');}
       else if(y<60)_hideScrollHeader(true);
-    },{passive:true});
+    };
+    pv.addEventListener('scroll',_pvScroll,{passive:true});
+    window.addEventListener('scroll',_pvScroll,{passive:true});
   }
   _personaIdx=0;
   const p0=personas[0];
@@ -984,13 +1081,14 @@ function openPersonaPage(){
         <h1 class="mech-ttl" id="pvName">${personas[0].name}</h1>
         <p class="mech-lead-txt" id="pvLead">${personas[0].lead}</p>
       </div>
-      <div class="mech-nav" style="padding-top:0">
+      <div class="mech-nav" id="pvNav">
         <div class="mech-dots" id="pvDots">${dots}</div>
         <span class="mech-nav-hint">Auf die Punkte tippen um die Persona zu wechseln</span>
       </div>
-      <div id="pvPortraitWrap" class="persona-portrait-wrap">
+      <div id="pvPortraitWrap" class="persona-portrait-wrap"${p0HasEvents?' onclick="openFritzAlltag()" style="cursor:pointer"':''}>
         <img src="media/${encodeURIComponent(personas[0].portrait)}" class="persona-portrait" alt="${personas[0].role} ${personas[0].name}">
       </div>
+      <span class="mech-nav-hint" id="pvPortraitHint" style="display:${p0HasEvents?'block':'none'};margin-top:16px">Tippe auf das Bild oder den Button um den Alltag anzusehen</span>
       <div style="display:${p0HasEvents?'flex':'none'};justify-content:center;padding:36px 28px 24px" id="pvBtn">
         ${p0HasEvents?`<button class="persona-cta-btn" onclick="openFritzAlltag()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17" style="flex-shrink:0"><path d="M9 18l6-6-6-6"/></svg>
@@ -1045,8 +1143,13 @@ function switchPersona(idx){
   }
   const wrap=document.getElementById('pvPortraitWrap');
   if(wrap){
+    const hasEv=p.events&&p.events.length;
+    wrap.onclick=hasEv?openFritzAlltag:null;
+    wrap.style.cursor=hasEv?'pointer':'';
     if(p.portrait){wrap.innerHTML=`<img src="media/${encodeURIComponent(p.portrait)}" class="persona-portrait" alt="${p.role} ${p.name}">`;}
     else{wrap.innerHTML=`<div class="persona-portrait-placeholder"><span>${p.name[0]}</span></div>`;}
+    const hint=document.getElementById('pvPortraitHint');
+    if(hint)hint.style.display=hasEv?'block':'none';
   }
   const btn=document.getElementById('pvBtn');
   if(btn){
@@ -1069,6 +1172,7 @@ function _closePersonaClean(){
   document.getElementById('mechChromeGuard').style.display='none';
   const _tb=document.getElementById('chapterTopBar');
   if(_tb)_tb.style.display='none';
+  requestAnimationFrame(()=>window.scrollTo(0,_scrollPos));
 }
 function closePersonaPage(fromPopstate=false){
   if(!_personaOpen)return;
